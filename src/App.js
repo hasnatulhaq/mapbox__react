@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Map from './Components/Map/Map';
+import Search from './Components/search/Search';
+import Sidbar from './Components/shared/Sidebar/Sidbar';
+
 
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='searh_div'>
+        <div>
+        <Search/>
+        </div>
+        <div className='navbar_items'>
+          <a>Home</a>
+          <a>About</a>
+        </div>
+      </div>
+      <div className='side_nav'>
+          <Sidbar/>
+      </div>
+      <section className="map_div">
+      <Map/>
+      </section>
     </div>
   );
 }
-
 export default App;
