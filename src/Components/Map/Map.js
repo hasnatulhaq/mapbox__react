@@ -1,11 +1,13 @@
 import { useState } from "react"
 import ReactMapGl from 'react-map-gl'
+import {Marker} from 'react-map-gl';
+import Locater from "../marker/Locater";
 
-function Map(){
+function Mapro(){
     const [viewport , setviewport] = useState({
-        longitude: -122.4,
-        latitude: 37.8,
-        zoom: 14,
+        longitude: 69.345116,
+        latitude: 30.375320,
+        zoom: 5,
         width: '90%',
         height : '100%', 
     });    
@@ -16,13 +18,17 @@ function Map(){
          mapStyle={'mapbox://styles/hasnatulhaq/cl0w2hiyf000714o0izsshvwh'}
          mapboxAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
           {...viewport} onMove={evt => setviewport(evt.viewport)}> 
-          <h1>hello world</h1>
+           <Marker longitude={69.345116} latitude={30.375320} 
+           offsetLeft={-20}
+           offsetTop={-10} >
+           <Locater/>
+    </Marker>
           </ReactMapGl>
     </>
         )
 }
 
-export default Map
+export default Mapro
 
 
 //{...viewport}

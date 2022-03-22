@@ -11,6 +11,7 @@
 
 .navbar_items{
       color: white;
+      margin-top: 15px;
 }
 
 .map_div{
@@ -25,11 +26,14 @@
 
 
 .side_nav{
-  background: #14233ebf;
-    width: 10vw;
-    height: 100vh;
-    margin-top: 7px;
-    z-index: 10;
-    position: absolute;
-    color: white;
+  background: white;
+  width: 10vw;
+  height: 95%;
+  /* margin-top: 7px; */
+  z-index: 10;
+  position: absolute;
+  color: black;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
 }
