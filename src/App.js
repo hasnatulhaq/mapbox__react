@@ -1,6 +1,5 @@
 import './App.css';
 import Mapro from './Components/Map/Map';
-
 import Search from './Components/search/Search';
 import Sidbar from './Components/shared/Sidebar/Sidbar';
 
@@ -21,9 +20,9 @@ function App() {
       <div className='side_nav'>
           <Sidbar/>
       </div>
-      <section className="map_div">
+      <div className="map_div">
       <Mapro/>
-      </section>
+      </div>
     </div>
   );
 }

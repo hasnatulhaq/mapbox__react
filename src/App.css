@@ -15,7 +15,9 @@
 }
 
 .map_div{
-    height: 100vh;;
+    height: 500px;
+    width: 100vw;
+    
 }
 
 
@@ -23,7 +25,6 @@
   margin: 7px 136px 6px;
   align-items: center;
 }
-
 
 .side_nav{
   background: white;
