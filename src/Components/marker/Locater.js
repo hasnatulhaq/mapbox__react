@@ -7,7 +7,6 @@ export default function Locater() {
   return (
     <>
            <Room style={{fontSize:50,color:red}}/>  
-          
     </>
   )
 }

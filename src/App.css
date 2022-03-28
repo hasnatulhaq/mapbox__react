@@ -15,11 +15,13 @@
 }
 
 .map_div{
-    height: 500px;
+    height: 95vh;
     width: 100vw;
     
 }
-
+.main_container{
+  display: flex;
+}
 
 .searchdiv__search{
   margin: 7px 136px 6px;

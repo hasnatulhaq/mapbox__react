@@ -17,6 +17,7 @@ function App() {
           <a>About</a>
         </div>
       </div>
+      <div className='main_container'></div>
       <div className='side_nav'>
           <Sidbar/>
       </div>
