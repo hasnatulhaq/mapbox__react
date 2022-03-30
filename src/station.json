@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : 1,
+        "Name": "Quetta"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.0166015625,
+          30.20211367909724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : 2,
+        "Name ": "karachi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.99462890625,
+          24.84656534821976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : 3,
+        "Name": "Islamabad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.0810546875,
+          33.687781758439364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : 4,
+        "Name": "Peshawar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.619873046875,
+          34.00713506435885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : 5,
+        "Name ": "Lahore"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.3170166015625,
+          31.53640812943961
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : 6,
+        "Name": "Gilgit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.3115234375,
+          35.96022296929667
+        ]
+      }
+    }
+  ]
+}
