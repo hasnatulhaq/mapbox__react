@@ -30,10 +30,11 @@
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
-             
+            
              {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <Room/>
+                     
                   </Marker>
             ))}
               </ReactMapGl>
