@@ -4,84 +4,96 @@
     {
       "type": "Feature",
       "properties": {
-        "id" : 1,
-        "Name": "Quetta"
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name ": "Quetta"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          67.0166015625,
-          30.20211367909724
+          67.027587890625,
+          30.211608223816906
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "id" : 2,
-        "Name ": "karachi"
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Karachi"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          66.99462890625,
-          24.84656534821976
+          67.001137,
+          24.860735
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "id" : 3,
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
         "Name": "Islamabad"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          73.0810546875,
-          33.687781758439364
+          73.070068359375,
+          33.715201644740844
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "id" : 4,
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
         "Name": "Peshawar"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          71.619873046875,
-          34.00713506435885
+          71.59790039062499,
+          34.05265942137599
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "id" : 5,
-        "Name ": "Lahore"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          74.3170166015625,
-          31.53640812943961
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id" : 6,
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
         "Name": "Gilgit"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          74.3115234375,
+          74.322509765625,
           35.96022296929667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Lahore"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.322509765625,
+          31.53640812943961
         ]
       }
     }
