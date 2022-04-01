@@ -1,6 +1,8 @@
     import { useState } from "react"
     //import ReactMapGl,{Source,Layer,Marker} from 'react-map-gl'
     import ReactMapGl,{
+      Source,
+      Layer,
       Marker,
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
@@ -20,6 +22,11 @@
             height: window.innerHeight,
             isDragging: false,
         });
+
+         const vectordata = 'https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333';
+   
+
+        
         return(
         <>
         <ReactMapGl  
@@ -30,11 +37,27 @@
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
+             <Source id="mydata" type="vector" data={vectordata}
+               minzoom={6} maxzoom={14}
+             >
+           <Layer  id='mydata' type="line" 
+            source={vectordata}
+          // sourcelayer={sequence}
+           layout={{
+          "line-cap" : "round",
+           "line-join" : "round",
+           }}
+           paint={{
+             "line-opacity" : 4,
+           "line-color" : "Red",
+           "line-width": 2,
+          }}
+           ></Layer> 
+        </Source>
             
              {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <Room/>
-                     
                   </Marker>
             ))}
               </ReactMapGl>
@@ -136,9 +159,7 @@
         // };
             
 
-
-
-
+    
             /* <Popup longitude={73.047882} latitude={33.684422}
     closeOnClick={false}
     anchor="bottom">
