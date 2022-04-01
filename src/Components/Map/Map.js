@@ -23,9 +23,6 @@
             isDragging: false,
         });
 
-         const vectordata = 'https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333';
-   
-
         
         return(
         <>
@@ -37,24 +34,24 @@
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
-             <Source id="mydata" type="vector" data={vectordata}
-               minzoom={6} maxzoom={14}
+             <Source id="mydata" type="vector" addsource={'mapillary'}
+               minzoom={6} maxzoom={14} 
+               url={"https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"}
              >
-           <Layer  id='mydata' type="line" 
-            source={vectordata}
-          // sourcelayer={sequence}
+           <Layer  id='layerid' type="line" 
+            source={'mapillary'}
+          sourcelayer={'sequence'}
            layout={{
           "line-cap" : "round",
            "line-join" : "round",
            }}
            paint={{
-             "line-opacity" : 4,
+             "line-opacity" : 0.3,
            "line-color" : "Red",
-           "line-width": 2,
+           "line-width": 15,
           }}
            ></Layer> 
         </Source>
-            
              {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <Room/>
@@ -174,3 +171,6 @@
             positionOptions={{enableHighAccuracy: true}}
             trackUserLocation={true}
             /> */
+
+
+            
