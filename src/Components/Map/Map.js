@@ -13,7 +13,6 @@
  
     function Mapro(){
 
-        console.log(Cities);
         const [viewport , setviewport] = useState({
             longitude: 73.047882,
             latitude: 33.684422,
@@ -22,6 +21,23 @@
             height: window.innerHeight,
             isDragging: false,
         });
+            
+        const layerStyle={
+          id:'mapillary', 
+          type:"line" ,
+          source:'mapillary',
+          'source-layer': 'sequence',
+         layout:{
+           "line-cap" : "round",
+            "line-join" : "round",
+       },
+          paint:{
+           "line-color" : "rgb(53, 175, 109)",
+           "line-width": 3,
+}
+        }
+
+      
 
         
         return(
@@ -29,34 +45,20 @@
         <ReactMapGl  
             width="100vw" height="100vh"
             style={{borderTop: '8px solid indigo'}}
-            mapStyle={'mapbox://styles/hasnatulhaq/cl0w2hiyf000714o0izsshvwh'}
+            mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
             mapboxAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
-             <Source id="mydata" type="vector" addsource={'mapillary'}
-               minzoom={6} maxzoom={14} 
-               url={"https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"}
-             >
-           <Layer  id='layerid' type="line" 
-            source={'mapillary'}
-          sourcelayer={'sequence'}
-           layout={{
-          "line-cap" : "round",
-           "line-join" : "round",
-           }}
-           paint={{
-             "line-opacity" : 0.3,
-           "line-color" : "Red",
-           "line-width": 15,
-          }}
-           ></Layer> 
+             <Source id="mapillary" type="vector"  tiles={["https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"]}
+             addsource='mapillary' minzoom={6} maxzoom={14}>
+                 <Layer {...layerStyle} ></Layer> 
         </Source>
-             {Cities.features.map((data)=>(
+              {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <Room/>
                   </Marker>
-            ))}
+            ))} 
               </ReactMapGl>
         </>
             )
