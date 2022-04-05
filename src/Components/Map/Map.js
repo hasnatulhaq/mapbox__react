@@ -4,6 +4,7 @@
       Source,
       Layer,
       Marker,
+      Popup,
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
@@ -21,7 +22,21 @@
             height: window.innerHeight,
             isDragging: false,
         });
-            
+
+      //  const [layer , setlayer] = useState({
+      //       longitude : 73.047882,
+      //       latitude :  33.684422,
+      //       zoom : 2.0,
+      //       width : window.innerWidth,
+      //       height : window.innerHeight,
+      //       isDragging : false,
+      //  })
+
+
+       const onClick = () => {
+          console.log("Hello world");
+      };
+        
         const layerStyle={
           id:'mapillary', 
           type:"line" ,
@@ -37,9 +52,8 @@
 }
         }
 
-      
 
-        
+
         return(
         <>
         <ReactMapGl  
@@ -50,10 +64,11 @@
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
-             <Source id="mapillary" type="vector"  tiles={["https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"]}
+             <Source id="mapillary"  type="vector"  tiles={["https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"]}
              addsource='mapillary' minzoom={6} maxzoom={14}>
-                 <Layer {...layerStyle} ></Layer> 
-        </Source>
+                 <Layer {...layerStyle} onClick={onClick} >
+                   </Layer>    
+             </Source>
               {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <Room/>
@@ -91,6 +106,13 @@
   // <Room/>
   // </Marker>
 
+
+
+  // <Popup longitude={73.047882} latitude={33.684422}
+  // closeOnClick={false}
+  //   anchor="bottom">
+  //    You are here
+  // </Popup>
 
 
 
