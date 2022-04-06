@@ -14,6 +14,135 @@
  
     function Mapro(){
 
+      const geojson = {
+    type: 'FeatureCollection',
+    features: [
+      {type: 'Feature', geometry: {type: 'Polygon', coordinates:
+      [
+        [
+          [
+            68.3349609375,
+            24.086589258228027
+          ],
+          [
+            70.927734375,
+            24.607069137709683
+          ],
+          [
+            69.521484375,
+            27.176469131898898
+          ],
+          [
+            71.1474609375,
+            28.168875180063345
+          ],
+          [
+            73.23486328124999,
+            29.554345125748267
+          ],
+          [
+            74.99267578125,
+            32.565333160841035
+          ],
+          [
+            75.1904296875,
+            33.22949814144951
+          ],
+          [
+            73.47656249999999,
+            34.288991865037524
+          ],
+          [
+            73.63037109375,
+            35.53222622770337
+          ],
+          [
+            75.498046875,
+            35.746512259918504
+          ],
+          [
+            76.44287109375,
+            35.99578538642032
+          ],
+          [
+            72.26806640624999,
+            36.58024660149866
+          ],
+          [
+            71.05957031249999,
+            35.62158189955968
+          ],
+          [
+            70.81787109374999,
+            34.07086232376631
+          ],
+          [
+            69.58740234375,
+            33.02708758002874
+          ],
+          [
+            66.09375,
+            30.29701788337205
+          ],
+          [
+            65.0390625,
+            29.152161283318915
+          ],
+          [
+            63.06152343750001,
+            29.094577077511826
+          ],
+          [
+            61.50146484374999,
+            29.458731185355344
+          ],
+          [
+            61.06201171875,
+            29.84064389983441
+          ],
+          [
+            61.23779296875,
+            29.036960648558267
+          ],
+          [
+            62.68798828125,
+            26.70635985763354
+          ],
+          [
+            62.75390625,
+            26.2145910237943
+          ],
+          [
+            61.50146484374999,
+            25.760319754713887
+          ],
+          [
+            63.03955078125,
+            25.304303764403617
+          ],
+          [
+            66.68701171875,
+            24.70691524106633
+          ],
+          [
+            68.3349609375,
+            24.086589258228027
+          ]
+        ]
+      ]
+    }
+    }
+    ]
+    }
+      const layerStylegeo = {
+        id: 'Polygon',
+        type: 'fill',
+        paint: {
+          "fill-color": "green",
+          "fill-opacity": 0.5,
+        },
+      };
+
         const [viewport , setviewport] = useState({
             longitude: 73.047882,
             latitude: 33.684422,
@@ -70,23 +199,24 @@
                  <Layer {...layerStyle}> closeOnClick={onMove}
                    </Layer>    
              </Source>
+             <Source id="my-data" type="geojson" data={geojson}>
+        <Layer {...layerStylegeo} onClick={(e)=>{console.log("hello world")}}/> 
+        </Source>
               {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <button className="marker-btn" onClick={(e)=>{
-                      console.log("hello world")
                       e.preventDefault();
-                      setSelectedCity(data)
+                      setSelectedCity(data);
                     }}>
-                           <p>Click for details</p>
+                          <Room/>
                     </button>
                   </Marker>
             ))} 
+
                {seletedcity ? (
                   <Popup latitude={seletedcity.geometry.coordinates[1]} longitude={seletedcity.geometry.coordinates[0]}>
                      <div>
                         <h1>{seletedcity.properties.Name}</h1>
-                        <h5>{seletedcity.properties.latitude}</h5>
-                        <h5>{seletedcity.properties.longitude}</h5>
                      </div>
                   </Popup>
                ): null}
