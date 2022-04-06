@@ -23,6 +23,8 @@
             isDragging: false,
         });
 
+        const [seletedcity, setSelectedCity] = useState(null);
+
       //  const [layer , setlayer] = useState({
       //       longitude : 73.047882,
       //       latitude :  33.684422,
@@ -70,11 +72,24 @@
              </Source>
               {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
-                    <button className="marker-btn">
+                    <button className="marker-btn" onClick={(e)=>{
+                      console.log("hello world")
+                      e.preventDefault();
+                      setSelectedCity(data)
+                    }}>
                            <p>Click for details</p>
                     </button>
                   </Marker>
             ))} 
+               {seletedcity ? (
+                  <Popup latitude={seletedcity.geometry.coordinates[1]} longitude={seletedcity.geometry.coordinates[0]}>
+                     <div>
+                        <h1>{seletedcity.properties.Name}</h1>
+                        <h5>{seletedcity.properties.latitude}</h5>
+                        <h5>{seletedcity.properties.longitude}</h5>
+                     </div>
+                  </Popup>
+               ): null}
               </ReactMapGl>
         </>
             )
