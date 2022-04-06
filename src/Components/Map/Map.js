@@ -200,11 +200,12 @@
                    </Layer>    
              </Source>
              <Source id="my-data" type="geojson" data={geojson}>
-        <Layer {...layerStylegeo} onClick={(e)=>{console.log("hello world")}}/> 
+        <Layer {...layerStylegeo} /> 
         </Source>
               {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <button className="marker-btn" onClick={(e)=>{
+                      console.log("Hello world")
                       e.preventDefault();
                       setSelectedCity(data);
                     }}>
