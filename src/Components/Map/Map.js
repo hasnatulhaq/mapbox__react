@@ -33,8 +33,8 @@
       //  })
 
 
-       const onClick = () => {
-          console.log("Hello world");
+       const onMove = (e) => {
+          console.log("hello world")
       };
         
         const layerStyle={
@@ -47,13 +47,12 @@
             "line-join" : "round",
        },
           paint:{
-           "line-color" : "rgb(53, 175, 109)",
-           "line-width": 3,
+           "line-color" : "black",
+           "line-width": 4,
 }
         }
-
-
-
+        
+       
         return(
         <>
         <ReactMapGl  
@@ -66,13 +65,14 @@
             > 
              <Source id="mapillary"  type="vector"  tiles={["https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"]}
              addsource='mapillary' minzoom={6} maxzoom={14}>
-                 <Layer {...layerStyle}>
-                   <button>Hello</button>
+                 <Layer {...layerStyle}> closeOnClick={onMove}
                    </Layer>    
              </Source>
               {Cities.features.map((data)=>(
-                  <Marker onClick={onClick} key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
-                    <Room/>
+                  <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
+                    <button className="marker-btn">
+                           <p>Click for details</p>
+                    </button>
                   </Marker>
             ))} 
               </ReactMapGl>
