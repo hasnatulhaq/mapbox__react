@@ -167,7 +167,6 @@
        const onMove = (e) => {
           console.log("hello world")
       };
-        
         const layerStyle={
           id:'mapillary', 
           type:"line" ,
