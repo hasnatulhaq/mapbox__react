@@ -139,14 +139,14 @@
         type: 'fill',
         paint: {
           "fill-color": "green",
-          "fill-opacity": 0.5,
+          "fill-opacity": 0.8,
         },
       };
 
         const [viewport , setviewport] = useState({
-            longitude: 73.047882,
-            latitude: 33.684422,
-            zoom: 2.0,
+            longitude: -74.005974,
+            latitude: 40.712776,
+            zoom: 12,
             width: window.innerWidth,
             height: window.innerHeight,
             isDragging: false,
@@ -164,25 +164,39 @@
       //  })
 
 
-       const onMove = (e) => {
-          console.log("hello world")
-      };
-        const layerStyle={
-          id:'mapillary', 
-          type:"line" ,
-          source:'mapillary',
-          'source-layer': 'sequence',
-         layout:{
-           "line-cap" : "round",
-            "line-join" : "round",
-       },
-          paint:{
-           "line-color" : "black",
-           "line-width": 4,
-}
-        }
-        
-       
+      //  const onMove = (e) => {
+      //     console.log("hello world")
+      // };
+
+
+//         const layerStyle={
+//           id:'zoneomicstiles', 
+//           type:"line" ,
+//           source:'zoneomics',
+//           'source-layer': 'sequence',
+//          layout:{
+//            "line-cap" : "round",
+//             "line-join" : "round",
+//        },
+//           paint:{
+//            "line-color" : "red",
+//            "line-width": 5,
+// }
+//         }
+
+
+const layerStyle={
+            id:'zoneomics', 
+            source:'zoneomics',
+           type: 'fill',
+          'source-layer': 'zones',
+           paint: {
+             "fill-color": "red",
+             "fill-opacity": 0.8,
+           },
+          }
+
+           
         return(
         <>
         <ReactMapGl  
@@ -193,9 +207,9 @@
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
-             <Source id="mapillary"  type="vector"  tiles={["https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"]}
-             addsource='mapillary' minzoom={6} maxzoom={14}>
-                 <Layer {...layerStyle}> closeOnClick={onMove}
+             <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
+             addsource="zoneomics">
+                 <Layer {...layerStyle} > 
                    </Layer>    
              </Source>
              <Source id="my-data" type="geojson" data={geojson}>
@@ -344,3 +358,44 @@
 
 
             
+
+
+
+            // <>
+            // <ReactMapGl  
+            //     width="100vw" height="100vh"
+            //     style={{borderTop: '8px solid indigo'}}
+            //     mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
+            //     mapboxAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
+            //     {...viewport} 
+            //     onMove={evt => setviewport(evt.viewport)}
+            //     > 
+            //      <Source id="mapillary"  type="vector"  tiles={["https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333"]}
+            //      addsource='mapillary' minzoom={6} maxzoom={14}>
+            //          <Layer {...layerStyle}> closeOnClick={onMove}
+            //            </Layer>    
+            //      </Source>
+            //      <Source id="my-data" type="geojson" data={geojson}>
+            // <Layer {...layerStylegeo} /> 
+            // </Source>
+            //       {Cities.features.map((data)=>(
+            //           <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
+            //             <button className="marker-btn" onClick={(e)=>{
+            //               console.log("Hello world")
+            //               e.preventDefault();
+            //               setSelectedCity(data);
+            //             }}>
+            //                   <Room/>
+            //             </button>
+            //           </Marker>
+            //     ))} 
+    
+            //        {seletedcity ? (
+            //           <Popup latitude={seletedcity.geometry.coordinates[1]} longitude={seletedcity.geometry.coordinates[0]}>
+            //              <div>
+            //                 <h1>{seletedcity.properties.Name}</h1>
+            //              </div>
+            //           </Popup>
+            //        ): null}
+            //       </ReactMapGl>
+            // </>
