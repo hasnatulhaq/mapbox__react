@@ -191,10 +191,27 @@ const layerStyle={
            type: 'fill',
           'source-layer': 'zones',
            paint: {
-             "fill-color": "red",
-             "fill-opacity": 0.8,
+             "fill-color": 'blue',
+             'fill-outline-color': 'red',
+             "fill-opacity": 0.5,
            },
           }
+
+
+            //  "fill-color": {
+            //   property: 'percentile',
+            //   stops: [
+            //     ['BPC', 'red'],
+            //     ['C1-6', 'green'],
+            //     ['C1-6A', 'yellow'],
+            //     ['C1-7', 'black'],
+            //     ['C1-7A', 'orange'],
+            //     ['C1-8', 'pink'],
+            //     ['C1-8A', 'indigo'],
+            //     ['C1-8X', 'purple'],
+            //     ['C1-9', 'green'],
+            //   ]
+            //  },
 
            
         return(
@@ -209,7 +226,7 @@ const layerStyle={
             > 
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics">
-                 <Layer {...layerStyle} > 
+                 <Layer {...layerStyle}> 
                    </Layer>    
              </Source>
              <Source id="my-data" type="geojson" data={geojson}>
