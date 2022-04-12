@@ -10,7 +10,7 @@
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
-import { yellow } from "@mui/material/colors";
+    import { yellow } from "@mui/material/colors";
 
 
  
@@ -186,78 +186,196 @@ import { yellow } from "@mui/material/colors";
 // }
 //         }
 const datacode = [
-  { 'code': 'red', },
-  { 'code': 'C1-6',},
-  { 'code': 'C1-6A',},
-  { 'code': 'C1-7',},
-  { 'code': 'C1-7A',},
-  { 'code': 'C1-8',},
-  { 'code': 'C1-8A',},
-  { 'code': 'C1-8X',},
-  { 'code': 'C1-9' ,},
-  { 'code': 'C1-9A',},
-  { 'code': 'C2-6' ,},
-  { 'code': 'C2-6A',},
-  { 'code': 'C2-7',},
-  { 'code': 'C2-7A',},
-  { 'code': 'C2-8' ,},
-  { 'code': 'C2-8A',},
-  { 'code': 'C3',},
-  { 'code': 'C3A',}
+{ 'code': 'BPC'},  
+{ 'code': 'C1-6'},
+{ 'code': 'C1-6A'},
+{ 'code': 'C1-7'},
+{ 'code': 'C1-7A'},
+{ 'code': 'C1-8'},
+{ 'code': 'C1-8A'},
+{ 'code': 'C1-8X'},
+{ 'code': 'C1-9'},
+{ 'code': 'C1-9A'},
+{ 'code': 'C2-6'},
+{ 'code': 'C2-6A'},
+{ 'code': 'C2-7'},
+{ 'code': 'C2-7A'},
+{ 'code': 'C2-8'},
+{ 'code': 'C2-8A'},
+{ 'code': 'C3'},
+{ 'code': 'C3A'},
+{ 'code': 'C4-1'},
+{ 'code': 'C4-2'},
+{ 'code': 'C4-2A'},
+{ 'code': 'C4-2F'},
+{ 'code': 'C4-3'},
+{ 'code': 'C4-3A'},
+{ 'code': 'C4-4'},
+{ 'code': 'C4-4A'},
+{ 'code': 'C4-4D'},
+{ 'code': 'C4-4L'},
+{ 'code': 'C4-5'},
+{ 'code': 'C4-5A'},
+{ 'code': 'C4-5D'},
+{ 'code': 'C4-5X'},
+{ 'code': 'C4-6'},
+{ 'code': 'C4-6A'},
+{ 'code': 'C4-7'},
+{ 'code': 'C5-1'},
+{ 'code': 'C5-1A'},
+{ 'code': 'C5-2'},
+{ 'code': 'C5-2.5'},
+{ 'code': 'C5-2A'},
+{ 'code': 'C5-3'},
+{ 'code': 'C5-4'},
+{ 'code': 'C5-5'},
+{ 'code': 'C5-P'},
+{ 'code': 'C6-1'},
+{ 'code': 'C6-1A'},
+{ 'code': 'C6-1G'},
+{ 'code': 'C6-2'},
+{ 'code': 'C6-2A'},
+{ 'code': 'C6-2G'},
+{ 'code': 'C6-2M'},
+{ 'code': 'C6-3'},
+{ 'code': 'C6-3A'},
+{ 'code': 'C6-3D'},
+{ 'code': 'C6-3X'},
+{ 'code': 'C6-4'},
+{ 'code': 'C6-4.5'},
+{ 'code': 'C6-4A'},
+{ 'code': 'C6-4M'},
+{ 'code': 'C6-4X'},
+{ 'code': 'C6-5'},
+{ 'code': 'C6-5.5'},
+{ 'code': 'C6-6'},
+{ 'code': 'C6-6.5'},
+{ 'code': 'C6-7'},
+{ 'code': 'C6-7T'},
+{ 'code': 'C6-9'},
+{ 'code': 'C7'},
+{ 'code': 'C8-1'},
+{ 'code': 'C8-2'},
+{ 'code': 'C8-3'},
+{ 'code': 'C8-4'},
+{ 'code': 'M1-1'},
+{ 'code': 'M1-1/R5'},
+{ 'code': 'M1-1/R6A'},
+{ 'code': 'M1-1/R7-2'},
+{ 'code': 'M1-1/R7D'},
+{ 'code': 'M1-1D'},
+{ 'code': 'M1-2'},
+{ 'code': 'M1-2/R5B'},
+{ 'code': 'M1-2/R5D'},
+{ 'code': 'M1-2/R6'},
+{ 'code': 'M1-2/R6A'},
+{ 'code': 'M1-2/R6B'},
+{ 'code': 'M1-2/R7-2'},
+{ 'code': 'M1-2/R7A'},
+{ 'code': 'M1-2/R8'},
+{ 'code': 'M1-2/R8A'},
+{ 'code': 'M1-2D'},
+{ 'code': 'M1-3'},
+{ 'code': 'M1-3/R7X'},
+{ 'code': 'M1-3/R8'},
+{ 'code': 'M1-4'},
+{ 'code': 'M1-4/R6A'},
+{ 'code': 'M1-4/R6B'},
+{ 'code': 'M1-4/R7-2'},
+{ 'code': 'M1-4/R7A'},
+{ 'code': 'M1-4/R7D'},
+{ 'code': 'M1-4/R7X'},
+{ 'code': 'M1-4/R8A'},
+{ 'code': 'M1-4/R9A'},
+{ 'code': 'M1-4D'},
+{ 'code': 'M1-5'},
+{ 'code': 'M1-5/R10'},
+{ 'code': 'M1-5/R7-2'},
+{ 'code': 'M1-5/R7-3'},
+{ 'code': 'M1-5/R7X'},
+{ 'code': 'M1-5/R8A'},
+{ 'code': 'M1-5/R9'},
+{ 'code': 'M1-5/R9-1'},
+{ 'code': 'M1-5A'},
+{ 'code': 'M1-5B'},
+{ 'code': 'M1-5M'},
+{ 'code': 'M1-6'},
+{ 'code': 'M1-6/R10'},
+{ 'code': 'M1-6/R9'},
+{ 'code': 'M1-6D'},
+{ 'code': 'M2-1'},
+{ 'code': 'M2-2'},
+{ 'code': 'M2-3'},
+{ 'code': 'M2-4'},
+{ 'code': 'M3-1'},
+{ 'code': 'M3-2'},
+{ 'code': 'PARK'},
+{ 'code': 'R1-1'},
+{ 'code': 'R1-2'},
+{ 'code': 'R1-2A'},
+{ 'code': 'R10'},
+{ 'code': 'R10A'},
+{ 'code': 'R10H'},
+{ 'code': 'R2'},
+{ 'code': 'R2A'},
+{ 'code': 'R2X'},
+{ 'code': 'R3-1'},
+{ 'code': 'R3-2'},
+{ 'code': 'R3A'},
+{ 'code': 'R3X'},
+{ 'code': 'R4'},
+{ 'code': 'R4-1'},
+{ 'code': 'R4A'},
+{ 'code': 'R4B'},
+{ 'code': 'R5'},
+{ 'code': 'R5A'},
+{ 'code': 'R5B'},
+{ 'code': 'R5D'},
+{ 'code': 'R6'},
+{ 'code': 'R6A'},
+{ 'code': 'R6B'},
+{ 'code': 'R7-1'},
+{ 'code': 'R7-2'},
+{ 'code': 'R7-3'},
+{ 'code': 'R7A'},
+{ 'code': 'R7B'},
+{ 'code': 'R7D'},
+{ 'code': 'R7X'},
+{ 'code': 'R8'},
+{ 'code': 'R8A'},
+{ 'code': 'R8B'},
+{ 'code': 'R8X'},
+{ 'code': 'R9'},
+{ 'code': 'R9A'},
+{ 'code': 'R9X'},
   ];
-// const data = [
-//   { 'code': 'ROU', 'hdi': 0.811 },
-//   { 'code': 'RUS', 'hdi': 0.816 },
-//   { 'code': 'SRB', 'hdi': 0.787 },
-//   { 'code': 'SVK', 'hdi': 0.855 },
-//   { 'code': 'SVN', 'hdi': 0.896 },
-//   { 'code': 'ESP', 'hdi': 0.891 },
-//   { 'code': 'SWE', 'hdi': 0.933 },
-//   { 'code': 'CHE', 'hdi': 0.944 },
-//   { 'code': 'HRV', 'hdi': 0.831 },
-//   { 'code': 'CZE', 'hdi': 0.888 },
-//   { 'code': 'DNK', 'hdi': 0.929 },
-//   { 'code': 'EST', 'hdi': 0.871 },
-//   { 'code': 'FIN', 'hdi': 0.92 },
-//   { 'code': 'FRA', 'hdi': 0.901 },
-//   { 'code': 'DEU', 'hdi': 0.936 },
-//   { 'code': 'GRC', 'hdi': 0.87 },
-//   { 'code': 'ALB', 'hdi': 0.785 },
-//   { 'code': 'AND', 'hdi': 0.858 },
-//   { 'code': 'AUT', 'hdi': 0.908 },
-//   { 'code': 'BLR', 'hdi': 0.808 },
-//   { 'code': 'BEL', 'hdi': 0.916 },
-//   { 'code': 'BIH', 'hdi': 0.768 },
-//   { 'code': 'BGR', 'hdi': 0.813 },
-//   { 'code': 'MKD', 'hdi': 0.757 },
-//   { 'code': 'MLT', 'hdi': 0.878 },
-//   { 'code': 'MDA', 'hdi': 0.7 },
-//   { 'code': 'MNE', 'hdi': 0.814 },
-//   { 'code': 'NLD', 'hdi': 0.931 },
-//   { 'code': 'NOR', 'hdi': 0.953 },
-//   { 'code': 'POL', 'hdi': 0.865 },
-//   { 'code': 'PRT', 'hdi': 0.847 },
-//   { 'code': 'HUN', 'hdi': 0.838 },
-//   { 'code': 'ISL', 'hdi': 0.935 },
-//   { 'code': 'IRL', 'hdi': 0.938 },
-//   { 'code': 'ITA', 'hdi': 0.88 },
-//   { 'code': 'LVA', 'hdi': 0.847 },
-//   { 'code': 'LIE', 'hdi': 0.916 },
-//   { 'code': 'LTU', 'hdi': 0.858 },
-//   { 'code': 'LUX', 'hdi': 0.904 },
-//   { 'code': 'UKR', 'hdi': 0.751 },
-//   { 'code': 'GBR', 'hdi': 0.922 }
-//   ];   
-            const zonecolor= randomColor();
-    //   const matchExpression = ['match', ['get','color']];
- 
-    //  for (const row of datacode) {
 
-    //   const color = randomColor();
-    //   console.log(color);
-    //   matchExpression.push(row['code'], color);
-    //   }
-    //  matchExpression.push('rgba(0, 0, 0, 0)');
+//   const zonedata=[
+//     "match",
+//     [
+//         "get",
+//         "z"
+//     ],
+//     "BPC",
+//     "black",
+//     "C1-6",
+//     "rgb(0, 208.07999999999998, 0)",
+//     "C1-6A",
+//     "rgb(0, 200.685, 0)",
+//     "white"
+// ]
+  
+     // const zonecolor= randomColor();
+       
+     const matchExpression = ['match', ['get','z']];  //get the property 
+     for (const row of datacode) {
+
+       const color = randomColor();
+       console.log(color);
+       matchExpression.push(row['code'], color);
+       }
+       console.log(matchExpression)
+      matchExpression.push('white');
 
 const layerStyle={
             id:'zoneomics', 
@@ -265,12 +383,8 @@ const layerStyle={
             source : 'zoneomics',
           'source-layer': 'zones',
           'paint': {
-            'fill-color': ['match', ['get', 'id'], // get the property
-                           'BPC', 'yellow',              // if 'GP' then yellow
-                           'C1-6', 'black', 
-                           'C1-6A' , 'red',              // if 'XX' then black 
-                           'orange'] ,
-                           'fill-outline-color': 'red',                    // white otherwise
+                'fill-color' : matchExpression,
+               'fill-outline-color': 'red',
             },
           }
           // paint: {
@@ -293,8 +407,14 @@ const layerStyle={
             //     ['C1-9', 'green'],
             //   ]
             //  },
-          
-            
+
+
+            // 'fill-color': ['match', ['get', 'zones'], // get the property
+            // '0', 'yellow',             
+            // 'C1-6', 'black', 
+            // 'C1-6A' , 'red',              
+            // 'orange'] ,
+
         return(
         <>
         <ReactMapGl  
