@@ -404,21 +404,31 @@ const layerStyle={
             //     ['C1-9', 'green'],
             //   ]
             //  },
-
-
+             
             // 'fill-color': ['match', ['get', 'zones'], // get the property
             // '0', 'yellow',             
             // 'C1-6', 'black', 
             // 'C1-6A' , 'red',              
             // 'orange'] ,
-
+            const handlecolor=()=>{
+                  let arr=[]
+                  for(let i=0; i<matchExpression.length-2; i++)
+                  {
+                    if(i>1){
+                       if(i%2===0){
+                           arr.push( <div><span style={{backgroundColor: matchExpression[i+1]}}></span>{matchExpression[i]}</div> )
+                       }    
+                    }
+                    
+                  }
+                  return arr
+            }
+            
         return(
         <>
         <div id="state-legend" className="legend">
         <h4>zones legend</h4>
-        {matchExpression.map(name => (   
-            <div><span style={{backgroundColor: "red"}}></span>{name}</div>  
-        ))}       
+        {handlecolor()}       
 </div>
         <ReactMapGl  
             width="100vw" height="100vh"
