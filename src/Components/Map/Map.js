@@ -369,7 +369,7 @@ const datacode = [
        
      const matchExpression = ['match', ['get','z']];  //get the property 
      for (const row of datacode) {
-
+        console.log(datacode);
        const color = randomColor();
        console.log(color);
        matchExpression.push(row['code'], color);
