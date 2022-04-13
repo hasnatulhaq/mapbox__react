@@ -374,6 +374,7 @@ const datacode = [
        matchExpression.push(row['code'], color);
        }
       matchExpression.push('white');
+      console.log(matchExpression)
 const layerStyle={
             id:'zoneomics', 
             type: 'fill',
@@ -419,7 +420,6 @@ const layerStyle={
                            arr.push( <div><span style={{backgroundColor: matchExpression[i+1]}}></span>{matchExpression[i]}</div> )
                        }    
                     }
-                    
                   }
                   return arr
             }
