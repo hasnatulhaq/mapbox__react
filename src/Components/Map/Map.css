@@ -6,16 +6,17 @@
 
 .legend{
     background: #ffffff;
-    width: 160px;
+    width: 155px;
     height: 81%;
     margin-top: 44px;
     margin-left: 225px;
     z-index: 10;
     position: absolute;
     display: flex;
-    align-items: center;
+    align-items: left;
     flex-direction: column;
-    overflow-y: scroll
+    overflow-y: scroll;
+    padding-left: 16px;
 }
 
 .legend div span {

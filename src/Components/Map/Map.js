@@ -382,7 +382,7 @@ const layerStyle={
           'source-layer': 'zones',
           'paint': {
                 'fill-color' : matchExpression,
-               'fill-outline-color': 'red',
+               'fill-outline-color': 'lightgray',
             },
           }
           // paint: {
