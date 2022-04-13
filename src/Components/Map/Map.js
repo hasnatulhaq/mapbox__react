@@ -10,7 +10,6 @@
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
-    import { yellow } from "@mui/material/colors";
 
 
 
@@ -374,7 +373,7 @@ const datacode = [
        matchExpression.push(row['code'], color);
        }
       matchExpression.push('white');
-      console.log(matchExpression)
+    
 const layerStyle={
             id:'zoneomics', 
             type: 'fill',
