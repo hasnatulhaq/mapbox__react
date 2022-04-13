@@ -3,3 +3,27 @@
     border-radius: 11PX;
     font-size: 12PX;
 }
+
+.legend{
+    background: #ffffff;
+    width: 160px;
+    height: 81%;
+    margin-top: 44px;
+    margin-left: 225px;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll
+}
+
+.legend div span {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+    flex-direction: row;
+    }
+

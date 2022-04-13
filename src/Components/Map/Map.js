@@ -13,6 +13,7 @@
     import { yellow } from "@mui/material/colors";
 
 
+
  
     function Mapro(){
 
@@ -369,14 +370,10 @@ const datacode = [
        
      const matchExpression = ['match', ['get','z']];  //get the property 
      for (const row of datacode) {
-        console.log(datacode);
        const color = randomColor();
-       console.log(color);
        matchExpression.push(row['code'], color);
        }
-       console.log(matchExpression)
       matchExpression.push('white');
-
 const layerStyle={
             id:'zoneomics', 
             type: 'fill',
@@ -417,6 +414,12 @@ const layerStyle={
 
         return(
         <>
+        <div id="state-legend" className="legend">
+        <h4>zones legend</h4>
+        {matchExpression.map(name => (   
+            <div><span style={{backgroundColor: "red"}}></span>{name}</div>  
+        ))}       
+</div>
         <ReactMapGl  
             width="100vw" height="100vh"
             style={{borderTop: '8px solid indigo'}}
