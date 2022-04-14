@@ -28,3 +28,15 @@
     flex-direction: row;
     }
 
+
+.searchp{
+    position: absolute;
+    width: 25rem;
+    height: 35px;
+    margin: 15px 136px 6px;
+    align-items: center;
+    z-index: 10;
+    right: 0;
+
+}
+    

@@ -8,7 +8,7 @@ function App() {
   
   return (
     <div className="App">
-      <div className='searh_div'>
+      {/* <div className='searh_div'>
         <div>
         <Search/>
         </div>
@@ -16,7 +16,7 @@ function App() {
           <a>Home</a>
           <a>About</a>
         </div>
-      </div>
+      </div> */}
       <div className='main_container'></div>
       <div className='side_nav'>
           <Sidbar/>

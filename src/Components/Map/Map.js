@@ -429,6 +429,14 @@ const layerStyle={
         <h4>zones legend</h4>
         {handlecolor()}       
 </div>
+            <div>
+            <input 
+          className="searchp"
+          type = "search" 
+          placeholder = "Search Places" 
+          //onChange = {handleChange}
+        />
+            </div>
         <ReactMapGl  
             width="100vw" height="100vh"
             style={{borderTop: '8px solid indigo'}}
