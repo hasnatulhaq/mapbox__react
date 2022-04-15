@@ -11,7 +11,7 @@
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
-    //import Geocoder from 'react-map-gl-geocoder'
+  //  import Geocoder from 'react-map-gl-geocoder'
     
 
     function Mapro(){
@@ -354,6 +354,8 @@ const layerStyle={
                   }
                   return arr
             }
+         
+
             
         return(
        <>
@@ -378,12 +380,7 @@ const layerStyle={
             onMove={evt => setviewport(evt.viewport)}
             > 
             <GeolocateControl/>
-              {/* <Geocoder
-         // mapRef={mapRef}
-         // onViewportChange={handleGeocoderViewportChange}
-          mapboxApiAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
-          position="top-left"
-        /> */}
+              
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
              >
@@ -412,6 +409,12 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
+              {/* <Geocoder
+         // mapRef={mapRef}
+         // onViewportChange={handleGeocoderViewportChange}
+          mapboxApiAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
+          position="top-left"
+        />  */}
               </>
             )
     }
