@@ -1,16 +1,18 @@
-    import { useState } from "react"
+    import { useState, useRef, useCallback } from "react"
     //import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
     import ReactMapGl,{
       Source,
       Layer,
       Marker,
       Popup,
+      GeolocateControl,
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
     //import Geocoder from 'react-map-gl-geocoder'
+    
 
     function Mapro(){
       const geojson = {
@@ -375,10 +377,11 @@ const layerStyle={
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
-             {/* <Geocoder
+            <GeolocateControl/>
+              {/* <Geocoder
          // mapRef={mapRef}
          // onViewportChange={handleGeocoderViewportChange}
-         // mapboxApiAccessToken={MAPBOX_TOKEN}
+          mapboxApiAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
           position="top-left"
         /> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
