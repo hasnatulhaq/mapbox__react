@@ -150,6 +150,8 @@
             isDragging: false,
         }); 
         const [seletedcity, setSelectedCity] = useState(null); 
+
+        
 const datacode = [
 { 'code': 'BPC'},  
 { 'code': 'C1-6'},
@@ -352,12 +354,11 @@ const layerStyle={
             }
             
         return(
-       
-       <div>
+       <>
         <div id="state-legend" className="legend">
         <h4>zones legend</h4>
         {handlecolor()}       
-</div>
+        </div>
             <div>
             <input 
           className="searchp"
@@ -408,7 +409,7 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
-              </div>
+              </>
             )
     }
     export default Mapro
