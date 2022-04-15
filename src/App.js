@@ -1,6 +1,6 @@
 import './App.css';
-import Mapro from './Components/Map/Map';
-import Search from './Components/search/Search';
+import Mapro from './Components/Map/Map.js';
+//import Search from './Components/search/Search';
 import Sidbar from './Components/shared/Sidebar/Sidbar';
 
 

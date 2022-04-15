@@ -4,11 +4,12 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 export default function Sidbar() {
-  return (<>
+  return (
+  
             <div className="sidebar__item">
-              <p><DashboardIcon/>Dashboard</p>
+               <p><DashboardIcon/>Dashboard</p>
               <p><AccountBoxIcon/>Account</p>
             </div>
-  </>
+  
   ) 
 }

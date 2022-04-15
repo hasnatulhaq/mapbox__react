@@ -1,5 +1,5 @@
     import { useState } from "react"
-    //import ReactMapGl,{Source,Layer,Marker} from 'react-map-gl'
+    //import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
     import ReactMapGl,{
       Source,
       Layer,
@@ -10,12 +10,9 @@
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
+    //import Geocoder from 'react-map-gl-geocoder'
 
-
-
- 
     function Mapro(){
-
       const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -144,7 +141,6 @@
           "fill-opacity": 0.8,
         },
       };
-
         const [viewport , setviewport] = useState({
             longitude: -74.005974,
             latitude: 40.712776,
@@ -152,39 +148,8 @@
             width: window.innerWidth,
             height: window.innerHeight,
             isDragging: false,
-        });
-        
-        const [seletedcity, setSelectedCity] = useState(null);
-
-      //  const [layer , setlayer] = useState({
-      //       longitude : 73.047882,
-      //       latitude :  33.684422,
-      //       zoom : 2.0,
-      //       width : window.innerWidth,
-      //       height : window.innerHeight,
-      //       isDragging : false,
-      //  })
-
-
-      //  const onMove = (e) => {
-      //     console.log("hello world")
-      // };
-
-
-//         const layerStyle={
-//           id:'zoneomicstiles', 
-//           type:"line" ,
-//           source:'zoneomics',
-//           'source-layer': 'sequence',
-//          layout:{
-//            "line-cap" : "round",
-//             "line-join" : "round",
-//        },
-//           paint:{
-//            "line-color" : "red",
-//            "line-width": 5,
-// }
-//         }
+        }); 
+        const [seletedcity, setSelectedCity] = useState(null); 
 const datacode = [
 { 'code': 'BPC'},  
 { 'code': 'C1-6'},
@@ -350,22 +315,7 @@ const datacode = [
 { 'code': 'R9X'},
   ];
 
-//   const zonedata=[
-//     "match",
-//     [
-//         "get",
-//         "z"
-//     ],
-//     "BPC",
-//     "black",
-//     "C1-6",
-//     "rgb(0, 208.07999999999998, 0)",
-//     "C1-6A",
-//     "rgb(0, 200.685, 0)",
-//     "white"
-// ]
-  
-     // const zonecolor= randomColor();
+
        
      const matchExpression = ['match', ['get','z']];  //get the property 
      for (const row of datacode) {
@@ -384,32 +334,10 @@ const layerStyle={
                'fill-outline-color': 'lightgray',
             },
           }
-          // paint: {
-          //   "fill-color": zonecolor,
-          //   'fill-outline-color': 'red',
-          //   "fill-opacity": 0.5,
-          // },
 
-            //  "fill-color": {
-            //   property: 'percentile',
-            //   stops: [
-            //     ['BPC', 'red'],
-            //     ['C1-6', 'green'],
-            //     ['C1-6A', 'yellow'],
-            //     ['C1-7', 'black'],
-            //     ['C1-7A', 'orange'],
-            //     ['C1-8', 'pink'],
-            //     ['C1-8A', 'indigo'],
-            //     ['C1-8X', 'purple'],
-            //     ['C1-9', 'green'],
-            //   ]
-            //  },
-             
-            // 'fill-color': ['match', ['get', 'zones'], // get the property
-            // '0', 'yellow',             
-            // 'C1-6', 'black', 
-            // 'C1-6A' , 'red',              
-            // 'orange'] ,
+
+         // const url="https://api.mapbox.com/geocoding/v5/{endpoint}/{search_text}.json";
+         
             const handlecolor=()=>{
                   let arr=[]
                   for(let i=0; i<matchExpression.length-2; i++)
@@ -424,7 +352,8 @@ const layerStyle={
             }
             
         return(
-        <>
+       
+       <div>
         <div id="state-legend" className="legend">
         <h4>zones legend</h4>
         {handlecolor()}       
@@ -439,12 +368,18 @@ const layerStyle={
             </div>
         <ReactMapGl  
             width="100vw" height="100vh"
-            style={{borderTop: '8px solid indigo'}}
+            style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
             mapboxAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             > 
+             {/* <Geocoder
+         // mapRef={mapRef}
+         // onViewportChange={handleGeocoderViewportChange}
+         // mapboxApiAccessToken={MAPBOX_TOKEN}
+          position="top-left"
+        /> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
              >
@@ -465,7 +400,6 @@ const layerStyle={
                     </button>
                   </Marker>
             ))} 
-
                {seletedcity ? (
                   <Popup latitude={seletedcity.geometry.coordinates[1]} longitude={seletedcity.geometry.coordinates[0]}>
                      <div>
@@ -474,7 +408,7 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
-        </>
+              </div>
             )
     }
     export default Mapro
@@ -638,3 +572,83 @@ const layerStyle={
             //        ): null}
             //       </ReactMapGl>
             // </>
+
+
+
+               //  const [layer , setlayer] = useState({
+      //       longitude : 73.047882,
+      //       latitude :  33.684422,
+      //       zoom : 2.0,
+      //       width : window.innerWidth,
+      //       height : window.innerHeight,
+      //       isDragging : false,
+      //  })
+
+
+      //  const onMove = (e) => {
+      //     console.log("hello world")
+      // };
+
+
+//         const layerStyle={
+//           id:'zoneomicstiles', 
+//           type:"line" ,
+//           source:'zoneomics',
+//           'source-layer': 'sequence',
+//          layout:{
+//            "line-cap" : "round",
+//             "line-join" : "round",
+//        },
+//           paint:{
+//            "line-color" : "red",
+//            "line-width": 5,
+// }
+//         }
+
+
+
+ // paint: {
+          //   "fill-color": zonecolor,
+          //   'fill-outline-color': 'red',
+          //   "fill-opacity": 0.5,
+          // },
+
+            //  "fill-color": {
+            //   property: 'percentile',
+            //   stops: [
+            //     ['BPC', 'red'],
+            //     ['C1-6', 'green'],
+            //     ['C1-6A', 'yellow'],
+            //     ['C1-7', 'black'],
+            //     ['C1-7A', 'orange'],
+            //     ['C1-8', 'pink'],
+            //     ['C1-8A', 'indigo'],
+            //     ['C1-8X', 'purple'],
+            //     ['C1-9', 'green'],
+            //   ]
+            //  },
+             
+            // 'fill-color': ['match', ['get', 'zones'], // get the property
+            // '0', 'yellow',             
+            // 'C1-6', 'black', 
+            // 'C1-6A' , 'red',              
+            // 'orange'] ,
+
+
+
+      //   const zonedata=[
+//     "match",
+//     [
+//         "get",
+//         "z"
+//     ],
+//     "BPC",
+//     "black",
+//     "C1-6",
+//     "rgb(0, 208.07999999999998, 0)",
+//     "C1-6A",
+//     "rgb(0, 200.685, 0)",
+//     "white"
+// ]
+  
+     // const zonecolor= randomColor();
