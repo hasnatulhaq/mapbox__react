@@ -1,21 +1,20 @@
     import { useState, useRef, useCallback } from "react"
-    import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
-    //import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+    //import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+    import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
     import ReactMapGl,{
       Source,
       Layer,
       Marker,
       Popup,
       GeolocateControl,
-      AttributionControl,
-      ScaleControl,
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
-  //  import Geocoder from 'react-map-gl-geocoder'
-    import mapboxgl from "mapbox-gl";
+    import Geocoder from "react-map-gl-geocoder";
+
+   // import mapboxgl from "mapbox-gl";
     
 
     function Mapro(){
@@ -343,21 +342,43 @@ const layerStyle={
                'fill-outline-color': 'lightgray',
             },
           }
-          
-          const geocoder = new MapboxGeocoder({
-            // Initialize the geocoder
-            accessToken: mapboxgl.MAPBOX_TOKEN, // Set the access token
-            mapboxgl: mapboxgl, // Set the mapbox-gl instance
-            marker: false, // Do not use the default marker style
-            placeholder: 'Search for places in Berkeley', // Placeholder text for the search bar
-            bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
-            proximity: {
-            longitude: -122.25948,
-            latitude: 37.87221
-            } // Coordinates of UC Berkeley
-            });
+         
+          const mapRef = useRef();
+          const handleViewportChange = useCallback(
+            (newViewport) => setviewport(newViewport),
+            []
+          );
 
-            
+          const handleGeocoderViewportChange = useCallback(
+            (newViewport) => {
+              const geocoderDefaultOverrides = { transitionDuration: 1000 };
+        
+              return handleViewportChange({
+                ...newViewport,
+                ...geocoderDefaultOverrides
+              });
+            },
+            [handleViewportChange]
+          );
+
+
+
+
+
+          // const geocoder = new MapboxGeocoder({
+          //   // Initialize the geocoder
+          //   accessToken: mapboxgl.MAPBOX_TOKEN, // Set the access token
+          //   mapboxgl: mapboxgl, // Set the mapbox-gl instance
+          //   marker: false, // Do not use the default marker style
+          //   placeholder: 'Search for places in Berkeley', // Placeholder text for the search bar
+          //   bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
+          //   proximity: {
+          //   longitude: -122.25948,
+          //   latitude: 37.87221
+          //   } // Coordinates of UC Berkeley
+          //   });
+
+
            // geocoder.addTo('#geocoder');
             // Add the geocoder to the map
            //map.addControl(geocoder);
@@ -386,24 +407,33 @@ const layerStyle={
         <h4>zones legend</h4>
         {handlecolor()}       
         </div>
-            <div>
+            {/* <div>
             <input 
           className="searchp"
           type = "search" 
           placeholder = "Search Places" 
           //onChange = {handleChange}
         />
-            </div>
+            </div> */}
         <ReactMapGl  
+             ref={mapRef}
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
             mapboxAccessToken={MAPBOX_TOKEN}
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
+            onViewportChange={handleViewportChange}
             > 
             <GeolocateControl/>
-               <ScaleControl {...geocoder}/>
+
+            <Geocoder
+            mapRef={mapRef}
+           onViewportChange={handleGeocoderViewportChange}
+          mapboxApiAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
+          
+        />  
+               {/* <ScaleControl {...geocoder}/> */}
               {/* <MapboxGeocoder {...geocoder}/> */}
               {/* <AttributionControl  {...geocoder}/> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
@@ -434,12 +464,7 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
-              {/* <Geocoder
-         // mapRef={mapRef}
-         // onViewportChange={handleGeocoderViewportChange}
-          mapboxApiAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
-          position="top-left"
-        />  */}
+             
               </>
             )
     }
