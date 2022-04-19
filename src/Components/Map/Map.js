@@ -1,6 +1,6 @@
-    //import { useState, useRef,  useCallback, useEffect } from "react"
-    //import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
-    import { useState} from "react"
+    import { useState, useRef,  useCallback, useEffect } from "react"
+    // import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+   // import { useState} from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
     import ReactMapGl,{
       Source,
@@ -9,37 +9,40 @@
       Popup,
       GeolocateControl,
       
+      
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
-   // import Geocoder from "react-map-gl-geocoder";
+   import Geocoder from "react-map-gl-geocoder";
     //import Geocoder from "@mapbox/react-geocoder";
-   // import mapboxgl from "mapbox-gl";
+   import mapboxgl from "mapbox-gl";
     
 
     function Mapro(){
      
       const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
+      const geocoderContainerRef = useRef();
+      const mapRef = useRef();
      
-          // const map =useRef()
-          // const handleViewportChange = useCallback(
-          //   (newViewport) => setviewport(newViewport),
-          //   []
-          // );
+          const map =useRef()
+          const handleViewportChange = useCallback(
+            (newViewport) => setviewport(newViewport),
+            []
+          );
 
-          // const handleGeocoderViewportChange = useCallback(
-          //     (newViewport) => {
-          //       const geocoderDefaultOverrides = { transitionDuration: 1000 };
+          const handleGeocoderViewportChange = useCallback(
+              (newViewport) => {
+                const geocoderDefaultOverrides = { transitionDuration: 1000 };
           
-          //       return handleViewportChange({
-          //         ...newViewport,
-          //         ...geocoderDefaultOverrides
-          //       });
-          //     },
-          //     [handleViewportChange]
-          //   );
+                return handleViewportChange({
+                  ...newViewport,
+                  ...geocoderDefaultOverrides
+                });
+              },
+              [handleViewportChange]
+            );
       
       // const geocoder = new MapboxGeocoder({
       //   // Initialize the geocoder
@@ -53,7 +56,7 @@
       //  latitude: 37.87221
       //  } // Coordinates of UC Berkeley
       // });
-      // console.log(geocoder);
+   
       // useEffect(()=>{
       //   if(map.current)
       //   {
@@ -66,9 +69,14 @@
       //           },
       //           mapboxgl: mapboxgl
       //           });
-                 
+      //           console.log(map);
       //           map.addControl(geocoder);
+      //           console.log(map);
              
+      //   }
+      //   else{
+      //     console.log(map)
+      //     map.addControl(geocoder);
       //   }
 
       // },[map])
@@ -459,15 +467,20 @@ const layerStyle={
           //onChange = {handleChange}
         />
             </div> */}
+
+<div
+        ref={geocoderContainerRef}
+        style={{ position: "absolute", top: 20, left: 500, zIndex: 1 }}
+      />
         <ReactMapGl  
-           // ref={map}
+           ref={map}
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
             mapboxAccessToken={MAPBOX_TOKEN}
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
-            //onViewportChange={handleViewportChange}
+            onViewportChange={handleViewportChange}
             > 
             <GeolocateControl/>
 
@@ -481,6 +494,14 @@ const layerStyle={
                {/* <ScaleControl {...geocoder}/> */}
               {/* <MapboxGeocoder {...geocoder}/> */}
               {/* <AttributionControl  {...geocoder}/> */}
+
+             <Geocoder  
+           
+          containerRef={geocoderContainerRef}
+          onViewportChange={handleViewportChange}
+          mapboxApiAccessToken={MAPBOX_TOKEN}
+          position="top-right"
+        />
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
              >
