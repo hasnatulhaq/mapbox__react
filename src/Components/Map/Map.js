@@ -1,5 +1,6 @@
-    import { useState, useRef, useCallback } from "react"
+    //import { useState, useRef,  useCallback, useEffect } from "react"
     //import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+    import { useState} from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
     import ReactMapGl,{
       Source,
@@ -7,18 +8,73 @@
       Marker,
       Popup,
       GeolocateControl,
+      
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
-    import Geocoder from "react-map-gl-geocoder";
-
+   // import Geocoder from "react-map-gl-geocoder";
+    //import Geocoder from "@mapbox/react-geocoder";
    // import mapboxgl from "mapbox-gl";
     
 
     function Mapro(){
+     
       const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
+     
+          // const map =useRef()
+          // const handleViewportChange = useCallback(
+          //   (newViewport) => setviewport(newViewport),
+          //   []
+          // );
+
+          // const handleGeocoderViewportChange = useCallback(
+          //     (newViewport) => {
+          //       const geocoderDefaultOverrides = { transitionDuration: 1000 };
+          
+          //       return handleViewportChange({
+          //         ...newViewport,
+          //         ...geocoderDefaultOverrides
+          //       });
+          //     },
+          //     [handleViewportChange]
+          //   );
+      
+      // const geocoder = new MapboxGeocoder({
+      //   // Initialize the geocoder
+      //   accessToken: mapboxgl.MAPBOX_TOKEN, // Set the access token
+      //   mapboxgl: mapboxgl, // Set the mapbox-gl instance
+      //   marker: false, // Do not use the default marker style
+      //   placeholder: 'Search for places in Berkeley', // Placeholder text for the search bar
+      //   bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
+      //  proximity: {
+      //  longitude: -122.25948,
+      //  latitude: 37.87221
+      //  } // Coordinates of UC Berkeley
+      // });
+      // console.log(geocoder);
+      // useEffect(()=>{
+      //   if(map.current)
+      //   {
+      //     console.log(map)
+      //         //  map.addControl(geocoder);
+      //         const geocoder = new MapboxGeocoder({
+      //           accessToken: mapboxgl.accessToken,
+      //           marker: {
+      //           color: 'orange'
+      //           },
+      //           mapboxgl: mapboxgl
+      //           });
+                 
+      //           map.addControl(geocoder);
+             
+      //   }
+
+      // },[map])
+
+
+      
       const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -343,45 +399,33 @@ const layerStyle={
             },
           }
          
-          const mapRef = useRef();
-          const handleViewportChange = useCallback(
-            (newViewport) => setviewport(newViewport),
-            []
-          );
+          // const mapRef = useRef();
+          // const handleViewportChange = useCallback(
+          //   (newViewport) => setviewport(newViewport),
+          //   []
+          // );
 
-          const handleGeocoderViewportChange = useCallback(
-            (newViewport) => {
-              const geocoderDefaultOverrides = { transitionDuration: 1000 };
+          // const handleGeocoderViewportChange = useCallback(
+          //   (newViewport) => {
+          //     const geocoderDefaultOverrides = { transitionDuration: 1000 };
         
-              return handleViewportChange({
-                ...newViewport,
-                ...geocoderDefaultOverrides
-              });
-            },
-            [handleViewportChange]
-          );
+          //     return handleViewportChange({
+          //       ...newViewport,
+          //       ...geocoderDefaultOverrides
+          //     });
+          //   },
+          //   [handleViewportChange]
+          // );
 
 
 
 
 
-          // const geocoder = new MapboxGeocoder({
-          //   // Initialize the geocoder
-          //   accessToken: mapboxgl.MAPBOX_TOKEN, // Set the access token
-          //   mapboxgl: mapboxgl, // Set the mapbox-gl instance
-          //   marker: false, // Do not use the default marker style
-          //   placeholder: 'Search for places in Berkeley', // Placeholder text for the search bar
-          //   bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
-          //   proximity: {
-          //   longitude: -122.25948,
-          //   latitude: 37.87221
-          //   } // Coordinates of UC Berkeley
-          //   });
 
 
-           // geocoder.addTo('#geocoder');
+          //  geocoder.addTo('#geocoder');
             // Add the geocoder to the map
-           //map.addControl(geocoder);
+          // map.addControl(geocoder);
              
 
          // const url="https://api.mapbox.com/geocoding/v5/{endpoint}/{search_text}.json";
@@ -416,23 +460,24 @@ const layerStyle={
         />
             </div> */}
         <ReactMapGl  
-             ref={mapRef}
+           // ref={map}
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
             mapboxAccessToken={MAPBOX_TOKEN}
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
-            onViewportChange={handleViewportChange}
+            //onViewportChange={handleViewportChange}
             > 
             <GeolocateControl/>
 
-            <Geocoder
-            mapRef={mapRef}
+             {/* <Geocoder
+             ref={map}
            onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={"pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg"}
-          
-        />  
+        /> */}
+         {/* <Source id="my-data" type="geojson" data={geocoder}>
+        </Source> */}
                {/* <ScaleControl {...geocoder}/> */}
               {/* <MapboxGeocoder {...geocoder}/> */}
               {/* <AttributionControl  {...geocoder}/> */}
