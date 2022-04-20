@@ -9,7 +9,6 @@
       Popup,
       GeolocateControl,
       
-      
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
@@ -17,14 +16,14 @@
     import randomColor from "randomcolor";
    import Geocoder from "react-map-gl-geocoder";
     //import Geocoder from "@mapbox/react-geocoder";
-   import mapboxgl from "mapbox-gl";
+  // import mapboxgl from "mapbox-gl";
     
-
-    function Mapro(){
-     
-      const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
+  const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
+  
+  function Mapro(){
+      
       const geocoderContainerRef = useRef();
-      const mapRef = useRef();
+      //const mapRef = useRef();
      
           const map =useRef()
           const handleViewportChange = useCallback(
@@ -34,7 +33,7 @@
 
           const handleGeocoderViewportChange = useCallback(
               (newViewport) => {
-                const geocoderDefaultOverrides = { transitionDuration: 1000 };
+              const geocoderDefaultOverrides = { transitionDuration: 3000 };
           
                 return handleViewportChange({
                   ...newViewport,
@@ -402,7 +401,7 @@ const layerStyle={
             source : 'zoneomics',
           'source-layer': 'zones',
           'paint': {
-                'fill-color' : matchExpression,
+              'fill-color' : matchExpression,
                'fill-outline-color': 'lightgray',
             },
           }
@@ -451,7 +450,11 @@ const layerStyle={
                   return arr
             }
          
-
+            // const geocoder = new MapboxGeocoder({
+            //   accessToken: MAPBOX_ACCESS_TOKEN,
+            //   mapboxgl: mapboxgl,
+            //   flyTo: { duration: 0 }
+            // });
             
         return(
        <>
@@ -470,7 +473,7 @@ const layerStyle={
 
 <div
         ref={geocoderContainerRef}
-        style={{ position: "absolute", top: 20, left: 500, zIndex: 1 }}
+        style={{ position: "absolute", top: 30, left: 500, zIndex: 1 }}
       />
         <ReactMapGl  
            ref={map}
@@ -496,11 +499,14 @@ const layerStyle={
               {/* <AttributionControl  {...geocoder}/> */}
 
              <Geocoder  
-           
+                     mapRef={map}
           containerRef={geocoderContainerRef}
-          onViewportChange={handleViewportChange}
+          onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
+          
+          
+          
         />
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
