@@ -22,14 +22,13 @@
   
   function Mapro(){
       
-      const geocoderContainerRef = useRef();
-      //const mapRef = useRef();
-     
+      
+          const geocoderContainerRef = useRef()
           const map =useRef()
           const handleViewportChange = useCallback(
             (newViewport) => setviewport(newViewport),
             []
-          );
+          ); 
 
           const handleGeocoderViewportChange = useCallback(
               (newViewport) => {
@@ -37,7 +36,7 @@
           
                 return handleViewportChange({
                   ...newViewport,
-                  ...geocoderDefaultOverrides
+                  ...geocoderDefaultOverrides 
                 });
               },
               [handleViewportChange]
@@ -504,9 +503,7 @@ const layerStyle={
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
-          
-          
-          
+          placeholder ="search any place"
         />
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
