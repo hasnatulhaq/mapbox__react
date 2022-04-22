@@ -22,7 +22,6 @@
   
   function Mapro(){
       
-      
           const geocoderContainerRef = useRef()
           const map =useRef()
           const handleViewportChange = useCallback(
@@ -533,7 +532,6 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
-             
               </>
             )
     }
