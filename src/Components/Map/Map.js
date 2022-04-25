@@ -504,9 +504,6 @@ const layerStyle={
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
-          
-          
-          
         />
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
@@ -536,7 +533,6 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
-             
               </>
             )
     }
