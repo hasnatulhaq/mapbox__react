@@ -42,3 +42,10 @@
   align-items: stretch;
   justify-content: center;
 }
+
+
+@media screen and (max-width: 992px) {
+  body {
+    background-color: lightgreen;
+  }
+}
