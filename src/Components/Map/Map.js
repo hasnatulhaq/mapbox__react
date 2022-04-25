@@ -30,6 +30,7 @@
             (newViewport) => setviewport(newViewport),
             []
           );
+        
 
           const handleGeocoderViewportChange = useCallback(
               (newViewport) => {
