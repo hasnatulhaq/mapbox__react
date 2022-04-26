@@ -1,0 +1,7 @@
+.flytobutton{
+    z-index: 4;
+    position: absolute;
+    right: 120px;
+    height: 32px;
+    background: white;
+}

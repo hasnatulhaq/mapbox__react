@@ -1,4 +1,6 @@
-    import { useState, useRef,  useCallback, useEffect } from "react"
+    import { useState, useRef,  useCallback, 
+    //  useEffect 
+    } from "react"
     // import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
    // import { useState} from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
@@ -8,13 +10,17 @@
       Marker,
       Popup,
       GeolocateControl,
+     // useControl,
+    //  map,
+      useMap,
       
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
-   import Cities from '../../cities';
+    import Cities from '../../cities';
     import randomColor from "randomcolor";
-   import Geocoder from "react-map-gl-geocoder";  // ya erro is py ha
+    import Navigation from '../Navigation/Navigation'
+  // import Geocoder from "react-map-gl-geocoder";
     //import Geocoder from "@mapbox/react-geocoder";
   // import mapboxgl from "mapbox-gl";
     
@@ -44,6 +50,10 @@
               [handleViewportChange]
             );
       
+
+
+
+            
 
 
 
@@ -457,11 +467,18 @@ const layerStyle={
             }
          
             // const geocoder = new MapboxGeocoder({
+
             //   accessToken: MAPBOX_ACCESS_TOKEN,
             //   mapboxgl: mapboxgl,
             //   flyTo: { duration: 0 }
             // });
             
+            // const {current:mymap} = useMap();
+            // const onClick = () => {
+            //   mymap.flyTo({center: [-122.4, 37.8]});
+            // };
+
+
         return(
        <>
         <div id="state-legend" className="legend">
@@ -481,7 +498,9 @@ const layerStyle={
         ref={geocoderContainerRef}
         style={{ position: "absolute", top: 30, left: 500, zIndex: 1 }}
       />
-        <ReactMapGl  
+
+        <ReactMapGl 
+         
            ref={map}
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
@@ -492,7 +511,7 @@ const layerStyle={
             onViewportChange={handleViewportChange}
             > 
             <GeolocateControl/>
-
+              <Navigation/>
              {/* <Geocoder
              ref={map}
            onViewportChange={handleGeocoderViewportChange}
@@ -504,13 +523,13 @@ const layerStyle={
               {/* <MapboxGeocoder {...geocoder}/> */}
               {/* <AttributionControl  {...geocoder}/> */}
 
-             <Geocoder  
+             {/* <Geocoder  
                      mapRef={map}
           containerRef={geocoderContainerRef}
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
-        />
+        /> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
              >
