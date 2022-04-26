@@ -12,7 +12,7 @@
       GeolocateControl,
      // useControl,
     //  map,
-      useMap,
+     // useMap,
       
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
@@ -20,45 +20,43 @@
     import Cities from '../../cities';
     import randomColor from "randomcolor";
     import Navigation from '../Navigation/Navigation'
+    import Geocoder from "../Geocoder/Geocoder"
   // import Geocoder from "react-map-gl-geocoder";
     //import Geocoder from "@mapbox/react-geocoder";
-  // import mapboxgl from "mapbox-gl";
+   //import mapboxgl from "mapbox-gl";
     
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
+ 
   
   function Mapro(){
-      
-      const geocoderContainerRef = useRef(); 
-      //const mapRef = useRef();
+   
+
      
-          const map =useRef()
-          const handleViewportChange = useCallback(
-            (newViewport) => setviewport(newViewport),  
-            []
-          );  
+      // const geocoderContainerRef = useRef(); 
+      // //const mapRef = useRef();
+     
+      //     const map =useRef()
+      //     const handleViewportChange = useCallback(
+      //       (newViewport) => setviewport(newViewport),  
+      //       []
+      //     );  
         
 
-          const handleGeocoderViewportChange = useCallback(
-              (newViewport) => {
-              const geocoderDefaultOverrides = { transitionDuration: 3000 };
+      //     const handleGeocoderViewportChange = useCallback(
+      //         (newViewport) => {
+      //         const geocoderDefaultOverrides = { transitionDuration: 3000 };
           
-                return handleViewportChange({
-                  ...newViewport,
-                  ...geocoderDefaultOverrides
-                });
-              },
-              [handleViewportChange]
-            );
+      //           return handleViewportChange({
+      //             ...newViewport,
+      //             ...geocoderDefaultOverrides
+      //           });
+      //         },
+      //         [handleViewportChange]
+      //       );
+          
+
+    
       
-
-
-
-            
-
-
-
-
-     
       // const geocoder = new MapboxGeocoder({
       //   // Initialize the geocoder
       //   accessToken: mapboxgl.MAPBOX_TOKEN, // Set the access token
@@ -494,24 +492,27 @@ const layerStyle={
         />
             </div> */}
 
-<div
+ {/* <div
         ref={geocoderContainerRef}
         style={{ position: "absolute", top: 30, left: 500, zIndex: 1 }}
-      />
+      />  */}
 
         <ReactMapGl 
          
-           ref={map}
+            //ref={map}
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
             mapboxAccessToken={MAPBOX_TOKEN}
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
-            onViewportChange={handleViewportChange}
+           // onViewportChange={handleViewportChange}
             > 
             <GeolocateControl/>
               <Navigation/>
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" />
+
+
              {/* <Geocoder
              ref={map}
            onViewportChange={handleGeocoderViewportChange}
