@@ -12,9 +12,9 @@
     } from 'react-map-gl'
     import {Room} from '@mui/icons-material'
     import './Map.css'
-    import Cities from '../../cities';
+   import Cities from '../../cities';
     import randomColor from "randomcolor";
-   import Geocoder from "react-map-gl-geocoder";
+   import Geocoder from "react-map-gl-geocoder";  // ya erro is py ha
     //import Geocoder from "@mapbox/react-geocoder";
   // import mapboxgl from "mapbox-gl";
     
@@ -22,14 +22,14 @@
   
   function Mapro(){
       
-      const geocoderContainerRef = useRef();
+      const geocoderContainerRef = useRef(); 
       //const mapRef = useRef();
      
           const map =useRef()
           const handleViewportChange = useCallback(
-            (newViewport) => setviewport(newViewport),
+            (newViewport) => setviewport(newViewport),  
             []
-          );
+          );  
         
 
           const handleGeocoderViewportChange = useCallback(
@@ -44,6 +44,11 @@
               [handleViewportChange]
             );
       
+
+
+
+
+     
       // const geocoder = new MapboxGeocoder({
       //   // Initialize the geocoder
       //   accessToken: mapboxgl.MAPBOX_TOKEN, // Set the access token
@@ -505,9 +510,6 @@ const layerStyle={
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
-          
-          
-          
         />
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
              addsource="zoneomics"  
@@ -522,7 +524,7 @@ const layerStyle={
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <button className="marker-btn" onClick={(e)=>{
                       console.log("Hello world")
-                      e.preventDefault();
+                      e.preventDefault();   
                       setSelectedCity(data);
                     }}>
                           <Room/>

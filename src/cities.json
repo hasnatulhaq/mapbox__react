@@ -9,7 +9,7 @@
         "marker-symbol": "",
         "Name ": "Quetta"
       },
-      "geometry": {
+      "geometry": {   
         "type": "Point",
         "coordinates": [
           67.027587890625,
@@ -201,7 +201,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [
+        "coordinates": [   
           80.2001953125,
           41.178653972331674
         ]
