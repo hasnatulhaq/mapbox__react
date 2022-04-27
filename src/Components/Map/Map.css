@@ -7,9 +7,9 @@
 .legend{
     background: #ffffff;
     width: 155px;
-    height: 81%;
-    margin-top: 44px;
-    margin-left: 225px;
+    height: 400px;
+    /* margin-top: 44px; */
+    margin-left: 25px;
     z-index: 10;
     position: absolute;
     display: flex;
@@ -17,6 +17,7 @@
     flex-direction: column;
     overflow-y: scroll;
     padding-left: 16px;
+    bottom: 40px;
 }
 
 .legend div span {

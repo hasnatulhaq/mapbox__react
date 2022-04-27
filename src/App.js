@@ -1,7 +1,7 @@
 import './App.css';
 import Mapro from './Components/Map/Map.js';
 //import Search from './Components/search/Search';
-import Sidbar from './Components/shared/Sidebar/Sidbar';
+//import Sidbar from './Components/shared/Sidebar/Sidbar';
 
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
         </div>
       </div> */}
       <div className='main_container'></div>
-      <div className='side_nav'>
+      {/* <div className='side_nav'>
           <Sidbar/>
-      </div>
+      </div> */}
       <div className="map_div">
       <Mapro/>
       </div>
