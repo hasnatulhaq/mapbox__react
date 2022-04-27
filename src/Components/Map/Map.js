@@ -415,7 +415,7 @@ const datacode = [
     ];
 
        
-     const matchExpression = ['match', ['get','zoneCode']];  //get the property 
+     const matchExpression = ['match', ['get','z']];  //get the property 
      for (const row of datacode) {
        const color = randomColor();
        matchExpression.push(row['code'], color);
@@ -426,7 +426,7 @@ const layerStyle={
             id:'zoneomics', 
             type: 'fill',
             source : 'zoneomics',
-          'source-layer': 'zoneomics',
+          'source-layer': 'zones',
           'paint': {
               'fill-color' : matchExpression,
                'fill-outline-color': 'lightgray',
@@ -544,19 +544,19 @@ const layerStyle={
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
         /> */}
-             {/* <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=265"]}
-             addsource="zoneomics"  
-             >
-                 <Layer {...layerStyle}> 
-                   </Layer>    
-             </Source> */}
-
-             <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/cities/findByLatLng?lat=42.1156&lng=-79.2558"]}
+             <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=1"]}
              addsource="zoneomics"  
              >
                  <Layer {...layerStyle}> 
                    </Layer>    
              </Source>
+
+             {/* <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/cities/findByLatLng?lat=42.1156&lng=-79.255"]}
+             addsource="data"  
+             >
+                 <Layer {...layerStyle}> 
+                   </Layer>    
+             </Source> */}
 
              <Source id="my-data" type="geojson" data={geojson}>
         <Layer {...layerStylegeo} /> 
@@ -564,7 +564,6 @@ const layerStyle={
               {Cities.features.map((data)=>(
                   <Marker key={data.properties.id}  longitude={data.geometry.coordinates[0]} latitude={data.geometry.coordinates[1]} > 
                     <button className="marker-btn" onClick={(e)=>{
-                      console.log("Hello world")
                       e.preventDefault();   
                       setSelectedCity(data);
                     }}>
