@@ -1,4 +1,4 @@
-    import { useState, 
+    import { useState, useEffect
       //useRef,  
     //  useCallback,   
     } from "react"
@@ -16,18 +16,20 @@
      // useMap,
       
     } from 'react-map-gl'
-    import {Room} from '@mui/icons-material'
+    import {LineAxisOutlined, Room} from '@mui/icons-material'
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
    // import Navigation from '../Navigation/Navigation'
     import Geocoder from "../Geocoder/Geocoder"
+    import axios from "axios";
   // import Geocoder from "react-map-gl-geocoder";
     //import Geocoder from "@mapbox/react-geocoder";
    //import mapboxgl from "mapbox-gl";
     
   const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
  
+  
   
   function Mapro(){
    
@@ -432,7 +434,6 @@ const layerStyle={
                'fill-outline-color': 'lightgray',
             },
           }
-         console.log(matchExpression)
           // const mapRef = useRef();
           // const handleViewportChange = useCallback(
           //   (newViewport) => setviewport(newViewport),
@@ -476,20 +477,45 @@ const layerStyle={
                   }
                   return arr
             }
-         
+
+
+
+
+                useEffect(()=>{
+                    async function getData(){
+                         const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat=42.1156&lng=-79.255')
+                         console.log(res);
+                    }
+                    getData()
+                });
+
+                  let id=1;
+                  // let lat=42.1156 , lng= -79.255
+      
+                  // const fetchAPI = ()=> {
+                  //   return fetch(`https://api.covid19api.com/live/country/${countryName}`)
+                  //   .then((response) => response.json())
+                  //   .then((result) => {
+                
+                  //   })};
+               
+
+
             // const geocoder = new MapboxGeocoder({
 
             //   accessToken: MAPBOX_ACCESS_TOKEN,
             //   mapboxgl: mapboxgl,
             //   flyTo: { duration: 0 }
             // });
-            
             // const {current:mymap} = useMap();
             // const onClick = () => {
             //   mymap.flyTo({center: [-122.4, 37.8]});
             // };
-
-
+           
+           
+              
+          
+        
         return(
        <>
         <div id="state-legend" className="legend">
@@ -544,7 +570,7 @@ const layerStyle={
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="top-right"
         /> */}
-             <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id=1"]}
+             <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}
              addsource="zoneomics"  
              >
                  <Layer {...layerStyle}> 
@@ -583,8 +609,7 @@ const layerStyle={
               </>
             )
     }
-    export default Mapro
-
+export default Mapro
 
   //{...viewport}
   //onMove={evt => setviewport(evt.viewport)}
@@ -822,5 +847,3 @@ const layerStyle={
 //     "rgb(0, 200.685, 0)",
 //     "white"
 // ]
-  
-     // const zonecolor= randomColor();
