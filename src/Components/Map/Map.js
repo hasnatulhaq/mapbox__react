@@ -477,18 +477,30 @@ const layerStyle={
                   }
                   return arr
             }
-
+                 
+            
+            
+                  let lat=42.1156 , lng=-79.255
                   const [id ,setId] = useState()
-
             
                 useEffect(()=>{
                     async function getData(){
-                         const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat=42.1156&lng=-79.255')
-                         console.log(res.data.data[0].id);
+                         const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
+                         console.log(res.data.data[0].zoneCode);
                          setId(res.data.data[0].id);
                     }
                     getData()
                 });
+
+
+
+
+
+
+ // const [zonedata , setZonedata] = useState([])
+                 // console.log(zonedata)
+
+                 //setZonedata(res.data.data[0].zoneCode);
 
                   //let ids=1;
                   // let lat=42.1156 , lng= -79.255
@@ -550,7 +562,7 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" />
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right"/>
 
 
              {/* <Geocoder
