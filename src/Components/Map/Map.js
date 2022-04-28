@@ -16,7 +16,7 @@
      // useMap,
       
     } from 'react-map-gl'
-    import {LineAxisOutlined, Room} from '@mui/icons-material'
+   import {Room} from '@mui/icons-material'
     import './Map.css'
     import Cities from '../../cities';
     import randomColor from "randomcolor";
@@ -478,18 +478,19 @@ const layerStyle={
                   return arr
             }
 
+                  const [id ,setId] = useState()
 
-
-
+            
                 useEffect(()=>{
                     async function getData(){
                          const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat=42.1156&lng=-79.255')
-                         console.log(res);
+                         console.log(res.data.data[0].id);
+                         setId(res.data.data[0].id);
                     }
                     getData()
                 });
 
-                  let id=1;
+                  //let ids=1;
                   // let lat=42.1156 , lng= -79.255
       
                   // const fetchAPI = ()=> {
