@@ -477,21 +477,30 @@ const layerStyle={
                   }
                   return arr
             }
-                 
+
+
+              
             
-            
-                  let lat=42.1156 , lng=-79.255
+                  const [data , setData] = useState([]);
+
+                  let lat=data[1] , lng=data[0]
                   const [id ,setId] = useState()
+                  const [zone , SetZone] = useState([]);
+                
             
                 useEffect(()=>{
                     async function getData(){
                          const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
                          console.log(res.data.data[0].zoneCode);
+                         SetZone(res.data.data[0].zoneCode.length)
                          setId(res.data.data[0].id);
                     }
                     getData()
                 });
 
+                // Geocoder.on('result', function(e) {
+                //   console.log(e.result.center)
+                // })
 
 
 
@@ -524,7 +533,7 @@ const layerStyle={
             // const onClick = () => {
             //   mymap.flyTo({center: [-122.4, 37.8]});
             // };
-           
+         
            
               
           
@@ -532,6 +541,7 @@ const layerStyle={
         return(
        <>
         <div id="state-legend" className="legend">
+          
         <h4>zones legend</h4>
         {handlecolor()}       
         </div>
@@ -548,6 +558,7 @@ const layerStyle={
         ref={geocoderContainerRef}
         style={{ position: "absolute", top: 30, left: 500, zIndex: 1 }}
       />  */}
+   
 
         <ReactMapGl 
          
@@ -562,7 +573,7 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" latitude/>
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" setdata={setData} />
 
 
              {/* <Geocoder

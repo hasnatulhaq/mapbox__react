@@ -5,14 +5,17 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 /* eslint-disable complexity,max-statements */
 
 export default function GeocoderControl(props) {
+    
     const [marker, setMarker] = useState(null);
     const geocoder = useControl(() => {
         const ctrl = new MapboxGeocoder(Object.assign(Object.assign({}, props), { marker: false, accessToken: props.mapboxAccessToken }));
         ctrl.on('loading', props.onLoading);
         ctrl.on('results', props.onResults);
+
         ctrl.on('result', evt => {
             var _a;
             props.onResult(evt);
+            props.setdata(evt.result.geometry.coordinates);
             const { result } = evt;
             const location = result &&
                 (result.center || (((_a = result.geometry) === null || _a === void 0 ? void 0 : _a.type) === 'Point' && result.geometry.coordinates));
