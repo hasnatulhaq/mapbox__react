@@ -562,7 +562,7 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right"/>
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" latitude/>
 
 
              {/* <Geocoder
