@@ -228,9 +228,9 @@
         },
       };
         const [viewport , setviewport] = useState({
-            longitude: -79.2558,
-            latitude: 42.1156,   
-            zoom: 12,
+            longitude: -95.712891,
+            latitude: 37.090240,   
+            zoom: 4,
             width: window.innerWidth,
             height: window.innerHeight,
             isDragging: false,
@@ -486,12 +486,13 @@ const layerStyle={
                   let lat=data[1] , lng=data[0]
                   const [id ,setId] = useState()
                   const [zone , SetZone] = useState([]);
+                  console.log(zone)
                 
             
                 useEffect(()=>{
                     async function getData(){
                          const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
-                         console.log(res.data.data[0].zoneCode);
+                         //console.log(res.data.data[0].zoneCode);
                          SetZone(res.data.data[0].zoneCode.length)
                          setId(res.data.data[0].id);
                     }
