@@ -10,10 +10,10 @@
       Layer,
       Marker,
       Popup,
-    // GeolocateControl,
-     // useControl,
-    //  map,
-     // useMap,
+    //GeolocateControl,
+     //useControl,
+    //map,
+     //useMap,
       
     } from 'react-map-gl'
    import {Room} from '@mui/icons-material'
@@ -230,7 +230,7 @@
         const [viewport , setviewport] = useState({
             longitude: -95.712891,
             latitude: 37.090240,   
-            zoom: 4,
+            zoom: 15,
             width: window.innerWidth,
             height: window.innerHeight,
             isDragging: false,
@@ -416,11 +416,28 @@ const datacode = [
   { 'code': 'M'},
     ];
 
+
+    const [data , setData] = useState([]);
+    let lat=data[1] , lng=data[0]
+    const [id ,setId] = useState()
+    const [zone , SetZone] = useState([]);
+   // console.log(zone)
+
+    useEffect(()=>{
+      async function getData(){
+           const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
+           //console.log(res.data.data[0].zoneCode);
+           SetZone(res.data.data[0].zoneCode)
+           setId(res.data.data[0].id);
+      }
+      getData()
+  },[data]);
+
        
      const matchExpression = ['match', ['get','z']];  //get the property 
-     for (const row of datacode) {
+     for (const row of zone) {
        const color = randomColor();
-       matchExpression.push(row['code'], color);
+       matchExpression.push(row, color);
        }
       matchExpression.push('white');
     
@@ -434,36 +451,7 @@ const layerStyle={
                'fill-outline-color': 'lightgray',
             },
           }
-          // const mapRef = useRef();
-          // const handleViewportChange = useCallback(
-          //   (newViewport) => setviewport(newViewport),
-          //   []
-          // );
-
-          // const handleGeocoderViewportChange = useCallback(
-          //   (newViewport) => {
-          //     const geocoderDefaultOverrides = { transitionDuration: 1000 };
-        
-          //     return handleViewportChange({
-          //       ...newViewport,
-          //       ...geocoderDefaultOverrides
-          //     });
-          //   },
-          //   [handleViewportChange]
-          // );
-
-
-
-
-
-
-
-          //  geocoder.addTo('#geocoder');
-            // Add the geocoder to the map
-          // map.addControl(geocoder);
-             
-
-         // const url="https://api.mapbox.com/geocoding/v5/{endpoint}/{search_text}.json";
+      
          
             const handlecolor=()=>{
                   let arr=[]
@@ -479,25 +467,8 @@ const layerStyle={
             }
 
 
-              
-            
-                  const [data , setData] = useState([]);
-
-                  let lat=data[1] , lng=data[0]
-                  const [id ,setId] = useState()
-                  const [zone , SetZone] = useState([]);
-                  console.log(zone)
-                
-            
-                useEffect(()=>{
-                    async function getData(){
-                         const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
-                         //console.log(res.data.data[0].zoneCode);
-                         SetZone(res.data.data[0].zoneCode.length)
-                         setId(res.data.data[0].id);
-                    }
-                    getData()
-                });
+      
+             
 
                 // Geocoder.on('result', function(e) {
                 //   console.log(e.result.center)
@@ -574,8 +545,7 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" setdata={setData} />
-
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" setdata={setData} zoom={15} />
 
              {/* <Geocoder
              ref={map}
@@ -630,7 +600,6 @@ const layerStyle={
                   </Popup>
                ): null}
               </ReactMapGl>
-             
               </>
             )
     }
@@ -872,3 +841,38 @@ export default Mapro
 //     "rgb(0, 200.685, 0)",
 //     "white"
 // ]
+
+
+
+
+
+    // const mapRef = useRef();
+          // const handleViewportChange = useCallback(
+          //   (newViewport) => setviewport(newViewport),
+          //   []
+          // );
+
+          // const handleGeocoderViewportChange = useCallback(
+          //   (newViewport) => {
+          //     const geocoderDefaultOverrides = { transitionDuration: 1000 };
+        
+          //     return handleViewportChange({
+          //       ...newViewport,
+          //       ...geocoderDefaultOverrides
+          //     });
+          //   },
+          //   [handleViewportChange]
+          // );
+
+
+
+
+
+
+
+          //  geocoder.addTo('#geocoder');
+            // Add the geocoder to the map
+          // map.addControl(geocoder);
+             
+
+         // const url="https://api.mapbox.com/geocoding/v5/{endpoint}/{search_text}.json";
