@@ -402,19 +402,19 @@
 // { 'code': 'R9A'},
 // { 'code': 'R9X'},
 //   ];
-const datacode = [
-  { 'code': 'C-3'},  
-  { 'code': 'C-M'},
-  { 'code': 'C-1'},
-  { 'code': 'C-2'},
-  { 'code': 'L-C'},
-  { 'code': 'R-1'},
-  { 'code': 'R-2'},
-  { 'code': 'R-C'},
-  { 'code': 'C-4'},
-  { 'code': 'L-M'},
-  { 'code': 'M'},
-    ];
+// const datacode = [
+//   { 'code': 'C-3'},  
+//   { 'code': 'C-M'},
+//   { 'code': 'C-1'},
+//   { 'code': 'C-2'},
+//   { 'code': 'L-C'},
+//   { 'code': 'R-1'},
+//   { 'code': 'R-2'},
+//   { 'code': 'R-C'},
+//   { 'code': 'C-4'},
+//   { 'code': 'L-M'},
+//   { 'code': 'M'},
+//     ];
 
 
     const [data , setData] = useState([]);
@@ -431,7 +431,7 @@ const datacode = [
            setId(res.data.data[0].id);
       }
       getData()
-  },[data]);
+  },[data,lat ,lng]);
 
        
      const matchExpression = ['match', ['get','z']];  //get the property 
