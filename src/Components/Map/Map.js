@@ -545,7 +545,7 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca" />
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={25} countries="us,ca" placeholder={"search place"} limit={6}/>
 
              {/* <Geocoder
              ref={map}
