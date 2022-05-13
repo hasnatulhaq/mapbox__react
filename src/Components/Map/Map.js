@@ -230,7 +230,7 @@
         const [viewport , setviewport] = useState({
             longitude: -95.712891,
             latitude: 37.090240,   
-            zoom: 15,
+            zoom: 4,
             width: window.innerWidth,
             height: window.innerHeight,
             isDragging: false,
@@ -545,7 +545,7 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-right" setdata={setData} zoom={3} />
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca" />
 
              {/* <Geocoder
              ref={map}

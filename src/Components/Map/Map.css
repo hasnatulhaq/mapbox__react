@@ -29,7 +29,6 @@
     flex-direction: row;
     }
 
-
 .searchp{
     position: absolute;
     width: 25rem;
@@ -38,6 +37,5 @@
     align-items: center;
     z-index: 10;
     right: 0;
-
 }
     
