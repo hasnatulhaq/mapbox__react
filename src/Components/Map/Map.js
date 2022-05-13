@@ -515,7 +515,6 @@ const layerStyle={
         <div id="state-legend" className="legend">
           
         <h4>zones legend</h4>
-        <h1> checking git to netlify</h1>
         {handlecolor()}       
         </div>
             {/* <div>
