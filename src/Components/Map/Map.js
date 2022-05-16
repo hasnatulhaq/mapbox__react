@@ -421,15 +421,18 @@
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
     const [zone , SetZone] = useState([]);
-   // console.log(zone)
+   console.log(data, "DATA")
 
     useEffect(()=>{
       async function getData(){
-           const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
-           //console.log(res.data.data[0].zoneCode);
-           SetZone(res.data.data[0].zoneCode)
-           setId(res.data.data[0].id);
-      }
+        if(data[1] !== ''){
+
+          const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
+          //console.log(res.data.data[0].zoneCode);
+          SetZone(res.data.data[0].zoneCode)
+          setId(res.data.data[0].id);
+        }
+        }
       getData()
   },[data,lat ,lng]);
 
