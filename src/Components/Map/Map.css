@@ -17,7 +17,6 @@
     overflow-y: auto;
     padding-left: 16px;
     bottom: 40px;
-   
 }
 
 .legend div span {
@@ -38,4 +37,40 @@
     z-index: 10;
     right: 0;
 }
+
+
+.geocoder-dropdown-item {
+padding: 5px;
+}
+.geocoder-dropdown-icon {
+margin-right: 10px;
+}
+.geocoder-dropdown-text {
+color: #5a3fc0;
+font-family: Arial, Helvetica, sans-serif;
+font-size: larger;
+}
+
+
+
+.mapboxgl-ctrl-top-left{
+    left: 35%;
+    display: flex;
+    position: fixed;
+}
+
+.mapboxgl-ctrl{
+    width: 55rem !important;
+    display: flex !important;
+   
+}
+
+
+.mapboxgl-ctrl-geocoder--input {
+    font-size: 15px !important;
+  }
+
+
+
+
     

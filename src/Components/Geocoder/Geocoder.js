@@ -8,10 +8,10 @@ export default function GeocoderControl(props) {
     
     const [marker, setMarker] = useState(null);
     const geocoder = useControl(() => {
-        const ctrl = new MapboxGeocoder(Object.assign(Object.assign({}, props), { marker: false, accessToken: props.mapboxAccessToken }));
+        const ctrl = new MapboxGeocoder(Object.assign(Object.assign({}, props), { marker: false, accessToken: props.mapboxAccessToken}));
         ctrl.on('loading', props.onLoading);
         ctrl.on('results', props.onResults);
-        
+        console.log(props.zoom ,"zoom level")
         ctrl.on('result', evt => {
             var _a;
             props.onResult(evt);
