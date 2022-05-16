@@ -56,7 +56,6 @@ const layerStyle={
             },
           }
       
-         
             const handlecolor=()=>{
                   let arr=[]
                   for(let i=0; i<matchExpression.length-2; i++)
