@@ -36,8 +36,7 @@
         }
       getData()
   },[data,lat ,lng]);
-
-       
+  
      const matchExpression = ['match', ['get','z']];
      for (const row of zone) {
        const color = randomColor();
@@ -69,7 +68,6 @@ const layerStyle={
                   return arr
             }
 
-
             const Results = () => (
               <div id="state-legend" className="legend">
               <h4>zones legend</h4>
@@ -82,7 +80,6 @@ const layerStyle={
          { showResults ? <Results /> : null }
            
         <ReactMapGl 
-        
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
