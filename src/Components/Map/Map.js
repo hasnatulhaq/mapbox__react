@@ -416,25 +416,34 @@
 //   { 'code': 'M'},
 //     ];
 
-
+const [showResults, setShowResults] = useState(false)
     const [data , setData] = useState([]);
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
     const [zone , SetZone] = useState([]);
-   console.log(data, "DATA")
 
     useEffect(()=>{
       async function getData(){
         if(data[1] !== ''){
-
+            
           const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
           //console.log(res.data.data[0].zoneCode);
           SetZone(res.data.data[0].zoneCode)
           setId(res.data.data[0].id);
+          setShowResults(true)
         }
         }
       getData()
   },[data,lat ,lng]);
+
+
+
+  const Results = () => (
+    <div id="state-legend" className="legend">
+    <h4>zones legend</h4>
+    {handlecolor()}       
+    </div>
+  )
 
        
      const matchExpression = ['match', ['get','z']];  //get the property 
@@ -515,11 +524,7 @@ const layerStyle={
         
         return(
        <>
-        <div id="state-legend" className="legend">
-          
-        <h4>zones legend</h4>
-        {handlecolor()}       
-        </div>
+         { showResults ? <Results /> : null }
             {/* <div>
             <input 
           className="searchp"
@@ -548,7 +553,8 @@ const layerStyle={
             > 
             {/* <GeolocateControl/> */}
               {/* <Navigation/> */}
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca" />
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
+        height="100%"/>
 
              {/* <Geocoder
              ref={map}

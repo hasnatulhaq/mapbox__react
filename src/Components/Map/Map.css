@@ -8,7 +8,6 @@
     background: #ffffff;
     width: 155px;
     height: 400px;
-    /* margin-top: 44px; */
     margin-left: 25px;
     z-index: 10;
     position: absolute;
@@ -18,6 +17,7 @@
     overflow-y: auto;
     padding-left: 16px;
     bottom: 40px;
+   
 }
 
 .legend div span {
