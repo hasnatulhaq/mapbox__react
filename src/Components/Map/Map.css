@@ -15,7 +15,7 @@
     display: flex;
     align-items: left;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-left: 16px;
     bottom: 40px;
 }
