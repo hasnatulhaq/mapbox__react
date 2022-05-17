@@ -35,7 +35,7 @@
           SetZone(res.data.data[0].zoneCode)
           setId(res.data.data[0].id);
           setShowResults(true)
-          setIsOpen(true)
+          //setIsOpen(true)
         }
         }
       getData()
@@ -100,6 +100,9 @@ const layerStyle={
             const handleClose = () =>(
                 setIsOpen(false)
             )
+            const handleOpen = () =>(
+                setIsOpen(true)
+            )
 
             const Popup = () =>(
               <div className="zonedetailpopup">
@@ -109,7 +112,7 @@ const layerStyle={
 
         return(
        <>  
-            <button className="popupbutton">Show details</button>
+            <button className="popupbutton" onClick={handleOpen}>Show details</button>
             {isOpen ? <Popup/> : null }
             { showResults ? <Results /> : null }
         <ReactMapGl 

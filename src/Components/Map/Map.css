@@ -114,6 +114,13 @@ font-size: larger;
     border: none;
     padding: 9px;
     border-radius: 10px;
+    transition-duration: 0.4s;
+  }
+
+
+  .popupbutton:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
   }
 
 
