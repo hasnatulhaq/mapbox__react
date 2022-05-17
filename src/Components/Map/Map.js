@@ -97,7 +97,9 @@ const layerStyle={
 
         return(
        <>
-          <div className="zonedetailpopup">{zonedetail.map(zone => <li>{zone}</li>)}</div>
+          <div className="zonedetailpopup">
+          <span className="close">&times;</span>
+            {zonedetail.map(zone => <li>{zone}</li>)}</div>
             { showResults ? <Results /> : null }
         <ReactMapGl 
             width="100vw" height="100vh"
