@@ -24,6 +24,7 @@
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
     const [zone , SetZone] = useState([]);
+    const [zonedetail , setZonedetail] = useState([]);
 
     useEffect(()=>{
       async function getData(){
@@ -36,6 +37,16 @@
         }
       getData()
   },[data,lat ,lng]);
+
+
+
+     useEffect(()=>{
+           async function getData(){
+             const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
+             setZonedetail(res.data.data.properties)
+           }
+           getData()
+     },[lat,lng]);
   
      const matchExpression = ['match', ['get','z']];
      for (const row of zone) {
@@ -67,7 +78,16 @@ const layerStyle={
                   }
                   return arr
             }
+           
+        //     const handlepopup=()=>{
+        //       return (
+        //           <div>
+        //             {zonedetail.map(zone => <div>{zone}</div>)}
+        //           </div>
+        //       )
+        // }
 
+        
             const Results = () => (
               <div id="state-legend" className="legend">
               <h4>zones legend</h4>
@@ -77,8 +97,8 @@ const layerStyle={
 
         return(
        <>
-         { showResults ? <Results /> : null }
-           
+          <div className="zonedetailpopup">{zonedetail.map(zone => <li>{zone}</li>)}</div>
+            { showResults ? <Results /> : null }
         <ReactMapGl 
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}

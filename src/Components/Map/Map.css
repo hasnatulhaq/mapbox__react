@@ -72,5 +72,18 @@ font-size: larger;
 
 
 
+  .zonedetailpopup{
+    background: #ffffff;
+    margin-left: 25px;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    padding-left: 16px;
+  }
+
+
+
 
     
