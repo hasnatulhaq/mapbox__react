@@ -46,6 +46,7 @@
            async function getData(){
              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
              setZonedetail(res.data.data.properties)
+             console.log(res.data.data.plus)
            }
            getData()
      },[lat,lng]);
