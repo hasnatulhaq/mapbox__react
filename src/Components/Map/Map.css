@@ -100,6 +100,22 @@ font-size: larger;
     cursor: pointer;
   }
 
+  .popupbutton{
+    background: #ffffff;
+    margin-left: 22px;
+    z-index: 10;
+    position: absolute;
+    align-items: left;
+    bottom: 40px;
+    right: 10;
+    right: 25px;
+    width: 153px;
+    font-size: 20px;
+    border: none;
+    padding: 9px;
+    border-radius: 10px;
+  }
+
 
 
 

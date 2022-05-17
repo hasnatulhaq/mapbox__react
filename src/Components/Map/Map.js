@@ -92,6 +92,7 @@ const layerStyle={
         
             const Results = () => (
               <div id="state-legend" className="legend">
+              
               <h4>zones legend</h4>
               {handlecolor()}       
               </div>
@@ -107,7 +108,8 @@ const layerStyle={
             )
 
         return(
-       <>
+       <>  
+            <button className="popupbutton">Show details</button>
             {isOpen ? <Popup/> : null }
             { showResults ? <Results /> : null }
         <ReactMapGl 
