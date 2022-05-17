@@ -73,7 +73,7 @@ font-size: larger;
 
 
   .zonedetailpopup{
-    background: #ffffff;
+    background: #000000c9;
     margin-left: 25px;
     z-index: 10;
     position: absolute;
@@ -81,6 +81,7 @@ font-size: larger;
     align-items: left;
     flex-direction: column;
     padding-left: 16px;
+    color: white;
   }
 
 
