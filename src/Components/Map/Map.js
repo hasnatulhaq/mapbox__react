@@ -25,6 +25,8 @@
     const [id ,setId] = useState()
     const [zone , SetZone] = useState([]);
     const [zonedetail , setZonedetail] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+ 
 
     useEffect(()=>{
       async function getData(){
@@ -33,11 +35,11 @@
           SetZone(res.data.data[0].zoneCode)
           setId(res.data.data[0].id);
           setShowResults(true)
+          setIsOpen(true)
         }
         }
       getData()
   },[data,lat ,lng]);
-
 
 
      useEffect(()=>{
@@ -94,12 +96,19 @@ const layerStyle={
               {handlecolor()}       
               </div>
             )
+            const handleClose = () =>(
+                setIsOpen(false)
+            )
+
+            const Popup = () =>(
+              <div className="zonedetailpopup">
+              <span className="close" onClick={handleClose}>&times;</span>
+                {zonedetail.map(zone => <li>{zone}</li>)}</div>
+            )
 
         return(
        <>
-          <div className="zonedetailpopup">
-          <span className="close">&times;</span>
-            {zonedetail.map(zone => <li>{zone}</li>)}</div>
+            {isOpen ? <Popup/> : null }
             { showResults ? <Results /> : null }
         <ReactMapGl 
             width="100vw" height="100vh"

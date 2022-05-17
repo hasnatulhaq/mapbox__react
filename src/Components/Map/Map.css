@@ -90,6 +90,7 @@ font-size: larger;
     float: right;
     font-size: 38px;
     font-weight: bold;
+    margin-top: -25px;
   }
   
   .close:hover,
