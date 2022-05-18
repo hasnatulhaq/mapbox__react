@@ -53,7 +53,7 @@
               setZonedetail(res.data.data.properties)
               //console.log(res.data.data.plus)
              } catch(error){
-                  console.log("The zonedetail api",error);
+                  alert("Not found any zone data");
              }
            
            }
@@ -117,6 +117,7 @@ const layerStyle={
             const Popup = () =>(
               <div className="zonedetailpopup">
               <span className="close" onClick={handleClose}>&times;</span>
+               
                 {zonedetail.map(zone => <li>{zone}</li>)}</div>
             )
 
