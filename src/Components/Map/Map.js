@@ -10,6 +10,14 @@
 
   function Mapro(){
 
+    const [showResults, setShowResults] = useState(false)
+    const [data , setData] = useState([]);
+    let lat=data[1] , lng=data[0]
+    const [id ,setId] = useState()
+    const [zone , SetZone] = useState([]);
+    const [zonedetail , setZonedetail] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+
         const [viewport , setviewport] = useState({
             longitude: -95.712891,
             latitude: 37.090240,   
@@ -19,23 +27,19 @@
             isDragging: false,
         }); 
 
-    const [showResults, setShowResults] = useState(false)
-    const [data , setData] = useState([]);
-    let lat=data[1] , lng=data[0]
-    const [id ,setId] = useState()
-    const [zone , SetZone] = useState([]);
-    const [zonedetail , setZonedetail] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
- 
-
+   
     useEffect(()=>{
       async function getData(){
-        if(data[1] !== ''){
-          const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
-          SetZone(res.data.data[0].zoneCode)
-          setId(res.data.data[0].id);
-          setShowResults(true)
-          //setIsOpen(true)
+        try{
+          if(data[1] !== ''){
+            const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
+            SetZone(res.data.data[0].zoneCode)
+            setId(res.data.data[0].id);
+            setShowResults(true)
+            //setIsOpen(true)
+          }
+        }catch(error){
+          alert('NOT FOUND ANY RESULT');
         }
         }
       getData()
@@ -44,9 +48,14 @@
 
      useEffect(()=>{
            async function getData(){
-             const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
-             setZonedetail(res.data.data.properties)
-             console.log(res.data.data.plus)
+             try{
+              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
+              setZonedetail(res.data.data.properties)
+              //console.log(res.data.data.plus)
+             } catch(error){
+                  console.log("The zonedetail api",error);
+             }
+           
            }
            getData()
      },[lat,lng]);
