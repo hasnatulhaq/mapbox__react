@@ -50,10 +50,15 @@
            async function getData(){
              try{
               const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
+              console.log(res.status)
+              console.log(res.data.data)
+              if(res.data.data)
               setZonedetail(res.data.data.properties)
+              else
+                console.log("not found any data")
               //console.log(res.data.data.plus)
              } catch(error){
-                  alert("Not found any zone data");
+                  alert(`Not found any zone data ${error}`);
              }
            
            }
@@ -118,7 +123,7 @@ const layerStyle={
               <div className="zonedetailpopup">
               <span className="close" onClick={handleClose}>&times;</span>
                
-                {zonedetail.map(zone => <li>{zone}</li>)}</div>
+                {zonedetail?.map(zone => <li>{zone}</li>)}</div>
             )
 
         return(
