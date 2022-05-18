@@ -38,8 +38,11 @@
             setShowResults(true)
             //setIsOpen(true)
           }
-        }catch(error){
-          alert('NOT FOUND ANY RESULT');
+        }catch(e){
+          // if (e.response && e.response.data) {
+          //   console.log(e.response.data.message) // some reason error message
+          // }
+         console.log('NOT FOUND ANY RESULT',e);
         }
         }
       getData()
@@ -50,15 +53,15 @@
            async function getData(){
              try{
               const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
-              console.log(res.status)
-              console.log(res.data.data)
-              if(res.data.data)
-              setZonedetail(res.data.data.properties)
-              else
-                console.log("not found any data")
-              //console.log(res.data.data.plus)
+             // console.log(res.status)
+              //console.log(res.data.data)
+            if(res.data.data)
+                    setZonedetail(res.data.data.properties)
+              
+                              //console.log(res.data.data.plus)
              } catch(error){
-                  alert(`Not found any zone data ${error}`);
+                  console.log("Not found any zone data",error);
+
              }
            
            }
@@ -122,7 +125,6 @@ const layerStyle={
             const Popup = () =>(
               <div className="zonedetailpopup">
               <span className="close" onClick={handleClose}>&times;</span>
-               
                 {zonedetail?.map(zone => <li>{zone}</li>)}</div>
             )
 
