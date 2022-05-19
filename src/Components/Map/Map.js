@@ -18,8 +18,6 @@
     const [zonedetail , setZonedetail] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [latlng , setlatlng] = useState([]);
-    // console.log(latlng.lng)
-    // console.log(latlng.lat)
     let lats=latlng.lng , lngs=latlng.lat
     console.log("lats",lats)
     console.log("lngs",lngs)
@@ -41,13 +39,13 @@
       async function getData(){
         try{
           if(data[1] !== ''){
-            const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lats+'&lng='+lngs)
+            const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
             SetZone(res.data.data[0].zoneCode)
            // console(res.data.data[])
             setId(res.data.data[0].id);
             setShowResults(true)
             //console.log(res.data.data[0].zoneCode.properties)
-            setIsOpen(true)
+           // setIsOpen(true)
           }
         }catch(e){
           // if (e.response && e.response.data) {
@@ -57,13 +55,13 @@
         }
         }
       getData()
-  },[data,lats ,lngs]);
+  },[data,lat,lng]);
 
 
      useEffect(()=>{
            async function getData(){
              try{
-              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lat+'&lng='+lng)
+              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
             if(res.data.data)
                     setZonedetail(res.data.data.properties)
              } catch(error){
@@ -71,7 +69,7 @@
              }
            }
            getData()
-     },[data,lat,lng]);
+     },[data,lats,lngs]);
   
      const matchExpression = ['match', ['get','z']];
      for (const row of zone) {
@@ -154,19 +152,19 @@ const layerStyle={
                    </Layer>    
              </Source> 
            
-                  <Popup latitude={lats} longitude={lngs}>
+                  {/* <Popup latitude={lats} longitude={lngs}>
                      <div>
                         <h1>This is popup</h1>
                      </div>
-                  </Popup>
+                  </Popup> */}
                
-               {layerStyle ? (
+               {/* {layerStyle ? (
                   <Popup latitude={lats} longitude={lngs}>
                      <div>
                         <h1>here is data</h1>
                      </div>
                   </Popup>
-               ): null}
+               ): null} */}
 
               </ReactMapGl>
               </>
