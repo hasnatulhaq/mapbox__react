@@ -1,6 +1,6 @@
     import { useState, useEffect } from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-    import ReactMapGl,{Source, Layer, Popup,} from 'react-map-gl'
+    import ReactMapGl,{Source, Layer,} from 'react-map-gl'
     import './Map.css'
     import randomColor from "randomcolor";
     import Geocoder from "../Geocoder/Geocoder"
@@ -152,7 +152,7 @@ const layerStyle={
                    </Layer>    
              </Source> 
            
-                  {/* <Popup latitude={lats} longitude={lngs}>
+                  {/* <Popup latitude={Event.lat} longitude={Event.lng}>
                      <div>
                         <h1>This is popup</h1>
                      </div>
