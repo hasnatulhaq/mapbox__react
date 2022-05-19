@@ -1,6 +1,8 @@
     import { useState, useEffect } from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-    import ReactMapGl,{Source, Layer,Popup} from 'react-map-gl'
+    import ReactMapGl,{Source, Layer,
+      //Popup
+    } from 'react-map-gl'
     import './Map.css'
     import randomColor from "randomcolor";
     import Geocoder from "../Geocoder/Geocoder"
@@ -115,9 +117,9 @@ const layerStyle={
             const handleClose = () =>(
                 setIsOpen(false)
             )
-            const handleOpen = () =>(
-                setIsOpen(true)
-            )
+            // const handleOpen = () =>(
+            //     setIsOpen(true)
+            // )
 
             const Popups = () =>(
               <div className="zonedetailpopup">
