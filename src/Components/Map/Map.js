@@ -1,6 +1,6 @@
     import { useState, useEffect } from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-    import ReactMapGl,{Source, Layer,} from 'react-map-gl'
+    import ReactMapGl,{Source, Layer,Popup} from 'react-map-gl'
     import './Map.css'
     import randomColor from "randomcolor";
     import Geocoder from "../Geocoder/Geocoder"
@@ -63,7 +63,11 @@
              try{
               const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
             if(res.data.data)
+                   
                     setZonedetail(res.data.data.properties)
+                    console.log(res.data.data.properties)
+                    setIsOpen(true)   
+                    
              } catch(error){
                   console.log("Not found any zone data",error);
              }
@@ -157,14 +161,24 @@ const layerStyle={
                         <h1>This is popup</h1>
                      </div>
                   </Popup> */}
-               
-               {/* {layerStyle ? (
-                  <Popup latitude={lats} longitude={lngs}>
-                     <div>
-                        <h1>here is data</h1>
+               {/* {layerStyle && (
+          <Popup
+            longitude={lng}
+            latitude={lats}
+            offset={[0, -10]}
+            closeButton={false}
+            className="county-info"
+          >
+             <h1>your are here</h1>
+          </Popup>
+        )} */}
+              {/* <Popup latitude={lats} longitude={lngs}>
+                     <div>you are here
+                     
                      </div>
-                  </Popup>
-               ): null} */}
+                  
+                  </Popup> */}
+                
 
               </ReactMapGl>
               </>
