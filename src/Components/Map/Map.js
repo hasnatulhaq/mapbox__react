@@ -133,7 +133,7 @@ const layerStyle={
 
         return(
        <>  
-            <button className="popupbutton" onClick={handleOpen}>Show details</button>
+            {/* <button className="popupbutton" onClick={handleOpen}>Show details</button> */}
             {isOpen ? <Popups/> : null }
             { showResults ? <Results /> : null }
         <ReactMapGl 
