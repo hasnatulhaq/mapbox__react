@@ -118,9 +118,25 @@ const layerStyle={
 
             const Popups = () =>(
               <div className="zonedetailpopup">
-                <h3>{address}</h3>
               <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
-                {zonedetail?.map(zone => <li>{zone}</li>)}</div>
+              <hr></hr>
+              <h3>{address}</h3>
+              <hr/>
+              <div className="tabscontainer">
+                   <button className="tabbtn"  onclick="openCity(event, 'London')">zones data</button>
+                   <button className="tabbtn">permitted uses</button>
+                   <button className="tabbtn">controls</button>
+                   <button className="tabbtn">land use</button>
+              </div>
+              <div> {zonedetail?.map(zone => <li>{zone}</li>)}</div>
+                <div>
+                  <div className="bottombtn">
+                  <button className="tabbtn"  onclick="openCity(event, 'London')">zones data</button>
+                   <button className="tabbtn">permitted uses</button>
+                   <button className="tabbtn">controls</button>
+                  </div>
+                </div>
+                </div>
             )
            // const handleClick = useCallback(() => {    console.log('Clicked!');  }, []);
              
@@ -133,7 +149,7 @@ const layerStyle={
        <>  
             {/* <button className="popupbutton" onClick={handleOpen}>Show details</button> */}
             {isOpen ? <Popups/> : null }
-            { showResults ? <Results /> : null }
+            {showResults ? <Results /> : null }
         <ReactMapGl 
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
