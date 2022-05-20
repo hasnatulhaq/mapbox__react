@@ -73,16 +73,13 @@ font-size: larger;
 
 
   .zonedetailpopup{
-    background-color: #101010f0;
+    background-color: white;
     z-index: 10;
     padding: 20px;
-    border-radius: 5px;
-    width: 40%;
+    width: 25%;
+    height: 100vh;
     position: absolute;
-    top:35%;
-    left:30%;
-    margin:-50px 0 0 -100px;
-    color : white;
+    right: 0;
   }
 
 
@@ -96,7 +93,7 @@ font-size: larger;
   
   .close:hover,
   .close:focus {
-    color: white;
+    color: gray;
     text-decoration: none;
     cursor: pointer;
   }
