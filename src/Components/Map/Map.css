@@ -145,11 +145,26 @@ font-size: larger;
     font-size: 14px;
     margin: 5px;
     background: #4d66cb;
-    width: 8rem;
+    width: 10rem;
     height: 41px;
     color: white;
     border: none;
     border-radius: 7px;
+  }
+
+
+
+  .zonesdetial_list{
+    margin: 30px;
+  }
+
+
+  .linepopup{
+    border: solid gray;
+    border: none;
+    height: 1px;
+    /* color: #333; */
+    background-color: #9e9e9e;
   }
 
 

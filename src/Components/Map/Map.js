@@ -119,18 +119,18 @@ const layerStyle={
             const Popups = () =>(
               <div className="zonedetailpopup">
               <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
-              <hr></hr>
+              <hr className="linepopup"></hr>
               <h3>{address}</h3>
-              <hr/>
+              <hr className="linepopup"></hr>
               <div className="tabscontainer">
                    <button className="tabbtn"  onclick="openCity(event, 'London')">zones data</button>
                    <button className="tabbtn">permitted uses</button>
                    <button className="tabbtn">controls</button>
                    <button className="tabbtn">land use</button>
               </div>
-              <div> {zonedetail?.map(zone => <li>{zone}</li>)}</div>
+              <div className="zonesdetial_list"> {zonedetail?.map(zone => <li>{zone}</li>)}</div>
                   <div className="bottombtn">
-                    <hr/>
+                    <hr className="linepopup"></hr>
                   <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
                    <button className="bottom_tabbtn">Order Report</button>
                    <button className="bottom_tabbtn">CSV Download</button>
