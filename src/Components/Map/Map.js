@@ -63,11 +63,10 @@
      useEffect(()=>{
            async function getData(){
              try{
-              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
+              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lngs+'&lng='+lats)
             if(res.data.data)
-                   
                     setZonedetail(res.data.data.properties)
-                    console.log(res.data.data.properties)
+                    console.log(res.data.data)
                     setIsOpen(true)   
                     
              } catch(error){
