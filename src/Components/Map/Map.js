@@ -13,6 +13,7 @@
   function Mapro(){
 
     const [showResults, setShowResults] = useState(false)
+    const [address , setAddress] =useState()
     const [data , setData] = useState([]);
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
@@ -40,10 +41,8 @@
           if(data[1] !== ''){
             const res=await axios.get('https://testing-api.zoneomics.com/cities/findByLatLng?lat='+lat+'&lng='+lng)
             SetZone(res.data.data[0].zoneCode)
-           // console(res.data.data[])
             setId(res.data.data[0].id);
             setShowResults(true)
-            //console.log(res.data.data[0].zoneCode.properties)
            // setIsOpen(true)
           }
         }catch(e){
@@ -75,6 +74,7 @@
   
      const matchExpression = ['match', ['get','z']];
      for (const row of zone) {
+       console.log("matchexp")
        const color = randomColor();
        matchExpression.push(row, color);
        }
@@ -90,7 +90,6 @@ const layerStyle={
                'fill-outline-color': 'lightgray',
             },
           }
-      
             const handlecolor=()=>{
                   let arr=[]
                   for(let i=0; i<matchExpression.length-2; i++)
@@ -119,6 +118,7 @@ const layerStyle={
 
             const Popups = () =>(
               <div className="zonedetailpopup">
+                <h3>{address}</h3>
               <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
                 {zonedetail?.map(zone => <li>{zone}</li>)}</div>
             )
@@ -144,7 +144,7 @@ const layerStyle={
             onClick={displaydata}
              > 
         
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
         height="100%" />
           
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}

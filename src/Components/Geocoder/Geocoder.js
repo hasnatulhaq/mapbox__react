@@ -15,6 +15,7 @@ export default function GeocoderControl(props) {
             var _a;
             props.onResult(evt);
             props.setdata(evt.result.geometry.coordinates);
+            props.setaddress(evt.result.place_name);
             const { result } = evt;
             const location = result &&
                 (result.center || (((_a = result.geometry) === null || _a === void 0 ? void 0 : _a.type) === 'Point' && result.geometry.coordinates));
