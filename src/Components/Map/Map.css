@@ -124,14 +124,12 @@ font-size: larger;
   .tabbtn{
     font-size: 14px;
     margin: 5px;
-    padding: 3px;
     background: white;
     border: 1px solid;
     border: 1px solid blue;
     width: 8rem;
-    height: 41px;
+    height: 36px;
     color: gray;
-    font-size: medium;
 
   }
 
@@ -139,6 +137,19 @@ font-size: larger;
   .bottombtn{
     position: fixed;
     bottom: 20px;
+    
+  }
+
+
+  .bottom_tabbtn{
+    font-size: 14px;
+    margin: 5px;
+    background: #4d66cb;
+    width: 8rem;
+    height: 41px;
+    color: white;
+    border: none;
+    border-radius: 7px;
   }
 
 

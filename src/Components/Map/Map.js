@@ -129,12 +129,11 @@ const layerStyle={
                    <button className="tabbtn">land use</button>
               </div>
               <div> {zonedetail?.map(zone => <li>{zone}</li>)}</div>
-                <div>
                   <div className="bottombtn">
-                  <button className="tabbtn"  onclick="openCity(event, 'London')">zones data</button>
-                   <button className="tabbtn">permitted uses</button>
-                   <button className="tabbtn">controls</button>
-                  </div>
+                    <hr/>
+                  <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
+                   <button className="bottom_tabbtn">Order Report</button>
+                   <button className="bottom_tabbtn">CSV Download</button>
                 </div>
                 </div>
             )
