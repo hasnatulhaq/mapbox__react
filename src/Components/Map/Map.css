@@ -14,7 +14,6 @@
     display: flex;
     align-items: left;
     flex-direction: column;
-    overflow-y: auto;
     padding-left: 16px;
     bottom: 40px;
 }
@@ -137,11 +136,11 @@ font-size: larger;
   .tabbtn:hover{
       color: #4d66cb;
       border: 1px solid #4d66cb;
+      border-radius: 3px;
   }
 
 
   .bottombtn{
-    
     bottom: 20px;
     display: flex;
     margin: 20px;
@@ -164,7 +163,7 @@ font-size: larger;
 
 
   .zonesdetial_list{
-    margin: 30px;
+    margin: 20px;
     height: 450px;
     overflow: auto;
   }
@@ -197,6 +196,24 @@ font-size: larger;
 
   .zoneslist{
      list-style: none;
+     font-weight: bold;
+  }
+
+
+  .zonecode_list{
+    overflow-y: auto;
+    /* margin: 10px; */
+    margin-top: 70px;
+  }
+
+
+
+  .legend_heading{
+    display: flex;
+    margin-left: 15px;
+    font-size: 16px;
+    color: #4d66cb;
+    position: fixed;
   }
 
 

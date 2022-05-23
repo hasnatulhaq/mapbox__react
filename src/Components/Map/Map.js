@@ -23,6 +23,9 @@
     const [latlng , setlatlng] = useState([]);
     let lats=latlng.lat , lngs=latlng.lng
     //const [popupInfo, setPopupInfo] = useState(null);
+    const [index, setIndex ] = useState(0);
+    console.log(setIndex)
+
 
 
         const [viewport , setviewport] = useState({
@@ -105,16 +108,11 @@ const layerStyle={
               
             const Results = () => (
               <div id="state-legend" className="legend">
-              <h4>zones legend</h4>
-              {handlecolor()}       
+                <div className="legend_heading"><h4>zones legend</h4></div>
+              <div className="zonecode_list">{handlecolor()}</div>
               </div>
             )
-            // const handleClose = () =>(
-            //     setIsOpen(false)
-            // )
-            // const handleOpen = () =>(
-            //     setIsOpen(true)
-            // )
+          
 
             const Popups = () =>(
               <div className="zonedetailpopup">
@@ -123,15 +121,24 @@ const layerStyle={
               <h3 className="top_address">{address}</h3>
               <hr className="linepopup"></hr>
               <div className="tabscontainer">
-                   <button className="tabbtn"  onclick="openCity(event, 'London')">Zones Data</button>
-                   <button className="tabbtn">Permitted uses</button>
-                   <button className="tabbtn">Controls</button>
-                   <button className="tabbtn">Land use</button>
+                   <button className="tabbtn" onClick={()=>{setIndex(0)}}>Zones Data</button>
+                   <button className="tabbtn" onClick={()=>{setIndex(1)}}>Permitted uses</button>
+                   <button className="tabbtn" onClick={()=>{setIndex(2)}}>Controls</button>
+                   <button className="tabbtn" onClick={()=>{setIndex(3)}}>Land use</button>
               </div>
               <hr className="linepopup"></hr>
-              <div className="zonesdetial_list"><ul className="zoneslist">{zonedetail?.map(zone => <li>{zone}</li>)}
-              {zonedetail?.map(zone => <li>{zone}</li>)}</ul></div>
-             
+              <div className="zonesdetial_list" hidden={index !== (0)}>
+                <ul className="zoneslist">{zonedetail?.map(zone => <li>{zone}</li>)}</ul>
+                </div>
+                <div className="zonesdetial_list" hidden={index !== (1)}>
+                    <h4>permitted uses</h4>
+                </div>
+                <div className="zonesdetial_list" hidden={index !== (2)}>
+                     <h4>controls</h4>
+                </div>
+                <div className="zonesdetial_list" hidden={index !== (3)}>
+                        <h4>land use</h4>
+                </div>
                   <div className="">
                   <hr className="linepopup"></hr>
                     <div className="bottombtn">
@@ -164,7 +171,6 @@ const layerStyle={
             onMove={evt => setviewport(evt.viewport)}
             onClick={displaydata}
              > 
-        
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
         height="100%" />
           
