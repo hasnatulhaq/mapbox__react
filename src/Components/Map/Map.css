@@ -75,7 +75,6 @@ font-size: larger;
   .zonedetailpopup{
     background-color: white;
     z-index: 10;
-    padding: 15px;
     width: 30%;
     height: 100vh;
     position: absolute;
@@ -84,11 +83,12 @@ font-size: larger;
 
 
   .close {
-    color: #aaaaaa;
+    color: #b1afafbf;
     float: right;
     font-size: 38px;
     font-weight: bold;
-    margin-top: -25px;
+    margin-top: 0px;
+    margin-right: 20px;
   }
   
   .close:hover,
@@ -125,20 +125,29 @@ font-size: larger;
     font-size: 14px;
     margin: 5px;
     background: white;
-    border: 1px solid;
-    border: 1px solid blue;
-    width: 8rem;
-    height: 36px;
+    border: none;
+    width: 7rem;
+    height: 35px;
     color: gray;
+    cursor: pointer;
+    transition: 0.5s;
 
+  }
+
+  .tabbtn:hover{
+      color: #4d66cb;
+      border: 1px solid #4d66cb;
   }
 
 
   .bottombtn{
-    position: fixed;
-    bottom: 20px;
     
-  }
+    bottom: 20px;
+    display: flex;
+    margin: 20px;
+}
+    
+  
 
 
   .bottom_tabbtn{
@@ -156,6 +165,8 @@ font-size: larger;
 
   .zonesdetial_list{
     margin: 30px;
+    height: 450px;
+    overflow: auto;
   }
 
 
@@ -164,9 +175,29 @@ font-size: larger;
     border: none;
     height: 1px;
     /* color: #333; */
-    background-color: #9e9e9e;
+    background-color: #9e9e9e42;
   }
 
+
+  .tabscontainer{
+    margin: 20px;
+  }
+
+
+  .top_address{
+    margin: 20px;
+    color: #4d66cb;
+  }
+
+
+  .linemargin{
+    margin-top: 50px
+  }
+
+
+  .zoneslist{
+     list-style: none;
+  }
 
 
     

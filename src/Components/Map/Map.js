@@ -119,21 +119,27 @@ const layerStyle={
             const Popups = () =>(
               <div className="zonedetailpopup">
               <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
-              <hr className="linepopup"></hr>
-              <h3>{address}</h3>
+              <hr className="linepopup linemargin"></hr>
+              <h3 className="top_address">{address}</h3>
               <hr className="linepopup"></hr>
               <div className="tabscontainer">
-                   <button className="tabbtn"  onclick="openCity(event, 'London')">zones data</button>
-                   <button className="tabbtn">permitted uses</button>
-                   <button className="tabbtn">controls</button>
-                   <button className="tabbtn">land use</button>
+                   <button className="tabbtn"  onclick="openCity(event, 'London')">Zones Data</button>
+                   <button className="tabbtn">Permitted uses</button>
+                   <button className="tabbtn">Controls</button>
+                   <button className="tabbtn">Land use</button>
               </div>
-              <div className="zonesdetial_list"> {zonedetail?.map(zone => <li>{zone}</li>)}</div>
-                  <div className="bottombtn">
-                    <hr className="linepopup"></hr>
-                  <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
+              <hr className="linepopup"></hr>
+              <div className="zonesdetial_list"><ul className="zoneslist">{zonedetail?.map(zone => <li>{zone}</li>)}
+              {zonedetail?.map(zone => <li>{zone}</li>)}</ul></div>
+             
+                  <div className="">
+                  <hr className="linepopup"></hr>
+                    <div className="bottombtn">
+                    
+                    <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
                    <button className="bottom_tabbtn">Order Report</button>
                    <button className="bottom_tabbtn">CSV Download</button>
+                    </div>
                 </div>
                 </div>
             )
