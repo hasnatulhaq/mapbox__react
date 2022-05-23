@@ -127,17 +127,11 @@ const layerStyle={
                    <button className="tabbtn" onClick={()=>{setIndex(3)}}>Land use</button>
               </div>
               <hr className="linepopup"></hr>
-              <div className="zonesdetial_list" hidden={index !== (0)}>
-                <ul className="zoneslist">{zonedetail?.map(zone => <li>{zone}</li>)}</ul>
-                </div>
-                <div className="zonesdetial_list" hidden={index !== (1)}>
-                    <h4>permitted uses</h4>
-                </div>
-                <div className="zonesdetial_list" hidden={index !== (2)}>
-                     <h4>controls</h4>
-                </div>
-                <div className="zonesdetial_list" hidden={index !== (3)}>
-                        <h4>land use</h4>
+              <div className="zonesdetial_list" >
+                <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul>
+                <h4  hidden={index !== (1)}>permitted uses</h4>
+                <h4 hidden={index !== (2)}>controls</h4>
+                <h4 hidden={index !== (3)}>land use</h4>
                 </div>
                   <div className="">
                   <hr className="linepopup"></hr>
