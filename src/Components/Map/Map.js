@@ -1,10 +1,7 @@
     import { useState, useEffect } from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-    import ReactMapGl,{Source, Layer,
-      //Popup
-    } from 'react-map-gl'
+    import ReactMapGl,{Source, Layer,} from 'react-map-gl'
     import './Map.css'
-    //import randomColor from "randomcolor";
     import Geocoder from "../Geocoder/Geocoder"
     import axios from "axios";
     import {staticColor} from "../../color.js"
@@ -23,10 +20,7 @@
     const [isOpen, setIsOpen] = useState(false);
     const [latlng , setlatlng] = useState([]);
     let lats=latlng.lat , lngs=latlng.lng
-    //const [popupInfo, setPopupInfo] = useState(null);
     const [index, setIndex ] = useState(0);
-  //  const [hex , setHex] = useState()
-
   const [ colors , setColors] = useState();
 
 
@@ -51,9 +45,6 @@
            setIsOpen(true)
           }
         }catch(e){
-          // if (e.response && e.response.data) {
-          //   console.log(e.response.data.message) // some reason error message
-          // }
          console.log('NOT FOUND ANY RESULT',e);
         }
         }
@@ -67,8 +58,7 @@
               const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
             if(res.data.data)
                     setZonedetail(res.data.data.properties)
-                    setIsOpen(res.data.data.properties)
-                   // setPopupInfo(res.data.data.properties)   
+                    setIsOpen(res.data.data.properties) 
                     
              } catch(error){
                   console.log("Not found any zone data",error);
@@ -82,28 +72,12 @@
       setColors(staticColor)
       },[])
 
-  
-      
 
-
-  
      const matchExpression = ['match', ['get','z']];
-    //  for (const row of zone) {
-    //    console.log("matchexp", row)
-    //   //  const color = randomColor();
-    //   // const color = "#" + Math.floor(Math.random()* 16777215).toString(16);
-    //   const color = colors
-    //    console.log(color)
-    //    matchExpression.push(row, color);
-    //    }
     for (let row=0;row<zone.length; row++ ) {
-       
-        //  const color = randomColor();
-        // const color = "#" + Math.floor(Math.random()* 16777215).toString(16);
         const color = colors[row]
          matchExpression.push(zone[row],color);
          }
-    
       matchExpression.push('white');
     
 const layerStyle={
@@ -179,16 +153,13 @@ const layerStyle={
                 </div>
                 </div>
             )
-           // const handleClick = useCallback(() => {    console.log('Clicked!');  }, []);
-             
+
             const displaydata = (event) =>{
               setlatlng(event.lngLat)
           }
         
-
         return(
        <>  
-            {/* <button className="popupbutton" onClick={handleOpen}>Show details</button> */}
             {isOpen ? <Popups/> : null }
             {showResults ? <Results /> : null }
         <ReactMapGl 
@@ -202,44 +173,12 @@ const layerStyle={
              > 
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
         height="100%" />
-          
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}
              addsource="zoneomics"  
              >
                  <Layer {...layerStyle}> 
                    </Layer>    
              </Source> 
-           
-                  {/* <Popup latitude={Event.lat} longitude={Event.lng}>
-                     <div>
-                        <h1>This is popup</h1>
-                     </div>
-                  </Popup> */}
-               {/* {layerStyle && (
-          <Popup
-            longitude={lng}
-            latitude={lats}
-          >
-                    
-          </Popup>
-        )} */}
-{/*         
-        {popupInfo && (
-          <Popup
-           className="zonedetailpopup"
-            anchor="top"
-            longitude={lngs}
-            latitude={lats}
-            onClose={() => setPopupInfo(null)}
-          >
-               
-           <div>
-                {zonedetail?.map(zone => <li>{zone}</li>)}</div>
-          
-          </Popup>
-        )} */}
-                
-
               </ReactMapGl>
               </>
             )
