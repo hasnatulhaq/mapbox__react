@@ -4,9 +4,10 @@
       //Popup
     } from 'react-map-gl'
     import './Map.css'
-    import randomColor from "randomcolor";
+    //import randomColor from "randomcolor";
     import Geocoder from "../Geocoder/Geocoder"
     import axios from "axios";
+    import {staticColor} from "../../color.js"
   
      const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
 
@@ -24,7 +25,9 @@
     let lats=latlng.lat , lngs=latlng.lng
     //const [popupInfo, setPopupInfo] = useState(null);
     const [index, setIndex ] = useState(0);
+  //  const [hex , setHex] = useState()
 
+  const [ colors , setColors] = useState();
 
 
         const [viewport , setviewport] = useState({
@@ -73,14 +76,34 @@
            }
            getData()
      },[data,lats,lngs]);
+
+     
+     useEffect(()=>{
+      setColors(staticColor)
+      },[])
+
+  
+      
+
+
   
      const matchExpression = ['match', ['get','z']];
-     for (const row of zone) {
-       console.log("matchexp")
-       const color = randomColor();
-       console.log()
-       matchExpression.push(row, color);
-       }
+    //  for (const row of zone) {
+    //    console.log("matchexp", row)
+    //   //  const color = randomColor();
+    //   // const color = "#" + Math.floor(Math.random()* 16777215).toString(16);
+    //   const color = colors
+    //    console.log(color)
+    //    matchExpression.push(row, color);
+    //    }
+    for (let row=0;row<zone.length; row++ ) {
+       
+        //  const color = randomColor();
+        // const color = "#" + Math.floor(Math.random()* 16777215).toString(16);
+        const color = colors[row]
+         matchExpression.push(zone[row],color);
+         }
+    
       matchExpression.push('white');
     
 const layerStyle={
