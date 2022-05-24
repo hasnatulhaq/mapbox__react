@@ -24,7 +24,6 @@
     let lats=latlng.lat , lngs=latlng.lng
     //const [popupInfo, setPopupInfo] = useState(null);
     const [index, setIndex ] = useState(0);
-    console.log(setIndex)
 
 
 
@@ -46,7 +45,7 @@
             SetZone(res.data.data[0].zoneCode)
             setId(res.data.data[0].id);
             setShowResults(true)
-           // setIsOpen(true)
+           setIsOpen(true)
           }
         }catch(e){
           // if (e.response && e.response.data) {
@@ -79,6 +78,7 @@
      for (const row of zone) {
        console.log("matchexp")
        const color = randomColor();
+       console.log()
        matchExpression.push(row, color);
        }
       matchExpression.push('white');
@@ -116,18 +116,31 @@ const layerStyle={
 
             const Popups = () =>(
               <div className="zonedetailpopup">
-              <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
-              <hr className="linepopup linemargin"></hr>
+                <div className="zonedetailpopup_closediv">
+                <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
+                </div>
+              
+              
+              
+             
+              <div>
+              <hr className="linepopup"></hr>
               <h3 className="top_address">{address}</h3>
               <hr className="linepopup"></hr>
+              </div>
+             
+             
               <div className="tabscontainer">
                    <button className="tabbtn" onClick={()=>{setIndex(0)}}>Zones Data</button>
                    <button className="tabbtn" onClick={()=>{setIndex(1)}}>Permitted uses</button>
                    <button className="tabbtn" onClick={()=>{setIndex(2)}}>Controls</button>
                    <button className="tabbtn" onClick={()=>{setIndex(3)}}>Land use</button>
               </div>
+              <div>
               <hr className="linepopup"></hr>
-              <div className="zonesdetial_list" >
+              </div>
+              
+              <div className="zonesdetial_list">
                 <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul>
                 <h4  hidden={index !== (1)}>permitted uses</h4>
                 <h4 hidden={index !== (2)}>controls</h4>
@@ -136,8 +149,7 @@ const layerStyle={
                   <div className="">
                   <hr className="linepopup"></hr>
                     <div className="bottombtn">
-                    
-                    <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
+                   <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
                    <button className="bottom_tabbtn">Order Report</button>
                    <button className="bottom_tabbtn">CSV Download</button>
                     </div>

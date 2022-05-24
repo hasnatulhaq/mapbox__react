@@ -78,15 +78,20 @@ font-size: larger;
     height: 100vh;
     position: absolute;
     right: 0;
+    display: flex;
+    flex-direction: column;
   }
 
 
+  .zonedetailpopup_closediv{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
   .close {
     color: #b1afafbf;
-    float: right;
-    font-size: 38px;
+    font-size: 40px;
     font-weight: bold;
-    margin-top: 0px;
     margin-right: 20px;
   }
   
