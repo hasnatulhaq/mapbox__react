@@ -185,6 +185,7 @@ font-size: larger;
 
   .tabscontainer{
     margin: 20px;
+    display: flex;
   }
 
 
