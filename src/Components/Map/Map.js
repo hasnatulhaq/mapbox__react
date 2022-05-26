@@ -160,14 +160,34 @@ const layerStyle={
               </div>
               
               <div className="zonesdetial_list">
-                <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul>
-                <h4  hidden={index !== (1)}><li>{zonedetail[2]}</li>                
+                {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
+                <ul className="zoneslist" hidden={index !== (0)}>
+                  <li>{zonedetail[0]}</li>
+                  <li>{zonedetail[1]}</li>
+                  <li>{zonedetail[6]}</li>
+                  <li>{zonedetail[7]}</li>
+                  <li>{zonedetail[8]}</li>
+                  </ul> 
+                <ul className="zoneslist" hidden={index !== (1)}>
+                <li>{zonedetail[2]}</li>                
                 <li>{zonedetail[3]}</li>                
                 <li>{zonedetail[4]}</li>
                 <li>{zonedetail[5]}</li>
-                </h4>
-                <h4 hidden={index !== (2)}>{zonedetail[9]}</h4>
-                <h4 hidden={index !== (3)}>land use</h4>
+                </ul>
+                <ul className="zoneslist" hidden={index !== (2)}>
+                  <li>{zonedetail[9]}</li>
+                  <li>{zonedetail[10]}</li>
+                  <li>{zonedetail[11]}</li>
+                  <li>{zonedetail[12]}</li>
+                  <li>{zonedetail[13]}</li>
+                  <li>{zonedetail[14]}</li>
+                  <li>{zonedetail[15]}</li>
+                  <li>{zonedetail[16]}</li>
+                  <li>{zonedetail[17]}</li>
+                  </ul>
+                <ul className="zoneslist" hidden={index !== (3)}>
+                  <li>land use</li>
+                  </ul>
                 </div>
                   <div className="">
                   <hr className="linepopup"></hr>
@@ -179,7 +199,6 @@ const layerStyle={
                 </div>
                 </div>
             )
-
             const displaydata = (event) =>{
               setlatlng(event.lngLat)
               console.log(event.placename)

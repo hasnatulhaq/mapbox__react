@@ -192,6 +192,7 @@ font-size: larger;
   .top_address{
     margin: 20px;
     color: #4d66cb;
+    font-size: 15px;
   }
 
 
@@ -203,6 +204,7 @@ font-size: larger;
   .zoneslist{
      list-style: none;
      font-weight: bold;
+     font-size: 15px;
   }
 
 
