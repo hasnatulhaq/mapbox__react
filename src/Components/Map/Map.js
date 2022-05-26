@@ -11,7 +11,7 @@
   function Mapro(){
 
     const [showResults, setShowResults] = useState(false)
-    const [address , setAddress] =useState()
+  //  const [address , setAddress] =useState()
     const [data , setData] = useState([]);
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
@@ -21,7 +21,8 @@
     const [latlng , setlatlng] = useState([]);
     let lats=latlng.lat , lngs=latlng.lng
     const [index, setIndex ] = useState(0);
-  const [ colors , setColors] = useState();
+    const [ colors , setColors] = useState();
+    const [Localaddress, setLocaladdress] =useState();
 
 
         const [viewport , setviewport] = useState({
@@ -33,6 +34,8 @@
             isDragging: false,
         }); 
 
+
+        
    
     useEffect(()=>{
       async function getData(){
@@ -58,6 +61,7 @@
               const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
             if(res.data.data)
                     setZonedetail(res.data.data.properties)
+                   // console.log(zonedetail.map((['zoneCode'])=> [zoneCode]))
                     setIsOpen(res.data.data.properties) 
                     
              } catch(error){
@@ -67,13 +71,30 @@
            getData()
      },[data,lats,lngs]);
 
+
+     useEffect(()=>{
+      async function getData(){
+        try{
+
+          const res=await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+lngs+','+lats+'.json?access_token='+MAPBOX_TOKEN)
+          setLocaladdress(res.data.features[0].place_name)
+
+        } catch(error){
+             console.log("not found any address" , error)
+        }
+         
+      }
+      getData()
+},[data,lats,lngs]);
+   
+
      
      useEffect(()=>{
       setColors(staticColor)
       },[])
 
 
-     const matchExpression = ['match', ['get','z']];
+    const matchExpression = ['match', ['get','z']];
     for (let row=0;row<zone.length; row++ ) {
         const color = colors[row]
          matchExpression.push(zone[row],color);
@@ -109,7 +130,8 @@ const layerStyle={
               <div className="zonecode_list">{handlecolor()}</div>
               </div>
             )
-          
+
+
 
             const Popups = () =>(
               <div className="zonedetailpopup">
@@ -122,7 +144,7 @@ const layerStyle={
              
               <div>
               <hr className="linepopup"></hr>
-              <h3 className="top_address">{address}</h3>
+              <h3 className="top_address">{Localaddress}</h3>
               <hr className="linepopup"></hr>
               </div>
              
@@ -139,8 +161,12 @@ const layerStyle={
               
               <div className="zonesdetial_list">
                 <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul>
-                <h4  hidden={index !== (1)}>permitted uses</h4>
-                <h4 hidden={index !== (2)}>controls</h4>
+                <h4  hidden={index !== (1)}><li>{zonedetail[2]}</li>                
+                <li>{zonedetail[3]}</li>                
+                <li>{zonedetail[4]}</li>
+                <li>{zonedetail[5]}</li>
+                </h4>
+                <h4 hidden={index !== (2)}>{zonedetail[9]}</h4>
                 <h4 hidden={index !== (3)}>land use</h4>
                 </div>
                   <div className="">
@@ -156,6 +182,7 @@ const layerStyle={
 
             const displaydata = (event) =>{
               setlatlng(event.lngLat)
+              console.log(event.placename)
           }
         
         return(
@@ -170,9 +197,13 @@ const layerStyle={
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             onClick={displaydata}
+            on
              > 
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
         height="100%" />
+
+{/* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
+        height="100%" /> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}
              addsource="zoneomics"  
              >
