@@ -1,6 +1,6 @@
     import { useState, useEffect } from "react"
     import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-    import ReactMapGl,{Source, Layer,} from 'react-map-gl'
+    import ReactMapGl,{Source, Layer} from 'react-map-gl'
     import './Map.css'
     import Geocoder from "../Geocoder/Geocoder"
     import axios from "axios";
@@ -175,7 +175,7 @@ const layerStyle={
                 <li>{zonedetail[5]}</li>
                 </ul>
                 <ul className="zoneslist" hidden={index !== (2)}>
-                  <li>{zonedetail[9]}</li>
+                   <li>{zonedetail[9]}</li>
                   <li>{zonedetail[10]}</li>
                   <li>{zonedetail[11]}</li>
                   <li>{zonedetail[12]}</li>
@@ -220,6 +220,7 @@ const layerStyle={
              > 
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
         height="100%" />
+          
 
 {/* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
         height="100%" /> */}
