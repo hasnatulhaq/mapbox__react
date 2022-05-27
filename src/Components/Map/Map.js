@@ -6,12 +6,12 @@
     import axios from "axios";
     import {staticColor} from "../../color.js"
   
-     const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
+    const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
 
-  function Mapro(){
+    function Mapro(){
 
     const [showResults, setShowResults] = useState(false)
-  //  const [address , setAddress] =useState()
+    //  const [address , setAddress] =useState()
     const [data , setData] = useState([]);
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
@@ -131,17 +131,12 @@ const layerStyle={
               </div>
             )
 
-
-
             const Popups = () =>(
               <div className="zonedetailpopup">
                 <div className="zonedetailpopup_closediv">
                 <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
                 </div>
-              
-              
-              
-             
+                           
               <div>
               <hr className="linepopup"></hr>
               <h3 className="top_address">{Localaddress}</h3>
@@ -175,7 +170,7 @@ const layerStyle={
                 <li>{zonedetail[5]}</li>
                 </ul>
                 <ul className="zoneslist" hidden={index !== (2)}>
-                   <li>{zonedetail[9]}</li>
+                  <li>{zonedetail[9]}</li>
                   <li>{zonedetail[10]}</li>
                   <li>{zonedetail[11]}</li>
                   <li>{zonedetail[12]}</li>
@@ -201,7 +196,6 @@ const layerStyle={
             )
             const displaydata = (event) =>{
               setlatlng(event.lngLat)
-              console.log(event.placename)
           }
         
         return(
@@ -216,14 +210,13 @@ const layerStyle={
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             onClick={displaydata}
-            on
              > 
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
         height="100%" />
           
 
-{/* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
-        height="100%" /> */}
+             {/* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
+             height="100%" /> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}
              addsource="zoneomics"  
              >
