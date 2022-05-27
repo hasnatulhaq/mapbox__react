@@ -1,0 +1,13 @@
+.logindiv{
+    
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    /* background-color: red; */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+
+}

@@ -83,7 +83,6 @@
         } catch(error){
              console.log("not found any address" , error)
         }
-         
       }
       getData()
 },[data,lats,lngs]);
@@ -110,6 +109,7 @@ const layerStyle={
           'paint': {
               'fill-color' : matchExpression,
                'fill-outline-color': 'lightgray',
+               "fill-opacity": 0.9,
             },
           }
             const handlecolor=()=>{
@@ -124,7 +124,6 @@ const layerStyle={
                   }
                   return arr
             }
-              
             const Results = () => (
               <div id="state-legend" className="legend">
                 <div className="legend_heading"><h4>zones legend</h4></div>
@@ -136,8 +135,7 @@ const layerStyle={
               <div className="zonedetailpopup">
                 <div className="zonedetailpopup_closediv">
                 <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
-                </div>
-                           
+                </div> 
               <div>
               <hr className="linepopup"></hr>
               <h3 className="top_address">{Localaddress}</h3>
@@ -189,12 +187,11 @@ const layerStyle={
                   <div className="">
                   <hr className="linepopup"></hr>
                     <div className="bottombtn">
-                   <button className="bottom_tabbtn"  onclick="openCity(event, 'London')">Unlock Address</button>
+                   <button className="bottom_tabbtn"  onClick="openCity(event, 'London')">Unlock Address</button>
                    <button className="bottom_tabbtn">Order Report</button>
                    <button className="bottom_tabbtn">CSV Download</button>
                     </div>
                 </div>
-  
                 </div>
             )
             const displaydata = (event) =>{
@@ -205,7 +202,7 @@ const layerStyle={
        <>  
             {isOpen ? <Popups/> : null }
             {showResults ? <Results /> : null }
-        <ReactMapGl 
+            <ReactMapGl 
             width="100vw" height="100vh"
             style={{borderTop: '5px solid #245c7c'}}
             mapStyle={'mapbox://styles/hasnatulhaq/cl1kc4e5o00my14o3kuifx4vp'}
@@ -215,7 +212,7 @@ const layerStyle={
             onClick={displaydata}
              > 
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
-        height="100%" />
+        height="100%"/>
           
 
              {/* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"

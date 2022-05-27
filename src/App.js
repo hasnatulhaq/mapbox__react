@@ -1,5 +1,7 @@
 import './App.css';
-import Mapro from './Components/Map/Map.js';
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import Siginpage from './Pages/Signinpage/Siginpage.js';
+import Mappage from './Pages/Mappage/Mappage';
 //import Search from './Components/search/Search';
 //import Sidbar from './Components/shared/Sidebar/Sidbar';
 
@@ -7,7 +9,16 @@ import Mapro from './Components/Map/Map.js';
 function App() {
   
   return (
+    <>
+    
     <div className="App">
+    <Router>
+      <Routes>
+          <Route exact path="/" element={<Navigate to="/map" />} />
+          <Route path='/signin' element={<Siginpage/>}/>
+          <Route path='/map' element={<Mappage/>}/>
+      </Routes>
+    </Router>
       {/* <div className='searh_div'>
         <div>
         <Search/>
@@ -17,14 +28,17 @@ function App() {
           <a>About</a>
         </div>
       </div> */}
-      <div className='main_container'></div>
-      {/* <div className='side_nav'>
+      {/* <div className='main_container'></div>
+       <div className='side_nav'>
           <Sidbar/>
-      </div> */}
+      </div> 
       <div className="map_div">
       <Mapro/>
-      </div>
+      </div> */}
+   
+    
     </div>
-  );
+    </>
+      );
 }
 export default App;
