@@ -11,7 +11,7 @@
     function Mapro(){
 
     const [showResults, setShowResults] = useState(false)
-    //  const [address , setAddress] =useState()
+    //const [address , setAddress] =useState()
     const [data , setData] = useState([]);
     let lat=data[1] , lng=data[0]
     const [id ,setId] = useState()
@@ -59,12 +59,13 @@
            async function getData(){
              try{
               const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
-            if(res.data.data)
+            if(res?.data?.data)
                     setZonedetail(res.data.data.properties)
                    // console.log(zonedetail.map((['zoneCode'])=> [zoneCode]))
                     setIsOpen(res.data.data.properties) 
                     
              } catch(error){
+               setZonedetail({})
                   console.log("Not found any zone data",error);
              }
            }
@@ -153,7 +154,7 @@ const layerStyle={
               <div>
               <hr className="linepopup"></hr>
               </div>
-              
+            {zonedetail&&
               <div className="zonesdetial_list">
                 {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
                 <ul className="zoneslist" hidden={index !== (0)}>
@@ -184,6 +185,7 @@ const layerStyle={
                   <li>land use</li>
                   </ul>
                 </div>
+              }
                   <div className="">
                   <hr className="linepopup"></hr>
                     <div className="bottombtn">
@@ -192,6 +194,7 @@ const layerStyle={
                    <button className="bottom_tabbtn">CSV Download</button>
                     </div>
                 </div>
+  
                 </div>
             )
             const displaydata = (event) =>{
