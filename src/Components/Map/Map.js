@@ -108,8 +108,8 @@ const layerStyle={
           'source-layer': 'zones',
           'paint': {
               'fill-color' : matchExpression,
-               'fill-outline-color': 'red',
-               "fill-opacity": 0.1,
+               'fill-outline-color': 'gray',
+               "fill-opacity": 0.5,
             },
           }
             const handlecolor=()=>{
