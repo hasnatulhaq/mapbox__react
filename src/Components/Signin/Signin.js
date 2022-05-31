@@ -1,8 +1,7 @@
 import './Signin.css'
 import axios from "axios";
 import { useState } from "react"
-import Mappage from '../../Pages/Mappage/Mappage';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 
 function Signin(){
@@ -38,7 +37,6 @@ function Signin(){
         if(res.status===200)
         {
             navigate(`/map`);
-            
         }
     }  ).catch(err => console.log(err))
     }
