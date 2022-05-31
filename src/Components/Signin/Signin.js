@@ -1,22 +1,69 @@
 import './Signin.css'
+import axios from "axios";
+import { useState } from "react"
+import Mappage from '../../Pages/Mappage/Mappage';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 function Signin(){
+    
+    
+    const [email, setEmail] = useState("")
+    const [password, setpassword] = useState("")
+    let navigate = useNavigate();
+
+    // const handlelogin = (e) => {
+    //     e.preventDefault();
+    //     let formField = new FormData();        
+    //     formField.append('email_address', email_address)
+    //     formField.append('password', password)
+       
+    //      axios.post('https://testing-api.zoneomics.com/auth/login', {
+    //         data: formField
+    //     }).then(function (response) {
+    //         console.log(response.data);
+    //         history('/', { replace: true });
+    //     })
+    // }
+
+
+    
+
+    const handlelogin = (e) => {
+        e.preventDefault();
+         axios.post('https://testing-api.zoneomics.com/auth/login', {
+            email,
+            password
+        }).then(res =>{console.log("posting data", res )
+        if(res.status===200)
+        {
+            navigate(`/map`);
+            
+        }
+    }  ).catch(err => console.log(err))
+    }
+
+    
+
     return(
         <>
         <div className="logindiv">
-        <form action="">
+        <form>
                <div>
                    <label htmlFor="email">Email</label>
-                   <input type="text" name="email" id="email"></input>
+                   <input className='inputfield' type="text" name="email" id="email"  
+                   value={email}
+                   onChange={(e) => setEmail(e.target.value)}></input>
                </div>
                <div>
                    <label htmlFor="password">Password</label>
-                   <input type="text" name="password" id="password"></input>
+                   <input className='inputfield' type="password" name="password" id="password" 
+                   value={password}
+                   onChange={(e)=> setpassword(e.target.value)}></input>
                </div>
-               <button type="submit">submit</button>
+               <button className='fieldbutton' type="Submit" onClick={handlelogin}>Submit</button>
            </form>
         </div>
-           
         </>
     )
 }
