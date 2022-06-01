@@ -113,19 +113,33 @@ const layerStyle={
             },
           }
 
-const layerlabel={
-       id: 'zonelabel',
-       type: 'symbol',
-       source: 'zoneomics',
-       'source-layer': 'zones',
-        'layout': {
-          'text-field': ['get', 'description'],
-          'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-          'text-radial-offset': 0.5,
-          'text-justify': 'auto',
-          'icon-image': ['get', 'icon']
-      }
-}
+          const layerlabel={
+            id: 'zonelabel',
+            type: 'symbol',
+            source: 'zoneomics',
+            'source-layer': 'zones',
+             'layout': {
+               'text-field': 'hello world',
+               'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+               'text-radial-offset': 0.5,
+               'text-justify': 'auto',
+
+           }
+     }
+
+// const layerlabel={
+//        id: 'zonelabel',
+//        type: 'symbol',
+//        source: 'zoneomics',
+//        'source-layer': 'zones',
+//         'layout': {
+//           'text-field': ['get', 'description'],
+//           'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+//           'text-radial-offset': 0.5,
+//           'text-justify': 'auto',
+//           'icon-image': ['get', 'icon']
+//       }
+// }
             const handlecolor=()=>{
                   let arr=[]
                   for(let i=0; i<matchExpression.length-2; i++)
