@@ -1,11 +1,11 @@
 
 import Signin from '../../Components/Signin/Signin.js';
 
-function Siginpage(){
+function Siginpage({setIsLoggedIn ,loggedIn}){
     return(
       <>
         <div className="MainNetwok">
-           <Signin/>
+           <Signin setIsLoggedIn={setIsLoggedIn} loggedIn={loggedIn}/>
         </div>      
         </>
     )

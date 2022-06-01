@@ -8,7 +8,7 @@
   
     const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
 
-    function Mapro(){
+    function Mapro({setIsLoggedIn}){
 
     const [showResults, setShowResults] = useState(false)
     //const [address , setAddress] =useState()
@@ -112,6 +112,20 @@ const layerStyle={
                "fill-opacity": 0.5,
             },
           }
+
+const layerlabel={
+       id: 'zonelabel',
+       type: 'symbol',
+       source: 'zoneomics',
+       'source-layer': 'zones',
+        'layout': {
+          'text-field': ['get', 'description'],
+          'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+          'text-radial-offset': 0.5,
+          'text-justify': 'auto',
+          'icon-image': ['get', 'icon']
+      }
+}
             const handlecolor=()=>{
                   let arr=[]
                   for(let i=0; i<matchExpression.length-2; i++)
@@ -200,6 +214,7 @@ const layerStyle={
         
         return(
        <>  
+            <button className="logoutbtn" onClick={()=>setIsLoggedIn(false)}>Signout</button>
             {isOpen ? <Popups/> : null }
             {showResults ? <Results /> : null }
             <ReactMapGl 
@@ -221,7 +236,9 @@ const layerStyle={
              addsource="zoneomics"  
              >
                  <Layer {...layerStyle}> 
-                   </Layer>    
+                   </Layer> 
+                   <Layer {...layerlabel}>
+                     </Layer>   
              </Source> 
               </ReactMapGl>
               </>

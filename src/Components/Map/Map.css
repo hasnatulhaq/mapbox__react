@@ -224,4 +224,20 @@ font-size: larger;
   }
 
 
+
+  .logoutbtn{
+    position: absolute;
+    z-index: 4;
+    width: 73px;
+    height: 37px;
+    /* right: 13px; */
+    margin-top: 9px;
+    background: white;
+    border: none;
+    border-radius: 7px;
+    color: gray;
+    left: 5px;
+  }
+
+
     

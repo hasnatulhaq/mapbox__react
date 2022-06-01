@@ -4,7 +4,7 @@ import { useState } from "react"
 import {useNavigate } from 'react-router-dom';
 
 
-function Signin(){
+function Signin({setIsLoggedIn ,loggedIn}){
     
     
     const [email, setEmail] = useState("")
@@ -36,7 +36,11 @@ function Signin(){
         }).then(res =>{console.log("posting data", res )
         if(res.status===200)
         {
+            setIsLoggedIn(!loggedIn)
             navigate(`/map`);
+        }
+        else{
+            setIsLoggedIn(false)
         }
     }  ).catch(err => console.log(err))
     }
