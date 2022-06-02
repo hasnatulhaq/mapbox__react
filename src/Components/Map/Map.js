@@ -45,7 +45,7 @@
             SetZone(res.data.data[0].zoneCode)
             setId(res.data.data[0].id);
             setShowResults(true)
-           setIsOpen(true)
+            setIsOpen(true)
           }
         }catch(e){
          console.log('NOT FOUND ANY RESULT',e);
@@ -76,7 +76,6 @@
      useEffect(()=>{
       async function getData(){
         try{
-
           const res=await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+lngs+','+lats+'.json?access_token='+MAPBOX_TOKEN)
           setLocaladdress(res.data.features[0].place_name)
 
@@ -100,7 +99,17 @@
          matchExpression.push(zone[row],color);
          }
       matchExpression.push('white');
-    
+
+
+      const matchlabel = ['match', ['get','z']];
+      for (let row=0;row<zone.length; row++ ) {
+
+               const zonelabel = zone[row]         
+               matchlabel.push(zone[row],zonelabel);
+           }
+           matchlabel.push('Not defined');
+           console.log(matchlabel)
+        // matchExpression.push('white');
 const layerStyle={
             id:'zoneomics', 
             type: 'fill',
@@ -112,18 +121,19 @@ const layerStyle={
                "fill-opacity": 0.5,
             },
           }
+            
 
+          
           const layerlabel={
             id: 'zonelabel',
             type: 'symbol',
             source: 'zoneomics',
             'source-layer': 'zones',
              'layout': {
-               'text-field': 'hello world',
-               'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-               'text-radial-offset': 0.5,
+               'text-field': matchlabel,
+              //  'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+               'text-radial-offset': 0.3,
                'text-justify': 'auto',
-
            }
      }
 
@@ -165,7 +175,7 @@ const layerStyle={
                 <span className="close" onClick={() => setIsOpen(null)}>&times;</span>
                 </div> 
               <div>
-              <hr className="linepopup"></hr>
+              {/* <hr className="linepopup"></hr> */}
               <h3 className="top_address">{Localaddress}</h3>
               <hr className="linepopup"></hr>
               </div>
@@ -178,7 +188,7 @@ const layerStyle={
                    <button className="tabbtn" onClick={()=>{setIndex(3)}}>Land use</button>
               </div>
               <div>
-              <hr className="linepopup"></hr>
+              {/* <hr className="linepopup"></hr> */}
               </div>
             {zonedetail&&
               <div className="zonesdetial_list">
@@ -213,7 +223,7 @@ const layerStyle={
                 </div>
               }
                   <div className="">
-                  <hr className="linepopup"></hr>
+                  {/* <hr className="linepopup"></hr> */}
                     <div className="bottombtn">
                    <button className="bottom_tabbtn"  onClick="openCity(event, 'London')">Unlock Address</button>
                    <button className="bottom_tabbtn">Order Report</button>
@@ -239,7 +249,7 @@ const layerStyle={
             {...viewport} 
             onMove={evt => setviewport(evt.viewport)}
             onClick={displaydata}
-             > 
+            > 
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
         height="100%"/>
           
@@ -249,10 +259,11 @@ const layerStyle={
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}
              addsource="zoneomics"  
              >
+               <Layer {...layerlabel}>
+                     </Layer>  
                  <Layer {...layerStyle}> 
                    </Layer> 
-                   <Layer {...layerlabel}>
-                     </Layer>   
+                    
              </Source> 
               </ReactMapGl>
               </>
