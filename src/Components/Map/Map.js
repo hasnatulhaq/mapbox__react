@@ -245,21 +245,10 @@ const layerStyle={
                   </ul>
                   </ul> 
                 <ul className="zoneslist" hidden={index !== (1)}>
-                <li>{zonedetail[2]}</li>                
-                <li>{zonedetail[3]}</li>                
-                <li>{zonedetail[4]}</li>
-                <li>{zonedetail[5]}</li>
+                    <li>{plus}</li>
                 </ul>
                 <ul className="zoneslist" hidden={index !== (2)}>
-                 <li>{zonedetail[9]}</li>
-                  <li>{zonedetail[10]}</li>
-                  <li>{zonedetail[11]}</li>
-                  <li>{zonedetail[12]}</li>
-                  <li>{zonedetail[13]}</li>
-                  <li>{zonedetail[14]}</li>
-                  <li>{zonedetail[15]}</li>
-                  <li>{zonedetail[16]}</li>
-                  <li>{zonedetail[17]}</li>
+                
                   </ul>
                 <ul className="zoneslist" hidden={index !== (3)}>
                   <li>land use</li>
