@@ -1,7 +1,7 @@
 import Mapro from '../../Components/Map/Map.js';
 
 
-function Mappage({setIsLoggedIn}){
+function Mappage({setIsLoggedIn,token}){
     return(
       <>
         <div className="">
@@ -10,7 +10,7 @@ function Mappage({setIsLoggedIn}){
           <Sidbar/>
       </div> */}
       <div className="map_div">
-      <Mapro setIsLoggedIn={setIsLoggedIn}/>
+      <Mapro setIsLoggedIn={setIsLoggedIn} token={token}/>
       </div>
         </div>      
         </>

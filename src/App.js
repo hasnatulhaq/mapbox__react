@@ -10,6 +10,7 @@ import { useState } from 'react';
 function App() {
   
   const [loggedIn, setIsLoggedIn] = useState(false)
+  const [token , setToken] = useState()
 
   return (
     <>
@@ -17,10 +18,10 @@ function App() {
     <Router>
       <Routes>
             <Route exact path="/" element={<Navigate to="/signin" />} />
-            <Route path='/signin' element={<Siginpage setIsLoggedIn={setIsLoggedIn} loggedIn={loggedIn}/>}/>
+            <Route path='/signin' element={<Siginpage setIsLoggedIn={setIsLoggedIn} loggedIn={loggedIn} setToken={setToken} token={token}/>}/>
           
           {loggedIn ? (
-         <Route path='/map' element={<Mappage setIsLoggedIn={setIsLoggedIn}/>}/>
+         <Route path='/map' element={<Mappage setIsLoggedIn={setIsLoggedIn} token={token}/>}/>
         ) : (
           <Route
           path="*"

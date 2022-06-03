@@ -8,7 +8,7 @@
   
     const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg'
 
-    function Mapro({setIsLoggedIn}){
+    function Mapro({setIsLoggedIn,token}){
 
     const [showResults, setShowResults] = useState(false)
     //const [address , setAddress] =useState()
@@ -23,7 +23,23 @@
     const [index, setIndex ] = useState(0);
     const [ colors , setColors] = useState();
     const [Localaddress, setLocaladdress] =useState();
+    const [apiData, setApiData] = useState({})
 
+const zoneCode = Object.entries(apiData).filter(([key,val])=>  ['zone_code'].includes(key)).map(e=>e.pop())[0]
+const zonename = Object.entries(apiData).filter(([key,val])=>  ['zone_name'].includes(key)).map(e=>e.pop())[0]
+const zonetype = Object.entries(apiData).filter(([key,val])=>  ['zone_type'].includes(key)).map(e=>e.pop())[0]
+// const zonesubtype = Object.entries(apiData).filter(([key,val])=>  ['zone_sub_type'].includes(key)).map(e=>e.pop())[0]
+
+
+const plus = Object.entries(apiData).filter(([key,val])=>  ['plu','single_family_permitted','two_family_permitted'].includes(key))
+    // console.log(apiData, "DATA")
+
+    // const {plus,other_ctrls,boundary,city_id} = apiData
+
+    
+     console.log(plus, "PLUS")
+    // console.log(zoneCode, "zoneData")
+    // console.log(zonename, "zonename")
 
         const [viewport , setviewport] = useState({
             longitude: -95.712891,
@@ -35,8 +51,6 @@
         }); 
 
 
-        
-   
     useEffect(()=>{
       async function getData(){
         try{
@@ -55,22 +69,47 @@
   },[data,lat,lng]);
 
 
-     useEffect(()=>{
-           async function getData(){
-             try{
-              const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs)
-            if(res?.data?.data)
-                    setZonedetail(res.data.data.properties)
-                   // console.log(zonedetail.map((['zoneCode'])=> [zoneCode]))
-                    setIsOpen(res.data.data.properties) 
-                    
-             } catch(error){
-               setZonedetail({})
-                  console.log("Not found any zone data",error);
-             }
-           }
-           getData()
-     },[data,lats,lngs]);
+  useEffect(()=>{
+    axios.get(`https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`,
+     { headers:{
+        'Authorization': `Bearer ${token}` 
+      },
+    }
+   
+    ).then(({data})=>{
+      if(data?.data)
+      console.log(data.data)
+      setApiData(data.data)
+      setZonedetail(data.data.zone_code)
+      //setZonedetail(data.data.properties)
+      setIsOpen(data.data.zone_code) 
+    }).catch((err)=>{
+      setZonedetail({})
+      console.log("sorry , not found any data",err)
+    })
+  },[data,lats,lngs,token])
+
+    //  useEffect(()=>{
+    //        async function getData(){
+    //          try{
+    //           const res=await axios.get('https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat='+lats+'&lng='+lngs, {
+              
+    //           headers:{
+    //                      'Authorization': `'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc0NCwidXNlcklkIjo2LCJlbWFpbCI6ImFzaW0ubWFnbWFAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiYXNpbSIsImxhc3ROYW1lIjoibWFnbWEiLCJpYXQiOjE2NTQyMzg2OTMsImV4cCI6MTY1NDIzOTU5M30.ndotFugmZb9uSiAU78JYD4fv5QHECVXiipIdneyECm4`
+    //                    }
+              
+    //           })
+    //         if(res?.data?.data)
+    //                 console.log(res.data)
+    //                 setZonedetail(res.data.data.properties)
+    //                 setIsOpen(res.data.data.properties)    
+    //          } catch(error){
+
+    //               console.log("Not found any zone data",error);
+    //          }
+    //        }
+    //        getData()
+    //  },[data,lats,lngs]);
 
 
      useEffect(()=>{
@@ -108,8 +147,8 @@
                matchlabel.push(zone[row],zonelabel);
            }
            matchlabel.push('Not defined');
-           console.log(matchlabel)
-        // matchExpression.push('white');
+
+
 const layerStyle={
             id:'zoneomics', 
             type: 'fill',
@@ -122,8 +161,6 @@ const layerStyle={
             },
           }
             
-
-          
           const layerlabel={
             id: 'zonelabel',
             type: 'symbol',
@@ -190,15 +227,22 @@ const layerStyle={
               <div>
               {/* <hr className="linepopup"></hr> */}
               </div>
-            {zonedetail&&
+            {zonedetail.length > 0 &&
               <div className="zonesdetial_list">
                 {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
                 <ul className="zoneslist" hidden={index !== (0)}>
-                  <li>{zonedetail[0]}</li>
-                  <li>{zonedetail[1]}</li>
-                  <li>{zonedetail[6]}</li>
-                  <li>{zonedetail[7]}</li>
-                  <li>{zonedetail[8]}</li>
+                  <li>Zone Code</li>
+                  <ul>
+                  <li className="sublist">{zoneCode}</li>
+                  </ul>
+                  <li>Zone name</li>
+                  <ul>
+                  <li className="sublist">{zonename}</li>
+                  </ul>
+                  <li>Zone type</li>
+                  <ul>
+                    <li className="sublist">{zonetype}</li>
+                  </ul>
                   </ul> 
                 <ul className="zoneslist" hidden={index !== (1)}>
                 <li>{zonedetail[2]}</li>                
@@ -207,7 +251,7 @@ const layerStyle={
                 <li>{zonedetail[5]}</li>
                 </ul>
                 <ul className="zoneslist" hidden={index !== (2)}>
-                  <li>{zonedetail[9]}</li>
+                 <li>{zonedetail[9]}</li>
                   <li>{zonedetail[10]}</li>
                   <li>{zonedetail[11]}</li>
                   <li>{zonedetail[12]}</li>

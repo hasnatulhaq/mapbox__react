@@ -4,11 +4,12 @@ import { useState } from "react"
 import {useNavigate } from 'react-router-dom';
 
 
-function Signin({setIsLoggedIn ,loggedIn}){
+function Signin({setIsLoggedIn ,loggedIn,setToken}){
     
     
     const [email, setEmail] = useState("")
     const [password, setpassword] = useState("")
+    
     let navigate = useNavigate();
 
     // const handlelogin = (e) => {
@@ -33,10 +34,12 @@ function Signin({setIsLoggedIn ,loggedIn}){
          axios.post('https://testing-api.zoneomics.com/auth/login', {
             email,
             password
-        }).then(res =>{console.log("posting data", res )
+        }).then(res =>{console.log("The token",res.data.data.accessToken)
         if(res.status===200)
         {
+            
             setIsLoggedIn(!loggedIn)
+            setToken(res.data.data.accessToken)
             navigate(`/map`);
         }
         else{
