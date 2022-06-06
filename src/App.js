@@ -13,6 +13,14 @@ function App() {
   const [token , setToken] = useState()
   
  // localStorage.setItem('redtoken', token);
+ // const Stoken=  localStorage.getItem('usetoken')
+
+//   const initialState = {
+//     token: localStorage.getItem('usetoken'),
+//     isAuthenticated: localStorage.getItem('token') ? true : false, // or just !!localStorage.getItem('token')
+//     isLoading: false,
+//     isRegistered: false
+//  }
    
   return (
     <>
