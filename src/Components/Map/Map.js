@@ -25,19 +25,25 @@
     const [Localaddress, setLocaladdress] =useState();
     const [apiData, setApiData] = useState({})
 
-const zoneCode = Object.entries(apiData).filter(([key,val])=>  ['zone_code'].includes(key)).map(e=>e.pop())[0]
-const zonename = Object.entries(apiData).filter(([key,val])=>  ['zone_name'].includes(key)).map(e=>e.pop())[0]
-const zonetype = Object.entries(apiData).filter(([key,val])=>  ['zone_type'].includes(key)).map(e=>e.pop())[0]
+   const zoneCode = Object.entries(apiData).filter(([key,val])=>  ['zone_code'].includes(key)).map(e=>e.pop())[0]
+   const zonename = Object.entries(apiData).filter(([key,val])=>  ['zone_name'].includes(key)).map(e=>e.pop())[0]
+   const zonetype = Object.entries(apiData).filter(([key,val])=>  ['zone_type'].includes(key)).map(e=>e.pop())[0]
+   const zoneguide = Object.entries(apiData).filter(([key,val])=>  ['zone_guide'].includes(key)).map(e=>e.pop())[0]
 // const zonesubtype = Object.entries(apiData).filter(([key,val])=>  ['zone_sub_type'].includes(key)).map(e=>e.pop())[0]
 
 
-const plus = Object.entries(apiData).filter(([key,val])=>  ['plu','single_family_permitted','two_family_permitted'].includes(key))
+// const plus = Object.entries(apiData).filter(([key,val])=>  ['plu','single_family_permitted','two_family_permitted'].includes(key))
+const Sfp = Object.entries(apiData).filter(([key,val])=>  ['single_family_permitted'].includes(key)).map(e=>e.pop())[0]
+const tfp = Object.entries(apiData).filter(([key,val])=>  ['two_family_permitted'].includes(key)).map(e=>e.pop())[0]
+const cup = Object.entries(apiData).filter(([key,val])=>  ['commercial_uses_permitted'].includes(key)).map(e=>e.pop())[0]
+const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitted'].includes(key)).map(e=>e.pop())[0]
+// const only = Object.entries(apiData).filter(([key,val])=>  ['plu',].includes(key))
     // console.log(apiData, "DATA")
-
+    //console.log(only, "plu data only showing")
     // const {plus,other_ctrls,boundary,city_id} = apiData
 
     
-     console.log(plus, "PLUS")
+    // console.log(plus, "PLUS")
     // console.log(zoneCode, "zoneData")
     // console.log(zonename, "zonename")
 
@@ -82,7 +88,7 @@ const plus = Object.entries(apiData).filter(([key,val])=>  ['plu','single_family
       setApiData(data.data)
       setZonedetail(data.data.zone_code)
       //setZonedetail(data.data.properties)
-      setIsOpen(data.data.zone_code) 
+      setIsOpen(data.data) 
     }).catch((err)=>{
       setZonedetail({})
       console.log("sorry , not found any data",err)
@@ -231,6 +237,24 @@ const layerStyle={
               <div className="zonesdetial_list">
                 {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
                 <ul className="zoneslist" hidden={index !== (0)}>
+                {/* <table>
+                    <tr>
+                    <td>Zone Code</td>
+                    <td className="des">{zoneCode}</td>
+                    </tr>
+                    <tr>
+                    <td>Zone name</td>
+                    <td className="des">{zonename}</td>
+                    </tr>
+                    <tr>
+                    <td>Zone type</td>
+                    <td className="des">{zonetype}</td>
+                    </tr>
+                    <tr>
+                      <td>Zone Guide</td>
+                      <td className="des">{zoneguide}</td>
+                    </tr>
+                    </table> */}
                   <li>Zone Code</li>
                   <ul>
                   <li className="sublist">{zoneCode}</li>
@@ -243,9 +267,47 @@ const layerStyle={
                   <ul>
                     <li className="sublist">{zonetype}</li>
                   </ul>
+                  <li>Zone Guide</li>
+                  <ul>
+                     <li className="sublist">{zoneguide}</li>
+                  </ul>
                   </ul> 
                 <ul className="zoneslist" hidden={index !== (1)}>
-                    <li>{plus}</li>
+                    {/* <li>{plus}</li> */}
+                    {/* <table>
+                    <tr>
+                    <td>Single family permitted</td>
+                    <td className="des">{Sfp}</td>
+                    </tr>
+                    <tr>
+                    <td>Two family permitted</td>
+                    <td className="des">{tfp}</td>
+                    </tr>
+                    <tr>
+                    <td>Commercial uses permitted</td>
+                    <td className="des">{cup}</td>
+                    </tr>
+                    <tr>
+                      <td>Multi family permitted</td>
+                      <td className="des">{mfp}</td>
+                    </tr>
+                    </table> */}
+                    <li>Single family permitted</li>
+                    <ul>
+                       <li className="sublist">{Sfp}</li>
+                    </ul>
+                    <li>Two family permitted</li>
+                    <ul>
+                      <li className="sublist">{tfp}</li>
+                    </ul>
+                    <li>Commercial uses permitted</li>
+                    <ul>
+                       <li className="sublist">{cup}</li>
+                    </ul>
+                    <li>Multi family permitted</li>
+                    <ul>
+                      <li className="sublist">{mfp}</li>
+                    </ul>
                 </ul>
                 <ul className="zoneslist" hidden={index !== (2)}>
                 
@@ -283,7 +345,7 @@ const layerStyle={
             onMove={evt => setviewport(evt.viewport)}
             onClick={displaydata}
             > 
-              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca"  width="100%"
+              <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca" placeholder="Search e.g New york"  width="100%"
         height="100%"/>
           
 
