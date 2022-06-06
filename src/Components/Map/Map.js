@@ -100,7 +100,7 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
       setZonedetail({})
       console.log("sorry , not found any data",err)
     })
-  },[data,lats,lngs,token])
+  },[data,lats,lngs,tokena])
 
     //  useEffect(()=>{
     //        async function getData(){
@@ -132,7 +132,7 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
           setLocaladdress(res.data.features[0].place_name)
 
         } catch(error){
-             console.log("not found any address" , error)
+             console.log("not found any" , error)
         }
       }
       getData()
