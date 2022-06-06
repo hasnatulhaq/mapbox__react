@@ -42,6 +42,14 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
     //console.log(only, "plu data only showing")
     // const {plus,other_ctrls,boundary,city_id} = apiData
 
+    const maxbuldheight = Object.entries(apiData).filter(([key,val])=>  ['max_building_height_ft'].includes(key)).map(e=>e.pop())[0]
+    const maxfar = Object.entries(apiData).filter(([key,val])=>  ['max_far'].includes(key)).map(e=>e.pop())[0]
+    const minlotarea = Object.entries(apiData).filter(([key,val])=>  ['min_lot_area_sq_ft'].includes(key)).map(e=>e.pop())[0]
+    const minlotwidth = Object.entries(apiData).filter(([key,val])=>  ['min_lot_width_ft'].includes(key)).map(e=>e.pop())[0]
+
+
+
+
     
     // console.log(plus, "PLUS")
     // console.log(zoneCode, "zoneData")
@@ -310,6 +318,23 @@ const layerStyle={
                     </ul>
                 </ul>
                 <ul className="zoneslist" hidden={index !== (2)}>
+                <li>Max building height (ft)</li>
+                    <ul>
+                       <li className="sublist">{maxbuldheight}</li>
+                    </ul>
+                    <li>Max far</li>
+                    <ul>
+                      <li className="sublist">{maxfar}</li>
+                    </ul>
+                    <li>Min lot area sqft</li>
+                    <ul>
+                       <li className="sublist">{minlotarea}</li>
+                    </ul>
+                    <li>Min lot width ft</li>
+                    <ul>
+                      <li className="sublist">{minlotwidth}</li>
+                    </ul>
+
                 
                   </ul>
                 <ul className="zoneslist" hidden={index !== (3)}>
