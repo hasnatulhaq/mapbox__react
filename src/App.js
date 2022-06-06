@@ -11,7 +11,9 @@ function App() {
   
   const [loggedIn, setIsLoggedIn] = useState(false)
   const [token , setToken] = useState()
-
+  
+ // localStorage.setItem('redtoken', token);
+   
   return (
     <>
     <div className="App">

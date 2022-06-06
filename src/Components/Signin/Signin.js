@@ -12,6 +12,8 @@ function Signin({setIsLoggedIn ,loggedIn,setToken}){
     
     let navigate = useNavigate();
 
+    
+
     // const handlelogin = (e) => {
     //     e.preventDefault();
     //     let formField = new FormData();        
@@ -37,9 +39,9 @@ function Signin({setIsLoggedIn ,loggedIn,setToken}){
         }).then(res =>{console.log("The token",res.data.data.accessToken)
         if(res.status===200)
         {
-            
             setIsLoggedIn(!loggedIn)
             setToken(res.data.data.accessToken)
+            localStorage.setItem('usetoken', res.data.data.accessToken);
             navigate(`/map`);
         }
         else{

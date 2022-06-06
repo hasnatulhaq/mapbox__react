@@ -47,8 +47,7 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
     const minlotarea = Object.entries(apiData).filter(([key,val])=>  ['min_lot_area_sq_ft'].includes(key)).map(e=>e.pop())[0]
     const minlotwidth = Object.entries(apiData).filter(([key,val])=>  ['min_lot_width_ft'].includes(key)).map(e=>e.pop())[0]
 
-
-
+   const tokena = localStorage.getItem('usetoken');
 
     
     // console.log(plus, "PLUS")
@@ -86,13 +85,13 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
   useEffect(()=>{
     axios.get(`https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`,
      { headers:{
-        'Authorization': `Bearer ${token}` 
+        'Authorization': `Bearer ${tokena}` 
       },
     }
    
     ).then(({data})=>{
       if(data?.data)
-      console.log(data.data)
+      //console.log(data.data)
       setApiData(data.data)
       setZonedetail(data.data.zone_code)
       //setZonedetail(data.data.properties)
