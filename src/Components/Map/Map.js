@@ -25,6 +25,8 @@
     const [Localaddress, setLocaladdress] =useState();
     const [apiData, setApiData] = useState({})
     const [membershipstatus,setMembershipstatus] = useState();
+    console.log(apiData , "primum user data and ")
+    
 
    const zoneCode = Object.entries(apiData).filter(([key,val])=>  ['zone_code'].includes(key)).map(e=>e.pop())[0]
    const zonename = Object.entries(apiData).filter(([key,val])=>  ['zone_name'].includes(key)).map(e=>e.pop())[0]
@@ -50,15 +52,10 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
 
    const tokena = localStorage.getItem('usetoken');
 
-    
+
     // console.log(plus, "PLUS")
     // console.log(zoneCode, "zoneData")
     // console.log(zonename, "zonename")
-    if(membershipstatus=== 'unpaid')
-    {
-      console.log("data is unpaid")
-    }
-
         const [viewport , setviewport] = useState({
             longitude: -95.712891,
             latitude: 37.090240,   
@@ -116,8 +113,8 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
         if(membershipstatus=== 'premium')
         {
           setApiData(data.data)
-          console.log("premium user", data.data)           
-        }else if(membershipstatus=== 'zoneonly'){
+          console.log("premium user", data.data)          
+        }else if(membershipstatus=== 'zoning_only'){
             console.log("zone only user")
         }else if(membershipstatus=== 'unpaid'){
           setZonedetail(data.data.properties)
@@ -269,9 +266,10 @@ const layerStyle={
               </div>
               <div>
               {/* <hr className="linepopup"></hr> */}
-              </div>
-            {zonedetail?.length>0 &&
+              </div>  
+           
               <div className="zonesdetial_list">
+                 {/* {zonedetail.length > 0 && } */}
                 {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
                 <ul className="zoneslist" hidden={index !== (0)}>
                   <li>Zone Code</li>
@@ -333,7 +331,7 @@ const layerStyle={
                   <li>land use</li>
                   </ul>
                 </div>
-              }
+    
                   <div className="">
                   {/* <hr className="linepopup"></hr> */}
                     <div className="bottombtn">
