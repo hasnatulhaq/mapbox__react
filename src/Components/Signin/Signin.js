@@ -40,7 +40,7 @@ function Signin({setIsLoggedIn ,loggedIn,setToken}){
         if(res.status===200)
         {
             setIsLoggedIn(!loggedIn)
-            setToken(res.data.data.accessToken)
+            // setToken(res.data.data.accessToken)
             localStorage.setItem('usetoken', res.data.data.accessToken);
             navigate(`/map`);
         }

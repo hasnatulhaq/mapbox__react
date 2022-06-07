@@ -24,6 +24,7 @@
     const [ colors , setColors] = useState();
     const [Localaddress, setLocaladdress] =useState();
     const [apiData, setApiData] = useState({})
+    const [membershipstatus,setMembershipstatus] = useState();
 
    const zoneCode = Object.entries(apiData).filter(([key,val])=>  ['zone_code'].includes(key)).map(e=>e.pop())[0]
    const zonename = Object.entries(apiData).filter(([key,val])=>  ['zone_name'].includes(key)).map(e=>e.pop())[0]
@@ -53,6 +54,10 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
     // console.log(plus, "PLUS")
     // console.log(zoneCode, "zoneData")
     // console.log(zonename, "zonename")
+    if(membershipstatus=== 'unpaid')
+    {
+      console.log("data is unpaid")
+    }
 
         const [viewport , setviewport] = useState({
             longitude: -95.712891,
@@ -83,7 +88,7 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
 
 
   useEffect(()=>{
-    axios.get(`https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`,
+    axios.get(`https://testing-api.zoneomics.com/user/status`,
      { headers:{
         'Authorization': `Bearer ${tokena}` 
       },
@@ -91,16 +96,43 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
    
     ).then(({data})=>{
       if(data?.data)
+       setMembershipstatus(data.data.membershipStatus)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[data,tokena])
+
+
+  useEffect(()=>{
+    axios.get(`https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`,
+     { headers:{
+        'Authorization': `Bearer ${tokena}` 
+      },
+    }
+   
+    ).then(({data})=>{
+      if(data?.data){
       //console.log(data.data)
-      setApiData(data.data)
-      setZonedetail(data.data.zone_code)
-      //setZonedetail(data.data.properties)
-      setIsOpen(data.data) 
+        if(membershipstatus=== 'premium')
+        {
+          setApiData(data.data)
+          console.log("premium user", data.data)           
+        }else if(membershipstatus=== 'zoneonly'){
+            console.log("zone only user")
+        }else if(membershipstatus=== 'unpaid'){
+          setZonedetail(data.data.properties)
+          console.log(data.data.properties , "unpaid user data")   
+        }
+        else{
+             console.log("Not Authorized")
+        }
+       
+      }
+      setIsOpen(data.data)
     }).catch((err)=>{
       setZonedetail({})
-      console.log("sorry , not found any data",err)
     })
-  },[data,lats,lngs,tokena])
+  },[data,lats,lngs,tokena,membershipstatus])
 
     //  useEffect(()=>{
     //        async function getData(){
@@ -229,8 +261,6 @@ const layerStyle={
               <h3 className="top_address">{Localaddress}</h3>
               <hr className="linepopup"></hr>
               </div>
-             
-             
               <div className="tabscontainer">
                    <button className="tabbtn" onClick={()=>{setIndex(0)}}>Zones Data</button>
                    <button className="tabbtn" onClick={()=>{setIndex(1)}}>Permitted uses</button>
@@ -240,28 +270,10 @@ const layerStyle={
               <div>
               {/* <hr className="linepopup"></hr> */}
               </div>
-            {zonedetail.length > 0 &&
+            {zonedetail?.length>0 &&
               <div className="zonesdetial_list">
                 {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
                 <ul className="zoneslist" hidden={index !== (0)}>
-                {/* <table>
-                    <tr>
-                    <td>Zone Code</td>
-                    <td className="des">{zoneCode}</td>
-                    </tr>
-                    <tr>
-                    <td>Zone name</td>
-                    <td className="des">{zonename}</td>
-                    </tr>
-                    <tr>
-                    <td>Zone type</td>
-                    <td className="des">{zonetype}</td>
-                    </tr>
-                    <tr>
-                      <td>Zone Guide</td>
-                      <td className="des">{zoneguide}</td>
-                    </tr>
-                    </table> */}
                   <li>Zone Code</li>
                   <ul>
                   <li className="sublist">{zoneCode}</li>
@@ -280,25 +292,6 @@ const layerStyle={
                   </ul>
                   </ul> 
                 <ul className="zoneslist" hidden={index !== (1)}>
-                    {/* <li>{plus}</li> */}
-                    {/* <table>
-                    <tr>
-                    <td>Single family permitted</td>
-                    <td className="des">{Sfp}</td>
-                    </tr>
-                    <tr>
-                    <td>Two family permitted</td>
-                    <td className="des">{tfp}</td>
-                    </tr>
-                    <tr>
-                    <td>Commercial uses permitted</td>
-                    <td className="des">{cup}</td>
-                    </tr>
-                    <tr>
-                      <td>Multi family permitted</td>
-                      <td className="des">{mfp}</td>
-                    </tr>
-                    </table> */}
                     <li>Single family permitted</li>
                     <ul>
                        <li className="sublist">{Sfp}</li>
@@ -371,10 +364,6 @@ const layerStyle={
             > 
               <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} zoom={17} countries="us,ca" placeholder="Search e.g New york"  width="100%"
         height="100%"/>
-          
-
-             {/* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
-             height="100%" /> */}
              <Source id="zoneomics"  type="vector"  tiles={["https://testing-api.zoneomics.com/tiles/zones?x={x}&y={y}&z={z}&city_id="+id]}
              addsource="zoneomics"  
              >
@@ -389,3 +378,8 @@ const layerStyle={
             )
     }
 export default Mapro
+
+
+
+ /* <Geocoder mapboxAccessToken={MAPBOX_TOKEN} position="top-left" setdata={setData} setaddress={setAddress} zoom={17} countries="us,ca"  width="100%"
+             height="100%" /> */

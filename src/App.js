@@ -10,14 +10,13 @@ import { useState } from 'react';
 function App() {
   
   const [loggedIn, setIsLoggedIn] = useState(false)
-  const [token , setToken] = useState()
-  
+  //const [token , setToken] = useState()
  // localStorage.setItem('redtoken', token);
  // const Stoken=  localStorage.getItem('usetoken')
 
 //   const initialState = {
 //     token: localStorage.getItem('usetoken'),
-//     isAuthenticated: localStorage.getItem('token') ? true : false, // or just !!localStorage.getItem('token')
+//     isAuthenticated: localStorage.getItem('usetoken') ? true : false, // or just !!localStorage.getItem('token')
 //     isLoading: false,
 //     isRegistered: false
 //  }
@@ -28,11 +27,11 @@ function App() {
     <Router>
       <Routes>
             <Route exact path="/" element={<Navigate to="/signin" />} />
-            <Route path='/signin' element={<Siginpage setIsLoggedIn={setIsLoggedIn} loggedIn={loggedIn} setToken={setToken} token={token}/>}/>
+            <Route path='/signin' element={<Siginpage setIsLoggedIn={setIsLoggedIn} loggedIn={loggedIn}/>}/>
           
-          {loggedIn ? (
-         <Route path='/map' element={<Mappage setIsLoggedIn={setIsLoggedIn} token={token}/>}/>
-        ) : (
+        {loggedIn ? (
+         <Route path='/map' element={<Mappage setIsLoggedIn={setIsLoggedIn}/>}/>
+        ): (
           <Route
           path="*"
         element={<Navigate to="/signin" replace />}
