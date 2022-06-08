@@ -52,7 +52,6 @@ function Signin({setIsLoggedIn ,loggedIn,setToken}){
     }
 
     
-
     return(
         <>
         <div className="logindiv">

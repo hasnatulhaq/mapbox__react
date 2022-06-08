@@ -251,6 +251,10 @@ font-size: larger;
   .des{
        color: #4d66cb;
   }
-
+  
+.statusdiv{
+  margin-left: 20px;
+  color: green;
+}
 
     
