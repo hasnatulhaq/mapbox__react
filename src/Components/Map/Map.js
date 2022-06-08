@@ -25,7 +25,6 @@
     const [Localaddress, setLocaladdress] =useState();
     const [apiData, setApiData] = useState({})
     const [membershipstatus,setMembershipstatus] = useState();
-    console.log(apiData , "primum user data and ")
     
 
    const zoneCode = Object.entries(apiData).filter(([key,val])=>  ['zone_code'].includes(key)).map(e=>e.pop())[0]
@@ -97,7 +96,7 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
     }).catch((err)=>{
       console.log(err)
     })
-  },[data,tokena])
+  },[data,tokena,membershipstatus])
 
 
   useEffect(()=>{
@@ -112,18 +111,17 @@ const mfp = Object.entries(apiData).filter(([key,val])=>  ['multi_family_permitt
       //console.log(data.data)
         if(membershipstatus=== 'premium')
         {
-          setApiData(data.data)
-          console.log("premium user", data.data)          
-        }else if(membershipstatus=== 'zoning_only'){
+          setApiData(data.data)          
+        }else if(membershipstatus === 'zoning_only'){
             console.log("zone only user")
-        }else if(membershipstatus=== 'unpaid'){
+            //setZoneonly(data.data)
+        }else if(membershipstatus === 'unpaid'){
           setZonedetail(data.data.properties)
           console.log(data.data.properties , "unpaid user data")   
         }
         else{
              console.log("Not Authorized")
         }
-       
       }
       setIsOpen(data.data)
     }).catch((err)=>{
@@ -248,6 +246,8 @@ const layerStyle={
               </div>
             )
 
+           
+
             const Popups = () =>(
               <div className="zonedetailpopup">
                 <div className="zonedetailpopup_closediv">
@@ -267,10 +267,11 @@ const layerStyle={
               <div>
               {/* <hr className="linepopup"></hr> */}
               </div>  
-           
+              
               <div className="zonesdetial_list">
                  {/* {zonedetail.length > 0 && } */}
-                {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul> */}
+                 {console.log(zonedetail , "zonedetail data")}
+                 {/* <ul className="zoneslist" hidden={index !== (0)}>{zonedetail?.map(zone => <li>{zone}</li>)}</ul>  */}
                 <ul className="zoneslist" hidden={index !== (0)}>
                   <li>Zone Code</li>
                   <ul>
@@ -323,13 +324,12 @@ const layerStyle={
                     <li>Min lot width ft</li>
                     <ul>
                       <li className="sublist">{minlotwidth}</li>
-                    </ul>
-
-                
+                    </ul> 
                   </ul>
                 <ul className="zoneslist" hidden={index !== (3)}>
                   <li>land use</li>
                   </ul>
+    
                 </div>
     
                   <div className="">

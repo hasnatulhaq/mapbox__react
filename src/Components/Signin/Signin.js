@@ -36,7 +36,8 @@ function Signin({setIsLoggedIn ,loggedIn,setToken}){
          axios.post('https://testing-api.zoneomics.com/auth/login', {
             email,
             password
-        }).then(res =>{console.log("The token",res.data.data.accessToken)
+        }).then(res =>{
+            
         if(res.status===200)
         {
             setIsLoggedIn(!loggedIn)
