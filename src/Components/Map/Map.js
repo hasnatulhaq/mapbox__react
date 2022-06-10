@@ -3,7 +3,7 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import ReactMapGl, { Source, Layer } from "react-map-gl";
 import "./Map.css";
 import Geocoder from "../Geocoder/Geocoder";
-import axios from "axios";
+import axios from "../../Api/axios";
 import { staticColor } from "../../color.js";
 
 const MAPBOX_TOKEN =
@@ -94,10 +94,7 @@ function Mapro({ setIsLoggedIn, token }) {
       try {
         if (data[1] !== "") {
           const res = await axios.get(
-            "https://testing-api.zoneomics.com/cities/findByLatLng?lat=" +
-              lat +
-              "&lng=" +
-              lng
+            "/cities/findByLatLng?lat=" + lat + "&lng=" + lng
           );
           SetZone(res.data.data[0].zoneCode);
           setId(res.data.data[0].id);
@@ -113,12 +110,9 @@ function Mapro({ setIsLoggedIn, token }) {
 
   useEffect(() => {
     axios
-      .get(`https://testing-api.zoneomics.com/user/status`, {
-        headers: {
-          Authorization: `Bearer ${tokena}`,
-        },
-      })
+      .get(`/user/status`, { isAuth: true })
       .then(({ data }) => {
+        console.log("userstatus", data);
         if (data?.data) setMembershipstatus(data.data.membershipStatus);
       })
       .catch((err) => {
@@ -127,39 +121,33 @@ function Mapro({ setIsLoggedIn, token }) {
   }, [data, tokena, membershipstatus]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://testing-api.zoneomics.com/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`,
-        {
-          headers: {
-            Authorization: `Bearer ${tokena}`,
-          },
-        }
-      )
-      .then(({ data }) => {
-        if (data?.data) {
-          //console.log(data.data)
-          if (membershipstatus === "premium") {
-            setApiData(data.data);
-          } else if (membershipstatus === "zoning_only") {
-            console.log(data.data.zoneCode);
-            console.log(data.data.zoneName);
-            setZoneonlycode(data.data.zoneCode);
-            setZoneonlyname(data.data.zoneName);
-
-            //setZoneonly(data.data)
-          } else if (membershipstatus === "unpaid") {
-            setZonedetail(data.data.properties);
-            console.log(data.data.properties, "unpaid user data");
-          } else {
-            console.log("Not Authorized");
+    if (lats && lngs) {
+      axios
+        .get(`/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`)
+        .then(({ data }) => {
+          if (data?.data) {
+            //console.log(data.data)
+            if (membershipstatus === "premium") {
+              setApiData(data.data);
+            } else if (membershipstatus === "zoning_only") {
+              console.log(data.data.zoneCode);
+              console.log(data.data.zoneName);
+              setZoneonlycode(data.data.zoneCode);
+              setZoneonlyname(data.data.zoneName);
+              //setZoneonly(data.data)
+            } else if (membershipstatus === "unpaid") {
+              setZonedetail(data.data.properties);
+              console.log(data.data.properties, "unpaid user data");
+            } else {
+              console.log("Not Authorized");
+            }
           }
-        }
-        setIsOpen(data.data);
-      })
-      .catch((err) => {
-        setZonedetail({});
-      });
+          setIsOpen(data.data);
+        })
+        .catch((err) => {
+          setZonedetail({});
+        });
+    }
   }, [data, lats, lngs, tokena, membershipstatus]);
 
   //  useEffect(()=>{
