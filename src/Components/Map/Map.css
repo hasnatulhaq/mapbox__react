@@ -37,10 +37,10 @@
     right: 0;
 }
 
-
 .geocoder-dropdown-item {
 padding: 5px;
 }
+
 .geocoder-dropdown-icon {
 margin-right: 10px;
 }
@@ -151,8 +151,6 @@ font-size: larger;
 }
     
   
-
-
   .bottom_tabbtn{
     font-size: 14px;
     margin: 5px;
@@ -163,7 +161,6 @@ font-size: larger;
     border: none;
     border-radius: 7px;
   }
-
 
 
   .zonesdetial_list{
