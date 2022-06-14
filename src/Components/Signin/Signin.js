@@ -8,7 +8,7 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
   const [password, setpassword] = useState("");
 
   let navigate = useNavigate();
-
+   const [showerr , setShowerr] = useState();
   // const handlelogin = (e) => {
   //     e.preventDefault();
   //     let formField = new FormData();
@@ -42,7 +42,10 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
           setIsLoggedIn(false);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>{
+        setShowerr(err)
+        console.log(err)
+      } );
   };
 
   return (
@@ -75,6 +78,7 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
             Submit
           </button>
         </form>
+        <p className="error">{showerr}</p>
       </div>
     </>
   );

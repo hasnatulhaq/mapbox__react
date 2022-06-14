@@ -123,15 +123,13 @@ function Mapro({ setIsLoggedIn, token }) {
   useEffect(() => {
     if (lats && lngs) {
       axios
-        .get(`/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`)
+        .get(`/zoneDetail/findByLatLng?lat=${lats}&lng=${lngs}`,{ isAuth: true })
         .then(({ data }) => {
           if (data?.data) {
             //console.log(data.data)
             if (membershipstatus === "premium") {
               setApiData(data.data);
             } else if (membershipstatus === "zoning_only") {
-              console.log(data.data.zoneCode);
-              console.log(data.data.zoneName);
               setZoneonlycode(data.data.zoneCode);
               setZoneonlyname(data.data.zoneName);
               //setZoneonly(data.data)

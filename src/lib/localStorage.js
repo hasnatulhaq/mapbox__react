@@ -3,7 +3,7 @@ import ls from "localstorage-slim";
 const setToken = ({ accessToken, refreshToken }) => {
   return ls.set("user", { accessToken, refreshToken });
 };
-
+ 
 const getToken = () => {
   try {
     const token = ls.get("user");
