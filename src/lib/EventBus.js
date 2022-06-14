@@ -1,4 +1,4 @@
-export default {
+const Eventbus = {
   on: (event, callback) => {
     document.addEventListener(event, () => callback());
   },
@@ -9,3 +9,5 @@ export default {
     document.removeEventListener(event, callback);
   },
 };
+
+export default Eventbus
