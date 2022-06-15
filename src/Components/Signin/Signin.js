@@ -8,7 +8,7 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
   const [password, setpassword] = useState("");
 
   let navigate = useNavigate();
-   const [showerr , setShowerr] = useState();
+  // const [showerr , setShowerr] = useState();
   // const handlelogin = (e) => {
   //     e.preventDefault();
   //     let formField = new FormData();
@@ -24,12 +24,12 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
   // }
 
 
-  const initialState = {
-    token: localStorage.getItem('token'),
-    isAuthenticated: localStorage.getItem('token') ? true : false, // or just !!localStorage.getItem('token')
-    isLoading: false,
-    isRegistered: false
- }
+//   const initialState = {
+//     token: localStorage.getItem('token'),
+//     isAuthenticated: localStorage.getItem('token') ? true : false, // or just !!localStorage.getItem('token')
+//     isLoading: false,
+//     isRegistered: false
+//  }
  
 
   const handlelogin = (e) => {
@@ -52,7 +52,7 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
         }
       })
       .catch((err) =>{
-        setShowerr(err)
+        // setShowerr(err)
         console.log(err)
       } );
   };
@@ -87,7 +87,7 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
             Submit
           </button>
         </form>
-        <p className="error">{showerr}</p>
+        {/* <p className="error">{showerr}</p> */}
       </div>
     </>
   );
