@@ -23,6 +23,15 @@ function Signin({ setIsLoggedIn, loggedIn, setToken }) {
   //     })
   // }
 
+
+  const initialState = {
+    token: localStorage.getItem('token'),
+    isAuthenticated: localStorage.getItem('token') ? true : false, // or just !!localStorage.getItem('token')
+    isLoading: false,
+    isRegistered: false
+ }
+ 
+
   const handlelogin = (e) => {
     e.preventDefault();
     axios
