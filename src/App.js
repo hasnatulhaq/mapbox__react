@@ -16,6 +16,7 @@ import localStorage from "./lib/localStorage";
 
 function App() {
   const [loggedIn, setIsLoggedIn] = useState(false);
+  const [userstatus,setMembershipstatus] = useState();
   //const [token , setToken] = useState()
   // localStorage.setItem('redtoken', token);
   // const Stoken=  localStorage.getItem('usetoken')
@@ -50,7 +51,7 @@ function App() {
             {loggedIn ? (
               <Route
                 path="/map"
-                element={<Mappage setIsLoggedIn={setIsLoggedIn} />}
+                element={<Mappage setIsLoggedIn={setIsLoggedIn} userstatus={userstatus} setMembershipstatus={setMembershipstatus}/>}
               />
             ) : (
               <Route path="*" element={<Navigate to="/signin" replace />} />

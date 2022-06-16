@@ -5,13 +5,29 @@
 
 .navbar__btn{
     width: 73px;
-height: 37px;
-right: 13px;
-margin-top: 9px;
-background: #4f45973d;
-border: none;
-border-radius: 7px;
-color: gray;
-right: 10px;
-position: absolute;
+    height: 37px;
+    right: 13px;
+    margin-top: 9px;
+    background: #4d66cb;
+    border: none;
+    border-radius: 7px;
+    color: #f7f7f7;
+    right: 10px;
+    position: absolute;
+}
+
+.navbar__menu{
+    display: flex;
+    list-style-type: none;   
+}
+
+.navbar__menu_item{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+
+.navbar__logo{
+     display: flex;
+     margin-left: 30px;
 }

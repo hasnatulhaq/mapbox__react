@@ -13,6 +13,4 @@ function NavigateButton() {
     return <button className='flytobutton' onClick={onClick}>Go</button>;
   }
 
-
-
   export default  NavigateButton;

@@ -1,20 +1,32 @@
 import "./Navbar.css"
 
 
-function Navbar({setIsLoggedIn}){
+function Navbar({setIsLoggedIn,userstatus}){
    return(
     <>
       <nav className="navbar">
-      <ul>
-  <li><a href="default.asp">Home</a></li>
-  <li><a href="news.asp">News</a></li>
-  <li><a href="contact.asp">Contact</a></li>
-  <li><a href="about.asp">About</a></li>
+        <div className="navbar__logo">
+           <h3>Zoning
+           {userstatus === "premium" ? (
+            <sup>pro</sup>
+        ) : userstatus === "zoning_only" ? (
+             <sup>Basic</sup>
+        ) : (
+            <sup>subscribe</sup>
+        )}
+            </h3>
+        </div>
+      <ul className="navbar__menu">
+  <li className="navbar__menu_item">Home</li>
+  <li className="navbar__menu_item">Dashboard</li>
 </ul> 
         <button className="navbar__btn" onClick={() => setIsLoggedIn(false)}>
         Signout
       </button>
       </nav>
+      <div className="statusdiv">
+       
+      </div>
     </>
    )
 }
