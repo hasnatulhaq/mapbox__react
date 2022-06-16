@@ -181,6 +181,8 @@ font-size: larger;
   .tabscontainer{
     margin: 20px;
     display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .top_address{

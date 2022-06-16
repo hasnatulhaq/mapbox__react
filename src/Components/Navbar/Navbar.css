@@ -1,0 +1,17 @@
+.navbar{
+    height: 4rem;
+    display: flex;
+}
+
+.navbar__btn{
+    width: 73px;
+height: 37px;
+right: 13px;
+margin-top: 9px;
+background: #4f45973d;
+border: none;
+border-radius: 7px;
+color: gray;
+right: 10px;
+position: absolute;
+}

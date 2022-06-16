@@ -426,9 +426,9 @@ function Mapro({ setIsLoggedIn, token }) {
 
   return (
     <>
-      <button className="logoutbtn" onClick={() => setIsLoggedIn(false)}>
+      {/* <button className="logoutbtn" onClick={() => setIsLoggedIn(false)}>
         Signout
-      </button>
+      </button> */}
       {isOpen ? <Popups /> : null}
       {showResults ? <Results /> : null}
       <ReactMapGl

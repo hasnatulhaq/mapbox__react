@@ -18,6 +18,7 @@
     "randomcolor": "^0.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0",
     "react-map-gl": "^7.0.10",
     "react-map-gl-geocoder": "2.2.0",
     "react-router-dom": "^6.3.0",

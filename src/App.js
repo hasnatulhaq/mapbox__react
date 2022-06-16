@@ -9,6 +9,7 @@ import Siginpage from "./Pages/Signinpage/Siginpage.js";
 import Mappage from "./Pages/Mappage/Mappage";
 import { useState } from "react";
 import localStorage from "./lib/localStorage";
+// import Navbar from "./Components/Navbar/Navbar";
 //import { accessToken } from "mapbox-gl";
 //import Search from './Components/search/Search';
 //import Sidbar from './Components/shared/Sidebar/Sidbar';
@@ -32,6 +33,7 @@ function App() {
   return (
     <>
       <div className="App">
+        
         <Router>
           <Routes>
             <Route exact path="/" element={<Navigate to="/signin" />} />
