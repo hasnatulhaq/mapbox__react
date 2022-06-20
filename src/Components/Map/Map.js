@@ -26,7 +26,7 @@ function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
   const [colors, setColors] = useState();
   const [Localaddress, setLocaladdress] = useState();
   const [apiData, setApiData] = useState({});
- // const [membershipstatus, setMembershipstatus] = useState();
+  const [membershipstatus, setMembershipstatus] = useState();
   const [zoneonlycode, setZoneonlycode] = useState();
   const [zoneonlyname, setZoneonlyname] = useState();
 
@@ -115,6 +115,7 @@ function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
         console.log("userstatus", data);
         if (data?.data) 
         setMembershipstatus(data.data.membershipstatus);
+        console.log(data.data.membershipstatus);
       })
       .catch((err) => {
         console.log(err);
