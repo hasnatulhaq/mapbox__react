@@ -50,8 +50,6 @@ font-family: Arial, Helvetica, sans-serif;
 font-size: larger;
 }
 
-
-
 .mapboxgl-ctrl-top-left{
     left: 35%;
     display: flex;
@@ -182,9 +180,10 @@ font-size: larger;
 
   .tabscontainer{
     margin: 20px;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
+   display: flex;
+   overflow-x: auto;
+   overflow-y: hidden;
+   padding: 9px;
   }
 
   .top_address{

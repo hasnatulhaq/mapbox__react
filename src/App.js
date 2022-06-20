@@ -9,7 +9,7 @@ import Siginpage from "./Pages/Signinpage/Siginpage.js";
 import Mappage from "./Pages/Mappage/Mappage";
 import { useState } from "react";
 import localStorage from "./lib/localStorage";
-// import Navbar from "./Components/Navbar/Navbar";
+//import Navbar from "./Components/Navbar/Navbar";
 //import { accessToken } from "mapbox-gl";
 //import Search from './Components/search/Search';
 //import Sidbar from './Components/shared/Sidebar/Sidbar';
@@ -17,6 +17,7 @@ import localStorage from "./lib/localStorage";
 function App() {
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [userstatus,setMembershipstatus] = useState();
+  console.log(userstatus)
   //const [token , setToken] = useState()
   // localStorage.setItem('redtoken', token);
   // const Stoken=  localStorage.getItem('usetoken')
@@ -34,7 +35,6 @@ function App() {
   return (
     <>
       <div className="App">
-        
         <Router>
           <Routes>
             <Route exact path="/" element={<Navigate to="/signin" />} />
