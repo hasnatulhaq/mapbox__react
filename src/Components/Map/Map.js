@@ -6,10 +6,9 @@ import Geocoder from "../Geocoder/Geocoder";
 import axios from "../../Api/axios";
 import { staticColor } from "../../color.js";
 
-const MAPBOX_TOKEN =
-  "pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg";
+const MAPBOX_TOKEN = "pk.eyJ1IjoiaGFzbmF0dWxoYXEiLCJhIjoiY2wwdzBjb3JrMTc3ajNkbjUyaDljbG8zcyJ9.zR9o-L0WGPt1JKTHd0oUFg";
 
-function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
+function Mapro({ setIsLoggedIn, token ,userstatus}) {
   const [showResults, setShowResults] = useState(false);
   //const [address , setAddress] =useState()
   const [data, setData] = useState([]);
@@ -115,7 +114,6 @@ function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
         console.log("userstatus", data);
         if (data?.data) 
         setMembershipstatus(data.data.membershipstatus);
-        console.log(data.data.membershipstatus);
       })
       .catch((err) => {
         console.log(err);
@@ -129,13 +127,13 @@ function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
         .then(({ data }) => {
           if (data?.data) {
             //console.log(data.data)
-            if (userstatus === "premium") {
+            if (membershipstatus === "premium") {
               setApiData(data.data);
-            } else if (userstatus === "zoning_only") {
+            } else if (membershipstatus === "zoning_only") {
               setZoneonlycode(data.data.zoneCode);
               setZoneonlyname(data.data.zoneName);
               //setZoneonly(data.data)
-            } else if (userstatus === "unpaid") {
+            } else if (membershipstatus === "unpaid") {
               setZonedetail(data.data.properties);
               console.log(data.data.properties, "unpaid user data");
             } else {
@@ -148,7 +146,7 @@ function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
           setZonedetail({});
         });
     }
-  }, [data, lats, lngs, tokena, userstatus]);
+  }, [data, lats, lngs, tokena, membershipstatus]);
 
   //  useEffect(()=>{
   //        async function getData(){
@@ -320,16 +318,16 @@ function Mapro({ setIsLoggedIn, token ,userstatus,setMembershipstatus}) {
       </div>
       <div>{/* <hr className="linepopup"></hr> */}</div>
       <div className="statusdiv">
-        {userstatus === "premium" ? (
+        {membershipstatus === "premium" ? (
           <p className="statusdiv">Pro</p>
-        ) : userstatus === "zoning_only" ? (
+        ) : membershipstatus === "zoning_only" ? (
           <p className="statusdiv">Zoning Data</p>
         ) : (
           <p className="statusdiv">Please subscribe to view data</p>
         )}
       </div>
       <div className="zonesdetial_list">
-        {userstatus === "premium" ? (
+        {membershipstatus === "premium" ? (
           <div>
             <ul className="zoneslist" hidden={index !== 0}>
               <li>Zone Code</li>

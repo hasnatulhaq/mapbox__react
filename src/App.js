@@ -47,7 +47,6 @@ function App() {
                 />
               }
             />
-
             {loggedIn ? (
               <Route
                 path="/map"

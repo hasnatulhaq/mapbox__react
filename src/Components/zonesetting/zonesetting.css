@@ -1,0 +1,9 @@
+
+
+.zonesetting_menu{
+    display: flex;
+    justify-content: center;
+    background: #4d66cb12;
+    height: 9%;
+    height: 45px;
+}

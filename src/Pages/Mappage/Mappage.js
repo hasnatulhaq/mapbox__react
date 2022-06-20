@@ -17,5 +17,4 @@ function Mappage({setIsLoggedIn,token,userstatus,setMembershipstatus}){
         </>
     )
 }
-
 export default Mappage;

@@ -1,6 +1,5 @@
+import ZoneSetting from "../zonesetting/zonesetting";
 import "./Navbar.css"
-
-
 
 
 function Navbar({setIsLoggedIn,userstatus}){
@@ -35,11 +34,14 @@ function Navbar({setIsLoggedIn,userstatus}){
 
         </div>
        </div>
-      
+          
       </nav>
-      <div className="statusdiv">
+      <div>
+              <ZoneSetting></ZoneSetting>
+          </div>
+      {/* <div className="statusdiv">
        
-      </div>
+      </div> */}
     </>
    )
 }
